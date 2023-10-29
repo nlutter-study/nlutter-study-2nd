@@ -46,7 +46,7 @@ class SignUpScreen extends StatelessWidget {
               Gaps.v40,
               AuthButton(
                 icon: FaIcon(FontAwesomeIcons.user),
-                text: "전화번호 또는 이메일로 가입하기",
+                text: "이메일 주소로 가입하기",
               ),
               Gaps.v16,
               AuthButton(
