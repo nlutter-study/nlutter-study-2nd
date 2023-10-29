@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/login_screen.dart';
@@ -43,7 +44,15 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               Gaps.v40,
-              AuthButton(text: "전화번호 또는 이메일로 가입하기"),
+              AuthButton(
+                icon: FaIcon(FontAwesomeIcons.user),
+                text: "전화번호 또는 이메일로 가입하기",
+              ),
+              Gaps.v16,
+              AuthButton(
+                icon: FaIcon(FontAwesomeIcons.apple),
+                text: "애플 아이디로 가입하기",
+              ),
             ],
           ),
         ),
