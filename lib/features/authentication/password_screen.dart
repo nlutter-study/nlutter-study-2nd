@@ -1,10 +1,150 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/constants/gaps.dart';
+import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/authentication/widgets/form_button.dart';
 
-class PasswordScreen extends StatelessWidget {
+class PasswordScreen extends StatefulWidget {
   const PasswordScreen({super.key});
 
   @override
+  State<PasswordScreen> createState() => _PasswordScreenState();
+}
+
+class _PasswordScreenState extends State<PasswordScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+
+  String _password = "";
+
+  bool _obscureText = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _passwordController.addListener(() {
+      setState(() {
+        _password = _passwordController.text;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  bool _isPasswordValid() {
+    return _password.isNotEmpty && _password.length > 8;
+  }
+
+  void _onScaffoldTap() {
+    FocusScope.of(context).unfocus();
+  }
+
+  void _onSubmit() {
+    if (_password.isEmpty || _isPasswordValid() != null) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const PasswordScreen(),
+      ),
+    );
+  }
+
+  void _onClearTap() {
+    _passwordController.clear();
+  }
+
+  void _toggleObscureText() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return GestureDetector(
+      onTap: _onScaffoldTap,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "가입하기",
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.size36,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.v40,
+              const Text(
+                "패스워드",
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Gaps.v16,
+              TextField(
+                controller: _passwordController,
+                onEditingComplete: _onSubmit,
+                obscureText: _obscureText,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  suffix: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      GestureDetector(
+                        onTap: _onClearTap,
+                        child: FaIcon(
+                          FontAwesomeIcons.solidCircleXmark,
+                          color: Colors.grey.shade500,
+                          size: Sizes.size20,
+                        ),
+                      ),
+                      Gaps.h16,
+                      GestureDetector(
+                        onTap: _toggleObscureText,
+                        child: FaIcon(
+                          _obscureText
+                              ? FontAwesomeIcons.eye
+                              : FontAwesomeIcons.eyeSlash,
+                          color: Colors.grey.shade500,
+                          size: Sizes.size20,
+                        ),
+                      ),
+                    ],
+                  ),
+                  hintText: "패스워드",
+                  errorText: _isPasswordValid(),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade400,
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade400,
+                    ),
+                  ),
+                ),
+                cursorColor: Theme.of(context).primaryColor,
+              ),
+              Gaps.v16,
+              GestureDetector(
+                onTap: _onSubmit,
+                child: FormButton(
+                  disabled: _password.isEmpty || _isPasswordValid() != null,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
