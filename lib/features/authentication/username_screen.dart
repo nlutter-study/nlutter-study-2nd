@@ -79,6 +79,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
+                errorText: _username.isEmpty ? "이름을 입력해주세요." : null,
                 hintText: "이름",
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
