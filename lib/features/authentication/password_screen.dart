@@ -36,7 +36,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
   }
 
   bool _isPasswordValid() {
-    return _password.isNotEmpty && _password.length > 8;
+    return _password.isNotEmpty && _password.length >= 8;
   }
 
   void _onScaffoldTap() {
@@ -44,7 +44,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
   }
 
   void _onSubmit() {
-    if (_password.isEmpty || _isPasswordValid() != null) return;
+    if (_password.isEmpty || _isPasswordValid()) return;
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -120,7 +120,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                     ],
                   ),
                   hintText: "패스워드",
-                  errorText: _isPasswordValid(),
+                  errorText: !_isPasswordValid() ? "패스워드는 8자 이상이어야 합니다." : null,
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.grey.shade400,
@@ -134,12 +134,31 @@ class _PasswordScreenState extends State<PasswordScreen> {
                 ),
                 cursorColor: Theme.of(context).primaryColor,
               ),
-              Gaps.v16,
+              Gaps.v10,
+              const Text(
+                "아래 조건을 모두 충족해야 합니다.",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Gaps.v10,
+              Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.circleCheck,
+                    size: Sizes.size20,
+                    color: _isPasswordValid()
+                        ? Colors.green
+                        : Colors.grey.shade400,
+                  ),
+                  Gaps.h5,
+                  const Text("8자 이상 20자 이하")
+                ],
+              ),
+              Gaps.v28,
               GestureDetector(
                 onTap: _onSubmit,
-                child: FormButton(
-                  disabled: _password.isEmpty || _isPasswordValid() != null,
-                ),
+                child: FormButton(disabled: !_isPasswordValid()),
               ),
             ],
           ),
