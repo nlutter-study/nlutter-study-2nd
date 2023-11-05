@@ -24,7 +24,7 @@ class _MainNavigationState extends State<MainNavigation> {
       child: Text("home4"),
     ),
     const Center(
-      child: Text("home5"),
+      child: Text("home6"),
     ),
   ];
 
