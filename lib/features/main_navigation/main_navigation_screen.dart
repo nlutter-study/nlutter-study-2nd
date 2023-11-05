@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/constants/gaps.dart';
+import 'package:tiktok/constants/sizes.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -12,19 +15,20 @@ class _MainNavigationState extends State<MainNavigation> {
 
   final screens = [
     const Center(
-      child: Text("home"),
+      child: Text(
+        "홈",
+        style: TextStyle(
+          fontSize: 49,
+        ),
+      ),
     ),
     const Center(
-      child: Text("home2"),
-    ),
-    const Center(
-      child: Text("home3"),
-    ),
-    const Center(
-      child: Text("home4"),
-    ),
-    const Center(
-      child: Text("home6"),
+      child: Text(
+        "검색",
+        style: TextStyle(
+          fontSize: 49,
+        ),
+      ),
     ),
   ];
 
@@ -36,47 +40,82 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        currentIndex: _selectedIndex,
-        onTap: _onTap,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.red,
+    return const Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
+        child: Padding(
+          padding: EdgeInsets.all(
+            Sizes.size12,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-            ),
-            label: 'Search',
-            backgroundColor: Colors.amber,
+          child: Row(
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.house,
+                    color: Colors.white,
+                  ),
+                  Gaps.v5,
+                  Text(
+                    'home',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.house,
+                    color: Colors.white,
+                  ),
+                  Gaps.v5,
+                  Text(
+                    'home',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.house,
+                    color: Colors.white,
+                  ),
+                  Gaps.v5,
+                  Text(
+                    'home',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.house,
+                    color: Colors.white,
+                  ),
+                  Gaps.v5,
+                  Text(
+                    'home',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              )
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.account_circle,
-            ),
-            label: 'Profile',
-            backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-            ),
-            label: 'Search2',
-            backgroundColor: Colors.blue,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.account_circle,
-            ),
-            label: 'Profile2',
-            backgroundColor: Colors.purple,
-          ),
-        ],
+        ),
       ),
     );
   }
