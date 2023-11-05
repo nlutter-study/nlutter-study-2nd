@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -40,79 +41,40 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Padding(
-          padding: EdgeInsets.all(
+          padding: const EdgeInsets.all(
             Sizes.size12,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.house,
-                    color: Colors.white,
-                  ),
-                  Gaps.v5,
-                  Text(
-                    'home',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+              NavTab(
+                text: "홈",
+                isSelected: _selectedIndex == 0,
+                icon: FontAwesomeIcons.house,
+                onTap: () => _onTap(0),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.house,
-                    color: Colors.white,
-                  ),
-                  Gaps.v5,
-                  Text(
-                    'home',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+              NavTab(
+                text: "검색",
+                isSelected: _selectedIndex == 1,
+                icon: FontAwesomeIcons.magnifyingGlass,
+                onTap: () => _onTap(1),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.house,
-                    color: Colors.white,
-                  ),
-                  Gaps.v5,
-                  Text(
-                    'home',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+              NavTab(
+                text: "인박스",
+                isSelected: _selectedIndex == 3,
+                icon: FontAwesomeIcons.message,
+                onTap: () => _onTap(3),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.house,
-                    color: Colors.white,
-                  ),
-                  Gaps.v5,
-                  Text(
-                    'home',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              )
+              NavTab(
+                text: "프로필",
+                isSelected: _selectedIndex == 4,
+                icon: FontAwesomeIcons.user,
+                onTap: () => _onTap(4),
+              ),
             ],
           ),
         ),
