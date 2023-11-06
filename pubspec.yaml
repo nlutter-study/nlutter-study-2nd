@@ -42,6 +42,8 @@ dependencies:
 
   font_awesome_flutter: 10.3.0
 
+  visibility_detector: 0.3.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
