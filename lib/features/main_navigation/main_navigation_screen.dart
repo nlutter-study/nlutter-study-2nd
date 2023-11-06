@@ -4,6 +4,7 @@ import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktok/features/videos/video_timeline_screen.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -16,14 +17,7 @@ class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 0;
 
   final screens = [
-    const Center(
-      child: Text(
-        "홈",
-        style: TextStyle(
-          fontSize: 49,
-        ),
-      ),
-    ),
+    const VideoTimelineScreen(),
     const Center(
       child: Text(
         "검색",
