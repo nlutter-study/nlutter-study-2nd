@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -103,8 +104,29 @@ class _VideoPostState extends State<VideoPost>
               onTap: _onTogglePause,
             ),
           ),
-          IgnorePointer(
-            child: Positioned.fill(
+          const Positioned(
+            bottom: 30,
+            left: 30,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("@원장",
+                    style: TextStyle(
+                      fontSize: Sizes.size20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    )),
+                Gaps.v10,
+                Text("여기는 우리 집 안이야",
+                    style: TextStyle(
+                      fontSize: Sizes.size16,
+                      color: Colors.white,
+                    )),
+              ],
+            ),
+          ),
+          Positioned.fill(
+            child: IgnorePointer(
               child: Center(
                 child: AnimatedBuilder(
                   animation: _animationController,
