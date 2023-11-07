@@ -115,24 +115,30 @@ class _VideoCommentsState extends State<VideoComments> {
                       ),
                       Gaps.h10,
                       Expanded(
-                          child: TextField(
-                        cursorColor: Theme.of(context).primaryColor,
-                        decoration: InputDecoration(
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(
-                                Sizes.size12,
+                          child: SizedBox(
+                        height: Sizes.size44,
+                        child: TextField(
+                          expands: true,
+                          maxLines: null,
+                          minLines: null,
+                          textInputAction: TextInputAction.newline,
+                          cursorColor: Theme.of(context).primaryColor,
+                          decoration: InputDecoration(
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(
+                                  Sizes.size12,
+                                ),
                               ),
+                              borderSide: BorderSide.none,
                             ),
-                            borderSide: BorderSide.none,
+                            filled: true,
+                            fillColor: Colors.grey.shade200,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: Sizes.size12,
+                            ),
+                            hintText: "댓글을 입력하세요",
                           ),
-                          filled: true,
-                          fillColor: Colors.grey.shade200,
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: Sizes.size12,
-                            vertical: Sizes.size12,
-                          ),
-                          hintText: "댓글을 입력하세요",
                         ),
                       )),
                     ],
