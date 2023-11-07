@@ -17,7 +17,9 @@ class _VideoCommentsState extends State<VideoComments> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
+      height: size.height * 0.8,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           Sizes.size14,
@@ -35,81 +37,110 @@ class _VideoCommentsState extends State<VideoComments> {
             ),
           ],
         ),
-        body: ListView.separated(
-          padding: const EdgeInsets.symmetric(
-            horizontal: Sizes.size16,
-            vertical: Sizes.size10,
-          ),
-          separatorBuilder: (context, index) => Gaps.v20,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CircleAvatar(
-                  radius: 18,
-                  backgroundColor: Colors.grey,
-                ),
-                Gaps.h10,
-                const Expanded(
-                    child: Column(
+        body: Stack(
+          children: [
+            ListView.separated(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.size16,
+                vertical: Sizes.size10,
+              ),
+              separatorBuilder: (context, index) => Gaps.v20,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "원장",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: Sizes.size14,
-                      ),
+                    const CircleAvatar(
+                      radius: 18,
+                      backgroundColor: Colors.grey,
                     ),
-                    Gaps.v3,
-                    Text(
-                      "여기는 우리 집 안이야",
-                      style: TextStyle(
-                        fontSize: Sizes.size14,
-                      ),
-                    ),
+                    Gaps.h10,
+                    const Expanded(
+                        child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "원장",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: Sizes.size14,
+                          ),
+                        ),
+                        Gaps.v3,
+                        Text(
+                          "여기는 우리 집 안이야",
+                          style: TextStyle(
+                            fontSize: Sizes.size14,
+                          ),
+                        ),
+                      ],
+                    )),
+                    Gaps.h10,
+                    Column(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.heart,
+                          size: Sizes.size20,
+                          color: Colors.grey.shade500,
+                        ),
+                        Gaps.v2,
+                        Text(
+                          "1.2k",
+                          style: TextStyle(
+                            fontSize: Sizes.size14,
+                            color: Colors.grey.shade500,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
-                )),
-                Gaps.h10,
-                Column(
-                  children: [
-                    Icon(
-                      FontAwesomeIcons.heart,
-                      size: Sizes.size20,
-                      color: Colors.grey.shade500,
-                    ),
-                    Gaps.v2,
-                    Text(
-                      "1.2k",
-                      style: TextStyle(
-                        fontSize: Sizes.size14,
-                        color: Colors.grey.shade500,
+                );
+              },
+            ),
+            Positioned(
+              width: size.width,
+              bottom: 0,
+              child: BottomAppBar(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Sizes.size16,
+                    vertical: Sizes.size10,
+                  ),
+                  child: Row(
+                    children: [
+                      const CircleAvatar(
+                        radius: 18,
+                        child: Text("원장"),
                       ),
-                    ),
-                  ],
-                )
-              ],
-            );
-          },
-        ),
-        bottomNavigationBar: const BottomAppBar(
-          color: Colors.white,
-          child: Row(
-            children: [
-              CircleAvatar(
-                radius: 18,
-                child: Text("원장"),
-              ),
-              Gaps.h10,
-              Expanded(
-                  child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Add a comment...",
+                      Gaps.h10,
+                      Expanded(
+                          child: TextField(
+                        cursorColor: Theme.of(context).primaryColor,
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                Sizes.size12,
+                              ),
+                            ),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: Sizes.size12,
+                            vertical: Sizes.size12,
+                          ),
+                          hintText: "댓글을 입력하세요",
+                        ),
+                      )),
+                    ],
+                  ),
                 ),
-              )),
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
