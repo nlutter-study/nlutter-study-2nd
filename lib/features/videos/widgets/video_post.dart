@@ -40,6 +40,7 @@ class _VideoPostState extends State<VideoPost>
 
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
+    await _videoPlayerController.setLooping(true);
     _videoPlayerController.play();
     setState(() {});
     _videoPlayerController.addListener(_onVideoChanged);
@@ -67,10 +68,6 @@ class _VideoPostState extends State<VideoPost>
     if (visibilityInfo.visibleFraction == 1 &&
         !_videoPlayerController.value.isPlaying) {
       _videoPlayerController.play();
-    } else {
-      if (_videoPlayerController.value.isPlaying) {
-        _videoPlayerController.pause();
-      }
     }
   }
 
