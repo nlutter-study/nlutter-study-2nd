@@ -13,6 +13,8 @@ class VideoComments extends StatefulWidget {
 class _VideoCommentsState extends State<VideoComments> {
   bool _isWriting = false;
 
+  final ScrollController _scrollController = ScrollController();
+
   void _onClosePressed() {
     Navigator.of(context).pop();
   }
@@ -56,63 +58,68 @@ class _VideoCommentsState extends State<VideoComments> {
           onTap: _stopWriting,
           child: Stack(
             children: [
-              ListView.separated(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: Sizes.size16,
-                  vertical: Sizes.size10,
-                ),
-                separatorBuilder: (context, index) => Gaps.v20,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const CircleAvatar(
-                        radius: 18,
-                        backgroundColor: Colors.grey,
-                      ),
-                      Gaps.h10,
-                      const Expanded(
-                          child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "원장",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: Sizes.size14,
+              Scrollbar(
+                controller: _scrollController,
+                child: ListView.separated(
+                  padding: const EdgeInsets.only(
+                    bottom: Sizes.size96 + Sizes.size20,
+                    left: Sizes.size16,
+                    right: Sizes.size16,
+                    top: Sizes.size10,
+                  ),
+                  separatorBuilder: (context, index) => Gaps.v20,
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const CircleAvatar(
+                          radius: 18,
+                          backgroundColor: Colors.grey,
+                        ),
+                        Gaps.h10,
+                        const Expanded(
+                            child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "원장",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: Sizes.size14,
+                              ),
                             ),
-                          ),
-                          Gaps.v3,
-                          Text(
-                            "여기는 우리 집 안이야",
-                            style: TextStyle(
-                              fontSize: Sizes.size14,
+                            Gaps.v3,
+                            Text(
+                              "여기는 우리 집 안이야",
+                              style: TextStyle(
+                                fontSize: Sizes.size14,
+                              ),
                             ),
-                          ),
-                        ],
-                      )),
-                      Gaps.h10,
-                      Column(
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.heart,
-                            size: Sizes.size20,
-                            color: Colors.grey.shade500,
-                          ),
-                          Gaps.v2,
-                          Text(
-                            "1.2k",
-                            style: TextStyle(
-                              fontSize: Sizes.size14,
+                          ],
+                        )),
+                        Gaps.h10,
+                        Column(
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.heart,
+                              size: Sizes.size20,
                               color: Colors.grey.shade500,
                             ),
-                          ),
-                        ],
-                      )
-                    ],
-                  );
-                },
+                            Gaps.v2,
+                            Text(
+                              "1.2k",
+                              style: TextStyle(
+                                fontSize: Sizes.size14,
+                                color: Colors.grey.shade500,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    );
+                  },
+                ),
               ),
               Positioned(
                 width: size.width,
