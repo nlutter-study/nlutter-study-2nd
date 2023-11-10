@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/discover/discover_screen.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/main_navigation/widgets/post_video_button.dart';
 import 'package:tiktok/features/videos/video_timeline_screen.dart';
@@ -14,18 +15,11 @@ class MainNavigation extends StatefulWidget {
 }
 
 class _MainNavigationState extends State<MainNavigation> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   final screens = [
     const VideoTimelineScreen(),
-    const Center(
-      child: Text(
-        "검색",
-        style: TextStyle(
-          fontSize: 49,
-        ),
-      ),
-    ),
+    const DiscoverScreen(),
     Container(),
     const Center(
       child: Text(
@@ -71,7 +65,26 @@ class _MainNavigationState extends State<MainNavigation> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
-      body: screens.elementAt(_selectedIndex),
+      body: Stack(
+        children: [
+          Offstage(
+            offstage: _selectedIndex != 0,
+            child: screens[0],
+          ),
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: screens[_selectedIndex],
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: screens[_selectedIndex],
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: screens[_selectedIndex],
+          ),
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         color: _selectedIndex == 0 ? Colors.black : Colors.white,
         child: Padding(
