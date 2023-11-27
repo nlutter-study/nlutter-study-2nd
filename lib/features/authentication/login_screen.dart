@@ -63,8 +63,41 @@ class LoginScreen extends StatelessWidget {
               ),
               Gaps.v16,
               const AuthButton(
-                icon: FaIcon(FontAwesomeIcons.apple),
+                icon: FaIcon(
+                  FontAwesomeIcons.apple,
+                  size: 30,
+                ),
                 text: "Continue with Apple",
+              ),
+              Gaps.v16,
+              FractionallySizedBox(
+                widthFactor: 1,
+                child: Container(
+                  padding: const EdgeInsets.all(
+                    Sizes.size14,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    border: Border.all(
+                      color: Colors.black,
+                    ),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: const Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Text(
+                        "Create account",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: Sizes.size16 + Sizes.size2,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
