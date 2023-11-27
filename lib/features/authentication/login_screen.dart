@@ -30,35 +30,41 @@ class LoginScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
+              const FaIcon(
+                FontAwesomeIcons.twitter,
+                size: Sizes.size40,
+                color: Colors.blue,
+              ),
+              Gaps.v80,
               Gaps.v80,
               const Text(
-                "틱톡에 로그인하세요.",
+                "See what's happening ",
                 style: TextStyle(
-                  fontSize: Sizes.size24,
+                  fontSize: Sizes.size28,
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              Gaps.v20,
+              Gaps.v4,
               const Text(
-                "로그인하여 즐거운 시간을 보내세요.",
+                "in the world right now.",
                 style: TextStyle(
-                  fontSize: Sizes.size16,
-                  color: Colors.black45,
-                  fontWeight: FontWeight.w400,
+                  fontSize: Sizes.size28,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              Gaps.v40,
+              Gaps.v80,
+              Gaps.v80,
               GestureDetector(
                 onTap: () => _onEmailLoginTap(context),
                 child: const AuthButton(
-                  icon: FaIcon(FontAwesomeIcons.user),
-                  text: "이메일 주소로 계속하기",
+                  icon: FaIcon(FontAwesomeIcons.google),
+                  text: "Continue with Google",
                 ),
               ),
               Gaps.v16,
               const AuthButton(
                 icon: FaIcon(FontAwesomeIcons.apple),
-                text: "애플 아이디로 계속하기",
+                text: "Continue with Apple",
               ),
             ],
           ),
