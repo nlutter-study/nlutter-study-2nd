@@ -1,4 +1,5 @@
 import 'package:day15/presentation_layer/index.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -43,12 +44,15 @@ class SignupPageOne extends StatefulWidget {
 
 class _SignupPageOneState extends State<SignupPageOne> {
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneNumberOrEmailAddressController = TextEditingController();
+  final TextEditingController _phoneNumberOrEmailAddressController =
+      TextEditingController();
   final TextEditingController _dateOfBirthController = TextEditingController();
 
-  PhoneNumberOrEmailAddress _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.none;
+  PhoneNumberOrEmailAddress _phoneNumberOrEmailAddress =
+      PhoneNumberOrEmailAddress.none;
 
   bool _isKeyboardVisible = false;
+  bool _isDatePickerVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +157,8 @@ class _SignupPageOneState extends State<SignupPageOne> {
         labelStyle: const TextStyle(
           color: Colors.black,
         ),
-        suffixIcon: _isPhoneNumberOrEmailAddressValid(_phoneNumberOrEmailAddressController.text)
+        suffixIcon: _isPhoneNumberOrEmailAddressValid(
+                _phoneNumberOrEmailAddressController.text)
             ? Container(
                 padding: const EdgeInsets.only(left: 24, top: 20),
                 child: const FaIcon(
@@ -195,7 +200,8 @@ class _SignupPageOneState extends State<SignupPageOne> {
     }
 
     if (_phoneNumberOrEmailAddress == PhoneNumberOrEmailAddress.emailAddress) {
-      final bool isEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value);
+      final bool isEmail =
+          RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value);
 
       if (!isEmail) {
         return false;
@@ -227,6 +233,28 @@ class _SignupPageOneState extends State<SignupPageOne> {
       decoration: const InputDecoration(
         hintText: 'Date of birth',
       ),
+      controller: _dateOfBirthController,
+      onTap: () {
+        _showDatePicker();
+      },
+    );
+  }
+
+  void _showDatePicker() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext builder) {
+        return Container(
+          height: MediaQuery.of(context).copyWith().size.height / 3,
+          child: CupertinoDatePicker(
+            mode: CupertinoDatePickerMode.dateAndTime,
+            initialDateTime: DateTime.now(),
+            onDateTimeChanged: (DateTime newDate) {
+              // Handle the date change here
+            },
+          ),
+        );
+      },
     );
   }
 
@@ -236,11 +264,16 @@ class _SignupPageOneState extends State<SignupPageOne> {
         padding: EdgeInsets.only(
           left: 32.0,
           right: 32.0,
-          bottom: _isKeyboardVisible ? MediaQuery.of(context).viewInsets.bottom + 5 : 0,
+          bottom: _isKeyboardVisible
+              ? MediaQuery.of(context).viewInsets.bottom + 5
+              : 0,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [_switchPhoneNumberOrEmailAddressButton(), _nextPageButton()],
+          children: [
+            _switchPhoneNumberOrEmailAddressButton(),
+            _nextPageButton()
+          ],
         ),
       ),
     );
@@ -253,10 +286,12 @@ class _SignupPageOneState extends State<SignupPageOne> {
           () {
             switch (_phoneNumberOrEmailAddress) {
               case PhoneNumberOrEmailAddress.phoneNumber:
-                _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.emailAddress;
+                _phoneNumberOrEmailAddress =
+                    PhoneNumberOrEmailAddress.emailAddress;
                 break;
               case PhoneNumberOrEmailAddress.emailAddress:
-                _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.phoneNumber;
+                _phoneNumberOrEmailAddress =
+                    PhoneNumberOrEmailAddress.phoneNumber;
                 break;
               case PhoneNumberOrEmailAddress.none:
                 break;
