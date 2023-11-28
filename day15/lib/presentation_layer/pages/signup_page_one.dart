@@ -2,6 +2,38 @@ import 'package:day15/presentation_layer/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+enum PhoneNumberOrEmailAddress {
+  phoneNumber,
+  emailAddress,
+  none;
+
+  String get label {
+    switch (this) {
+      case PhoneNumberOrEmailAddress.phoneNumber:
+        return 'Phone number';
+      case PhoneNumberOrEmailAddress.emailAddress:
+        return 'Email';
+      case PhoneNumberOrEmailAddress.none:
+        return 'Phone number or email address';
+      default:
+        return '';
+    }
+  }
+
+  String get switchLabel {
+    switch (this) {
+      case PhoneNumberOrEmailAddress.phoneNumber:
+        return 'Use email instead';
+      case PhoneNumberOrEmailAddress.emailAddress:
+        return 'Use phone instead';
+      case PhoneNumberOrEmailAddress.none:
+        return '';
+      default:
+        return '';
+    }
+  }
+}
+
 class SignupPageOne extends StatefulWidget {
   const SignupPageOne({super.key});
 
@@ -10,8 +42,18 @@ class SignupPageOne extends StatefulWidget {
 }
 
 class _SignupPageOneState extends State<SignupPageOne> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneNumberOrEmailAddressController = TextEditingController();
+  final TextEditingController _dateOfBirthController = TextEditingController();
+
+  PhoneNumberOrEmailAddress _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.none;
+
+  bool _isKeyboardVisible = false;
+
   @override
   Widget build(BuildContext context) {
+    _isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+
     return Scaffold(
       appBar: _appBar(),
       body: _body(),
@@ -28,8 +70,6 @@ class _SignupPageOneState extends State<SignupPageOne> {
         },
         child: const Text(
           'Cancel',
-          style: TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
       title: const AppTitle(),
@@ -46,7 +86,7 @@ class _SignupPageOneState extends State<SignupPageOne> {
             const SizedBox(height: 32),
             _title(),
             _nameFormField(),
-            _phoneNumberOrEmailAdressFormField(),
+            _phoneNumberOrEmailAddressFormField(),
             _dateOfBirthFormField(),
           ],
         ),
@@ -59,43 +99,127 @@ class _SignupPageOneState extends State<SignupPageOne> {
       "Create your account",
       style: TextStyle(
         fontSize: 28,
-        fontWeight: FontWeight.w900,
       ),
     );
   }
 
   _nameFormField() {
     return TextFormField(
+      controller: _nameController,
       decoration: InputDecoration(
         labelText: 'Name',
         labelStyle: const TextStyle(
           color: Colors.black,
         ),
-        suffixIcon: Container(
-          // alignment: Alignment.centerRight,
-          color: Colors.red,
-          child: FaIcon(FontAwesomeIcons.solidCircleCheck, color: Colors.green),
-        ),
+        suffixIcon: _isNameValid(_nameController.text)
+            ? Container(
+                padding: const EdgeInsets.only(left: 24, top: 20),
+                child: const FaIcon(
+                  FontAwesomeIcons.solidCircleCheck,
+                  color: Colors.green,
+                  size: 20,
+                ),
+              )
+            : null,
       ),
+      onChanged: (value) {
+        setState(() {});
+      },
       style: TextStyle(
         color: Theme.of(context).primaryColor,
         fontSize: 18,
       ),
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter your name';
+        if (_isNameValid(value)) {
+          return null;
         }
-        return null;
+        return 'Please enter your name';
       },
     );
   }
 
-  _phoneNumberOrEmailAdressFormField() {
+  _isNameValid(value) {
+    if (value == null || value.isEmpty) {
+      return false;
+    }
+    return true;
+  }
+
+  _phoneNumberOrEmailAddressFormField() {
     return TextFormField(
-      decoration: const InputDecoration(
-        hintText: 'Phone number or email address',
+      controller: _phoneNumberOrEmailAddressController,
+      decoration: InputDecoration(
+        labelText: _phoneNumberOrEmailAddress.label,
+        labelStyle: const TextStyle(
+          color: Colors.black,
+        ),
+        suffixIcon: _isPhoneNumberOrEmailAddressValid(_phoneNumberOrEmailAddressController.text)
+            ? Container(
+                padding: const EdgeInsets.only(left: 24, top: 20),
+                child: const FaIcon(
+                  FontAwesomeIcons.solidCircleCheck,
+                  color: Colors.green,
+                  size: 20,
+                ),
+              )
+            : null,
       ),
+      onChanged: (value) {
+        _setPhoneNumberOrEmailAddress(value);
+        setState(() {});
+      },
+      style: TextStyle(
+        color: Theme.of(context).primaryColor,
+        fontSize: 18,
+      ),
+      validator: (value) {
+        if (_isPhoneNumberOrEmailAddressValid(value)) {
+          return null;
+        }
+        return 'Please enter your name';
+      },
     );
+  }
+
+  _isPhoneNumberOrEmailAddressValid(value) {
+    if (value == null || value.isEmpty) {
+      return false;
+    }
+
+    if (_phoneNumberOrEmailAddress == PhoneNumberOrEmailAddress.phoneNumber) {
+      final bool isPhoneNumber = RegExp(r'^[0-9\+\-\(\)]+$').hasMatch(value);
+
+      if (!isPhoneNumber) {
+        return false;
+      }
+    }
+
+    if (_phoneNumberOrEmailAddress == PhoneNumberOrEmailAddress.emailAddress) {
+      final bool isEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value);
+
+      if (!isEmail) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  _setPhoneNumberOrEmailAddress(value) {
+    if (value.isEmpty) {
+      _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.none;
+      return;
+    }
+
+    if (_phoneNumberOrEmailAddress == PhoneNumberOrEmailAddress.none) {
+      final bool isDigit = RegExp(r'^\d$').hasMatch(value);
+
+      if (isDigit) {
+        _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.phoneNumber;
+      } else {
+        _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.emailAddress;
+      }
+    }
   }
 
   _dateOfBirthFormField() {
@@ -108,12 +232,43 @@ class _SignupPageOneState extends State<SignupPageOne> {
 
   Widget _bottomAppBar() {
     return BottomAppBar(
-      height: 40,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32.0),
-        child: Align(
-          alignment: Alignment.centerRight,
-          child: _nextPageButton(),
+        padding: EdgeInsets.only(
+          left: 32.0,
+          right: 32.0,
+          bottom: _isKeyboardVisible ? MediaQuery.of(context).viewInsets.bottom + 5 : 0,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [_switchPhoneNumberOrEmailAddressButton(), _nextPageButton()],
+        ),
+      ),
+    );
+  }
+
+  _switchPhoneNumberOrEmailAddressButton() {
+    return GestureDetector(
+      onTap: () {
+        setState(
+          () {
+            switch (_phoneNumberOrEmailAddress) {
+              case PhoneNumberOrEmailAddress.phoneNumber:
+                _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.emailAddress;
+                break;
+              case PhoneNumberOrEmailAddress.emailAddress:
+                _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.phoneNumber;
+                break;
+              case PhoneNumberOrEmailAddress.none:
+                break;
+            }
+          },
+        );
+      },
+      child: Text(
+        _phoneNumberOrEmailAddress.switchLabel,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 18,
         ),
       ),
     );
@@ -140,7 +295,6 @@ class _SignupPageOneState extends State<SignupPageOne> {
           style: TextStyle(
             color: Colors.grey.shade400,
             fontSize: 18,
-            fontWeight: FontWeight.bold,
           ),
         ),
       ),
