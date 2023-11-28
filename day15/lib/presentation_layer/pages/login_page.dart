@@ -1,4 +1,4 @@
-import 'package:day15/pages/index.dart';
+import 'package:day15/presentation_layer/index.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,10 +9,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: FaIcon(
-          FontAwesomeIcons.twitter,
-          color: Theme.of(context).primaryColor,
-        ),
+        title: const AppTitle(),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32.0),
@@ -48,7 +45,8 @@ class LoginPage extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         _oauthLoginButton(
-          icon: const FaIcon(FontAwesomeIcons.apple, color: Colors.black, size: 26),
+          icon: const FaIcon(FontAwesomeIcons.apple,
+              color: Colors.black, size: 26),
           text: "Continue with Apple",
         ),
         const SizedBox(height: 8),
@@ -115,7 +113,10 @@ class LoginPage extends StatelessWidget {
           child: const Center(
             child: Text(
               "Create account",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ),
         ),
@@ -124,7 +125,8 @@ class LoginPage extends StatelessWidget {
   }
 
   void _navigateToCreateAccount({required BuildContext context}) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignupPageOne()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const SignupPageOne()));
   }
 
   Widget _termsAndConditions() {
