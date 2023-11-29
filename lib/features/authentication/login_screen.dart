@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/authentication/login_form_screen.dart';
+import 'package:tiktok/features/authentication/username_screen.dart';
 import 'package:tiktok/features/authentication/widgets/auth_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
   void _onEmailLoginTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const LoginFormScreen(),
+        builder: (context) => const UsernameScreen(),
       ),
     );
   }
@@ -83,20 +83,75 @@ class LoginScreen extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: const Stack(
+                  child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Text(
-                        "Create account",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: Sizes.size16 + Sizes.size2,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                      GestureDetector(
+                        onTap: () => {_onEmailLoginTap(context)},
+                        child: const Text(
+                          "Create account",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: Sizes.size16 + Sizes.size2,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
                   ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(
+                  top: Sizes.size32,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          "By signing up, you agree to our",
+                        ),
+                        Text(
+                          " Terms",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                        const Text(
+                          ".",
+                        ),
+                      ],
+                    ),
+                    Gaps.h5,
+                    Row(
+                      children: [
+                        Text(
+                          "Privacy Policy",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                        const Text(
+                          ", and ",
+                        ),
+                        Text(
+                          "Cookie Use",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                        const Text(
+                          ".",
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -104,27 +159,25 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.grey.shade50,
-        elevation: 2,
+        color: Colors.white,
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: Sizes.size32,
+            horizontal: Sizes.size40,
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const Text(
-                "계정이 없으신가요?",
+                "Have an account already?",
               ),
               Gaps.h5,
-              GestureDetector(
-                onTap: () => _onLoginTap(context),
-                child: Text(
-                  "가입하기",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).primaryColor,
-                  ),
+              Text(
+                "Login",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ],

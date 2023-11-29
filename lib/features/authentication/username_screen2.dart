@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/authentication/email_screen.dart';
 import 'package:tiktok/features/authentication/widgets/form_button.dart';
 
-class UsernameScreen extends StatefulWidget {
-  const UsernameScreen({super.key});
+class UsernameScreen2 extends StatefulWidget {
+  const UsernameScreen2({super.key});
 
   @override
-  State<UsernameScreen> createState() => _UsernameScreenState();
+  State<UsernameScreen2> createState() => _UsernameScreen2State();
 }
 
-class _UsernameScreenState extends State<UsernameScreen> {
+class _UsernameScreen2State extends State<UsernameScreen2> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _birthdayController = TextEditingController();
 
-  final DateTime _initialDate = DateTime.now();
+  final DateTime _initialDate =
+      DateTime.now().subtract(const Duration(days: 365 * 1));
   String _username = "";
   String _email = "";
 
@@ -31,11 +31,13 @@ class _UsernameScreenState extends State<UsernameScreen> {
         _username = _usernameController.text;
       });
     });
+    _usernameController.text = "wonjang";
     _emailController.addListener(() {
       setState(() {
         _email = _emailController.text;
       });
     });
+    _emailController.text = "wonjang@naver.com";
   }
 
   @override
@@ -72,12 +74,11 @@ class _UsernameScreenState extends State<UsernameScreen> {
     if (_username.isEmpty) {
       return;
     }
-    
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const EmailScreen(),
-      ),
-    );
+    // Navigator.of(context).push(
+    // MaterialPageRoute(
+    // builder: (context) => const EmailScreen(),
+    // ),
+    // );
   }
 
   @override
@@ -89,24 +90,6 @@ class _UsernameScreenState extends State<UsernameScreen> {
           FontAwesomeIcons.twitter,
           size: Sizes.size40,
           color: Colors.blue,
-        ),
-        leading: GestureDetector(
-          onTap: () => Navigator.of(context).pop(),
-          child: Container(
-            width: Sizes.size40,
-            alignment: Alignment.center,
-            margin: const EdgeInsets.symmetric(
-              horizontal: Sizes.size16,
-            ),
-            child: const Text(
-              "Cancel",
-              style: TextStyle(
-                fontSize: Sizes.size16,
-                fontWeight: FontWeight.w600,
-                textBaseline: TextBaseline.alphabetic,
-              ),
-            ),
-          ),
         ),
       ),
       body: Padding(
@@ -224,24 +207,26 @@ class _UsernameScreenState extends State<UsernameScreen> {
                 cursorColor: Theme.of(context).primaryColor,
               ),
             ),
-            Gaps.v8,
+            Gaps.v96,
+            Gaps.v48,
             const Text(
-              "This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.",
+              "By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads. Learn more. Others will be able to find you by email or phone number when provided. unless you choose otherwise here.",
               style: TextStyle(
                 fontSize: Sizes.size16,
                 color: Colors.black54,
               ),
             ),
-            Gaps.v16,
+            Gaps.v80,
             GestureDetector(
               onTap: _onNextTap,
               child: Container(
-                alignment: Alignment.center,
+                alignment: Alignment.centerRight,
                 child: FormButton(
                   big: true,
                   disabled: _username.isEmpty ||
                       _isEmailValid() != null ||
                       _email.isEmpty,
+                  signUp: true,
                 ),
               ),
             ),

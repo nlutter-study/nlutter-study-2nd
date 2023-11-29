@@ -17,9 +17,9 @@ class TicTokApp extends StatelessWidget {
       title: 'TicTok',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        primaryColor: const Color(0xFFE9435A),
+        primaryColor: Colors.blue,
         textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: Color(0xFFE9435A),
+          cursorColor: Colors.black,
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
