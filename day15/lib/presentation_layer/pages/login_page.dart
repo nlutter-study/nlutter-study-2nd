@@ -30,8 +30,8 @@ class LoginPage extends StatelessWidget {
     return const Text(
       "See what's happening in the world right now.",
       style: TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
+        fontSize: 30,
+        fontWeight: FontWeight.w900,
       ),
     );
   }
@@ -45,8 +45,7 @@ class LoginPage extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         _oauthLoginButton(
-          icon: const FaIcon(FontAwesomeIcons.apple,
-              color: Colors.black, size: 26),
+          icon: const FaIcon(FontAwesomeIcons.apple, color: Colors.black, size: 26),
           text: "Continue with Apple",
         ),
         const SizedBox(height: 8),
@@ -100,33 +99,15 @@ class LoginPage extends StatelessWidget {
 
   Widget _createAccountButton() {
     return Builder(builder: (context) {
-      return GestureDetector(
+      return LargeButton(
+        text: "Create account",
         onTap: () => _navigateToCreateAccount(context: context),
-        child: Container(
-          height: 50,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey.shade400),
-            borderRadius: BorderRadius.circular(50),
-            color: Colors.black,
-          ),
-          child: const Center(
-            child: Text(
-              "Create account",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
-          ),
-        ),
       );
     });
   }
 
   void _navigateToCreateAccount({required BuildContext context}) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const SignupPageOne()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignupPageOne()));
   }
 
   Widget _termsAndConditions() {

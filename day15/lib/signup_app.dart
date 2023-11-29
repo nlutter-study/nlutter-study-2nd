@@ -7,6 +7,7 @@ class SignupApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Signup',
       home: const LoginPage(),
       theme: ThemeData(
