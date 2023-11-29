@@ -33,14 +33,11 @@ class _SignupPageTwoState extends State<SignupPageTwo> {
 
   AppBar _appBar() {
     return AppBar(
-      leadingWidth: 100,
-      leading: TextButton(
+      leading: IconButton(
         onPressed: () {
           Navigator.pop(context);
         },
-        child: const Text(
-          'Cancel',
-        ),
+        icon: const Icon(Icons.arrow_back, color: Colors.black),
       ),
       title: const AppTitle(),
     );
@@ -59,7 +56,7 @@ class _SignupPageTwoState extends State<SignupPageTwo> {
           const SizedBox(height: 16),
           _agreement(),
           const SizedBox(height: 32),
-          _description(),
+          _termsAndConditions(),
         ],
       ),
     );
@@ -105,18 +102,104 @@ class _SignupPageTwoState extends State<SignupPageTwo> {
   }
 
   Widget _agreementSwitch() {
-    return Switch(
-      value: _isAgreed,
-      onChanged: (value) => setState(() => _isAgreed = value),
+    return Theme(
+      data: ThemeData(useMaterial3: true),
+      child: Switch(
+        value: _isAgreed,
+        activeColor: Colors.white,
+        activeTrackColor: Colors.green,
+        onChanged: (value) => setState(() => _isAgreed = value),
+      ),
     );
   }
 
-  _description() {
-    return const Text(
-      "For more details about these settings, visit the",
-      style: TextStyle(
-        fontSize: 16,
-      ),
+  Widget _termsAndConditions() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "By signing up, you agree to our ",
+              style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const Text(
+                "Terms",
+                style: TextStyle(color: Colors.blue, fontSize: 16),
+              ),
+            ),
+            Text(
+              ",",
+              style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const Text(
+                "Privacy",
+                style: TextStyle(color: Colors.blue, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: const Text(
+                "Policy",
+                style: TextStyle(color: Colors.blue, fontSize: 16),
+              ),
+            ),
+            Text(
+              ", and ",
+              style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const Text(
+                "Cookie Use",
+                style: TextStyle(color: Colors.blue, fontSize: 16),
+              ),
+            ),
+            Text(
+              ". Twitter may use your",
+              style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+            ),
+          ],
+        ),
+        Row(children: [
+          Text(
+            "contact information, including your email",
+            style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+          ),
+        ]),
+        Row(
+          children: [
+            Text(
+              "address and phone number for purposes",
+              style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Text(
+              "outlined in our Privacy Policy. ",
+              style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: const Text(
+                "Learn more",
+                style: TextStyle(color: Colors.blue, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
