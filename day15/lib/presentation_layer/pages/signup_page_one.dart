@@ -47,10 +47,12 @@ class _SignupPageOneState extends State<SignupPageOne> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneNumberOrEmailAddressController = TextEditingController();
+  final TextEditingController _phoneNumberOrEmailAddressController =
+      TextEditingController();
   final TextEditingController _dateOfBirthController = TextEditingController();
 
-  PhoneNumberOrEmailAddress _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.none;
+  PhoneNumberOrEmailAddress _phoneNumberOrEmailAddress =
+      PhoneNumberOrEmailAddress.none;
 
   bool _isKeyboardVisible = false;
   bool _isDatePickerVisible = false;
@@ -125,20 +127,22 @@ class _SignupPageOneState extends State<SignupPageOne> {
   Widget _body() {
     return Form(
       key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 32),
-            _title(),
-            const SizedBox(height: 32),
-            _nameFormField(),
-            const SizedBox(height: 24),
-            _phoneNumberOrEmailAddressFormField(),
-            const SizedBox(height: 24),
-            _dateOfBirthFormField(),
-          ],
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 32),
+              _title(),
+              const SizedBox(height: 32),
+              _nameFormField(),
+              const SizedBox(height: 24),
+              _phoneNumberOrEmailAddressFormField(),
+              const SizedBox(height: 24),
+              _dateOfBirthFormField(),
+            ],
+          ),
         ),
       ),
     );
@@ -232,7 +236,8 @@ class _SignupPageOneState extends State<SignupPageOne> {
             width: 2,
           ),
         ),
-        suffixIcon: _isPhoneNumberOrEmailAddressValid(_phoneNumberOrEmailAddressController.text)
+        suffixIcon: _isPhoneNumberOrEmailAddressValid(
+                _phoneNumberOrEmailAddressController.text)
             ? Container(
                 padding: const EdgeInsets.only(left: 24, top: 20),
                 child: const FaIcon(
@@ -274,7 +279,8 @@ class _SignupPageOneState extends State<SignupPageOne> {
     }
 
     if (_phoneNumberOrEmailAddress == PhoneNumberOrEmailAddress.emailAddress) {
-      final bool isEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value);
+      final bool isEmail =
+          RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value);
 
       if (!isEmail) {
         return false;
@@ -378,7 +384,9 @@ class _SignupPageOneState extends State<SignupPageOne> {
       padding: EdgeInsets.only(
         left: 32.0,
         right: 32.0,
-        bottom: _isKeyboardVisible ? MediaQuery.of(context).viewInsets.bottom + 5 : 0,
+        bottom: _isKeyboardVisible
+            ? MediaQuery.of(context).viewInsets.bottom + 5
+            : 0,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -395,7 +403,8 @@ class _SignupPageOneState extends State<SignupPageOne> {
         initialDateTime: DateTime.now(),
         onDateTimeChanged: (DateTime newDate) {
           setState(() {
-            _dateOfBirthController.text = DateFormat('MMMM dd, yyyy').format(newDate);
+            _dateOfBirthController.text =
+                DateFormat('MMMM dd, yyyy').format(newDate);
           });
         },
       ),
@@ -409,10 +418,12 @@ class _SignupPageOneState extends State<SignupPageOne> {
           () {
             switch (_phoneNumberOrEmailAddress) {
               case PhoneNumberOrEmailAddress.phoneNumber:
-                _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.emailAddress;
+                _phoneNumberOrEmailAddress =
+                    PhoneNumberOrEmailAddress.emailAddress;
                 break;
               case PhoneNumberOrEmailAddress.emailAddress:
-                _phoneNumberOrEmailAddress = PhoneNumberOrEmailAddress.phoneNumber;
+                _phoneNumberOrEmailAddress =
+                    PhoneNumberOrEmailAddress.phoneNumber;
                 break;
               case PhoneNumberOrEmailAddress.none:
                 break;
@@ -431,7 +442,9 @@ class _SignupPageOneState extends State<SignupPageOne> {
   }
 
   Widget _nextPageButton() {
-    final bool formIsValid = _formKey.currentState != null ? _formKey.currentState!.validate() : false;
+    final bool formIsValid = _formKey.currentState != null
+        ? _formKey.currentState!.validate()
+        : false;
 
     return GestureDetector(
       onTap: () {
