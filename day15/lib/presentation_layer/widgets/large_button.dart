@@ -4,11 +4,24 @@ class LargeButton extends StatelessWidget {
   final void Function()? onTap;
   final String text;
   final Color? backgroundColor;
+  final bool? enabled;
 
-  const LargeButton({super.key, this.onTap, required this.text, this.backgroundColor});
+  const LargeButton(
+      {super.key,
+      this.onTap,
+      required this.text,
+      this.backgroundColor,
+      this.enabled});
 
   @override
   Widget build(BuildContext context) {
+    final backgroundColor = enabled == false
+        ? Colors.grey.shade700
+        : this.backgroundColor ?? Colors.black;
+
+    final foregroundColor =
+        enabled == false ? Colors.grey.shade300 : Colors.white;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -17,15 +30,15 @@ class LargeButton extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey.shade400),
           borderRadius: BorderRadius.circular(50),
-          color: backgroundColor ?? Colors.black,
+          color: backgroundColor,
         ),
         child: Center(
           child: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: foregroundColor,
             ),
           ),
         ),

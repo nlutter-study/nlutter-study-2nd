@@ -132,7 +132,8 @@ class SignupPageThree extends StatelessWidget {
       return false;
     }
 
-    final bool isEmail = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(emailCandidate);
+    final bool isEmail =
+        RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(emailCandidate);
 
     if (!isEmail) {
       return false;
@@ -305,15 +306,26 @@ class SignupPageThree extends StatelessWidget {
   }
 
   _bottomNavigationBar() {
-    return Builder(builder: (context) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
-        child: LargeButton(
-          text: 'Sign up',
-          onTap: () {},
-          backgroundColor: Theme.of(context).primaryColor,
-        ),
-      );
-    });
+    return Builder(
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+          child: LargeButton(
+            text: 'Sign up',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => VerificationPage(
+                    phoneNumberOrEmailAddress: _phoneNumberOrEmailAddress,
+                  ),
+                ),
+              );
+            },
+            backgroundColor: Theme.of(context).primaryColor,
+          ),
+        );
+      },
+    );
   }
 }

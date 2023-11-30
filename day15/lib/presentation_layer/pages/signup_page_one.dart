@@ -114,11 +114,13 @@ class _SignupPageOneState extends State<SignupPageOne> {
         onPressed: () {
           Navigator.pop(context);
         },
-        child: const Text('Cancel',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-            )),
+        child: const Text(
+          'Cancel',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+          ),
+        ),
       ),
       title: const AppTitle(),
     );
