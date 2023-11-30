@@ -123,7 +123,7 @@ class _PasswordInputPageState extends State<PasswordInputPage> {
   }
 
   _isPasswordValid(value) {
-    if (value == null || value.isEmpty) {
+    if (value == null || value.isEmpty || value.length < 8) {
       return false;
     }
     return true;
