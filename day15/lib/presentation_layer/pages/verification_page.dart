@@ -15,9 +15,12 @@ class VerificationPage extends StatefulWidget {
 class _VerificationPageState extends State<VerificationPage> {
   bool _inputComplete = false;
   bool _validated = false;
+  bool _isKeyboardVisible = false;
 
   @override
   Widget build(BuildContext context) {
+    _isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+
     return Scaffold(
       appBar: _appBar(),
       body: _body(),
@@ -107,7 +110,13 @@ class _VerificationPageState extends State<VerificationPage> {
 
   _bottomNavigationBar() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+      padding: EdgeInsets.only(
+        left: 32.0,
+        right: 32.0,
+        bottom: _isKeyboardVisible
+            ? MediaQuery.of(context).viewInsets.bottom + 5
+            : 16,
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
