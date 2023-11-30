@@ -145,7 +145,7 @@ class _PasswordInputPageState extends State<PasswordInputPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PasswordInputPage(),
+                    builder: (context) => const InterestsPage(),
                   ),
                 );
               }

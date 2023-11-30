@@ -10,7 +10,9 @@ class SignupApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Signup',
       // home: const LoginPage(),
-      home: const PasswordInputPage(),
+      home: const VerificationPage(
+        phoneNumberOrEmailAddress: 'test@test.com',
+      ),
       theme: ThemeData(
         primaryColor: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
