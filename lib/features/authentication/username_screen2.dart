@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/authentication/code_screen.dart';
 import 'package:tiktok/features/authentication/widgets/form_button.dart';
 
 class UsernameScreen2 extends StatefulWidget {
@@ -74,11 +75,11 @@ class _UsernameScreen2State extends State<UsernameScreen2> {
     if (_username.isEmpty) {
       return;
     }
-    // Navigator.of(context).push(
-    // MaterialPageRoute(
-    // builder: (context) => const EmailScreen(),
-    // ),
-    // );
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const CodeScreen(),
+      ),
+    );
   }
 
   @override
