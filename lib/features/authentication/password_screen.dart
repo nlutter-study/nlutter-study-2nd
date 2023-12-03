@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/authentication/birthday_screen.dart';
 import 'package:tiktok/features/authentication/widgets/form_button.dart';
+import 'package:tiktok/features/onboarding/interests_screen.dart';
 
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({super.key});
@@ -46,11 +46,12 @@ class _PasswordScreenState extends State<PasswordScreen> {
 
   void _onSubmit() {
     if (!_isPasswordValid()) return;
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (context) => const BirthdayScreen(),
+        builder: (context) => const InterestsScreen(),
       ),
+      (route) => false,
     );
   }
 
@@ -70,8 +71,10 @@ class _PasswordScreenState extends State<PasswordScreen> {
       onTap: _onScaffoldTap,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            "가입하기",
+          title: const FaIcon(
+            FontAwesomeIcons.twitter,
+            size: Sizes.size40,
+            color: Colors.blue,
           ),
         ),
         body: Padding(
@@ -83,13 +86,21 @@ class _PasswordScreenState extends State<PasswordScreen> {
             children: [
               Gaps.v40,
               const Text(
-                "패스워드",
+                "You'll need a password",
                 style: TextStyle(
                   fontSize: Sizes.size24,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               Gaps.v16,
+              Text(
+                "Make sure it's 8 characters or more.3",
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey.shade600,
+                ),
+              ),
+              Gaps.v10,
               TextField(
                 controller: _passwordController,
                 onEditingComplete: _onSubmit,
@@ -99,14 +110,6 @@ class _PasswordScreenState extends State<PasswordScreen> {
                   suffix: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      GestureDetector(
-                        onTap: _onClearTap,
-                        child: FaIcon(
-                          FontAwesomeIcons.solidCircleXmark,
-                          color: Colors.grey.shade500,
-                          size: Sizes.size20,
-                        ),
-                      ),
                       Gaps.h16,
                       GestureDetector(
                         onTap: _toggleObscureText,
@@ -118,9 +121,19 @@ class _PasswordScreenState extends State<PasswordScreen> {
                           size: Sizes.size20,
                         ),
                       ),
+                      Gaps.h16,
+                      if (_isPasswordValid())
+                        GestureDetector(
+                          onTap: _onClearTap,
+                          child: const FaIcon(
+                            FontAwesomeIcons.checkCircle,
+                            color: Colors.green,
+                            size: Sizes.size20,
+                          ),
+                        ),
                     ],
                   ),
-                  hintText: "패스워드",
+                  hintText: "Password",
                   errorText: !_isPasswordValid() ? "패스워드는 8자 이상이어야 합니다." : null,
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -136,27 +149,12 @@ class _PasswordScreenState extends State<PasswordScreen> {
                 cursorColor: Theme.of(context).primaryColor,
               ),
               Gaps.v10,
-              const Text(
-                "아래 조건을 모두 충족해야 합니다.",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Gaps.v10,
-              Row(
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.circleCheck,
-                    size: Sizes.size20,
-                    color: _isPasswordValid()
-                        ? Colors.green
-                        : Colors.grey.shade400,
-                  ),
-                  Gaps.h5,
-                  const Text("8자 이상 20자 이하")
-                ],
-              ),
               Gaps.v28,
+              Gaps.v96,
+              Gaps.v96,
+              Gaps.v96,
+              Gaps.v96,
+              Gaps.v96,
               GestureDetector(
                 onTap: _onSubmit,
                 child: FormButton(disabled: !_isPasswordValid(), big: true),

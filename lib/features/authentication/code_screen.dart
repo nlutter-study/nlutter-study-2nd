@@ -87,10 +87,11 @@ class _CodeScreenState extends State<CodeScreen> {
   }
 
   void _onNextTap() {
-    Navigator.of(context).push(
+    Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) => const PasswordScreen(),
       ),
+      (route) => false,
     );
   }
 
@@ -334,6 +335,8 @@ class _CodeScreenState extends State<CodeScreen> {
                       color: Colors.black54,
                     ),
                   ),
+            Gaps.v96,
+            Gaps.v96,
             Gaps.v96,
             Gaps.v72,
             const Text(

@@ -1,34 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/onboarding/interests2_screen.dart';
 import 'package:tiktok/features/onboarding/tutorial_screen.dart';
 import 'package:tiktok/features/onboarding/widgets/interest_button.dart';
 
 const interests = [
-  "Fashion & beauty",
-  "Outdoors",
-  "Arts & culture",
-  "Animation & comics",
-  "Business & finance",
-  "Food",
-  "Travel",
+  "Daily Life",
+  "Comedy",
   "Entertainment",
-  "Music",
-  "Gaming",
-  "ETC1",
-  "ETC2",
+  "Animals",
+  "Food",
+  "Beauty & Style",
+  "Drama",
+  "Learning",
+  "Talent",
+  "Sports",
+  "Auto",
+  "Family",
+  "Fitness & Health",
+  "DIY & Life Hacks",
+  "Arts & Crafts",
+  "Dance",
+  "Outdoors",
+  "Oddly Satisfying",
+  "Home & Garden",
+  "Daily Life",
+  "Comedy",
+  "Entertainment",
+  "Animals",
+  "Food",
+  "Beauty & Style",
+  "Drama",
+  "Learning",
+  "Talent",
+  "Sports",
+  "Auto",
+  "Family",
+  "Fitness & Health",
+  "DIY & Life Hacks",
+  "Arts & Crafts",
+  "Dance",
+  "Outdoors",
+  "Oddly Satisfying",
+  "Home & Garden",
 ];
 
-class InterestsScreen extends StatefulWidget {
-  const InterestsScreen({super.key});
+class Interests2Screen extends StatefulWidget {
+  const Interests2Screen({super.key});
 
   @override
-  State<InterestsScreen> createState() => _InterestsScreenState();
+  State<Interests2Screen> createState() => _Interests2ScreenState();
 }
 
-class _InterestsScreenState extends State<InterestsScreen> {
+class _Interests2ScreenState extends State<Interests2Screen> {
   final ScrollController _scrollController = ScrollController();
 
   bool _showTitle = false;
@@ -65,7 +89,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
   void _onNextTap() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const Interests2Screen(),
+        builder: (context) => const TutorialScreen(),
       ),
     );
   }
@@ -74,69 +98,51 @@ class _InterestsScreenState extends State<InterestsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const FaIcon(
-          FontAwesomeIcons.twitter,
-          size: Sizes.size40,
-          color: Colors.blue,
+        title: AnimatedOpacity(
+          opacity: _showTitle ? 1 : 0,
+          duration: const Duration(milliseconds: 300),
+          child: const Text('당신의 관심사를 선택해주세요.'),
         ),
       ),
       body: Scrollbar(
         controller: _scrollController,
         child: SingleChildScrollView(
           controller: _scrollController,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Gaps.v32,
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: Sizes.size20,
-                  right: Sizes.size20,
-                  bottom: Sizes.size16,
-                ),
-                child: Text(
-                  "What do you want to see on Twitter?",
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: Sizes.size24,
+              right: Sizes.size24,
+              bottom: Sizes.size16,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Gaps.v32,
+                const Text(
+                  "관심있는 분야를 선택해주세요.",
                   style: TextStyle(
-                    fontSize: Sizes.size28 + Sizes.size2,
-                    fontWeight: FontWeight.w800,
+                    fontSize: Sizes.size40,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-              ),
-              Gaps.v20,
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: Sizes.size20,
-                  right: Sizes.size20,
-                  bottom: Sizes.size16,
-                ),
-                child: Text(
-                  "Select at least 3 interests to personalize your Twitter experience. They will be visible on your profile.",
+                Gaps.v20,
+                const Text(
+                  "더 나은 추천을 위해 최소 3개 이상 선택해주세요.",
                   style: TextStyle(
                     fontSize: Sizes.size16 + Sizes.size2,
                   ),
                 ),
-              ),
-              Gaps.v20,
-              Container(
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Colors.grey,
-                      width: 0.5,
-                    ),
-                  ),
+                Gaps.v64,
+                Wrap(
+                  runSpacing: 20,
+                  spacing: 20,
+                  children: [
+                    for (var interest in interests)
+                      InterestButton(interest: interest),
+                  ],
                 ),
-              ),
-              Gaps.v64,
-              Wrap(
-                runSpacing: 20,
-                spacing: 20,
-                children: [
-                  for (var interest in interests)
-                    InterestButton(interest: interest),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
