@@ -153,7 +153,7 @@ class _Interests2ScreenState extends State<Interests2Screen> {
                 ),
               ),
             ),
-            Gaps.v64,
+            Gaps.v28,
             const Padding(
               padding: EdgeInsets.only(
                 left: Sizes.size20,
@@ -173,25 +173,34 @@ class _Interests2ScreenState extends State<Interests2Screen> {
                 left: Sizes.size20,
                 right: Sizes.size20,
               ),
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                scrollDirection: Axis.horizontal,
-                child: Wrap(
-                  runSpacing: 4,
-                  spacing: 8,
-                  direction: Axis.horizontal,
-                  children: List.generate(
-                    12,
-                    (index) {
-                      return Interes2tButton(
-                        interest: muiscs[index],
-                      );
-                    },
-                  ),
-                ),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    controller: _scrollController,
+                    scrollDirection: Axis.horizontal,
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        minWidth: 400,
+                      ),
+                      child: Wrap(
+                        runSpacing: 4,
+                        spacing: 8,
+                        direction: Axis.horizontal,
+                        children: List.generate(
+                          12,
+                          (index) {
+                            return Interes2tButton(
+                              interest: interests[index],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
-            Gaps.v96,
+            Gaps.v28,
             const Padding(
               padding: EdgeInsets.only(
                 left: Sizes.size20,
