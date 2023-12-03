@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/onboarding/interests2_screen.dart';
-import 'package:tiktok/features/onboarding/tutorial_screen.dart';
 import 'package:tiktok/features/onboarding/widgets/interest2_button.dart';
-import 'package:tiktok/features/onboarding/widgets/interest_button.dart';
 
 const interests = [
   "Fashion & beauty",
@@ -20,6 +17,36 @@ const interests = [
   "Gaming",
   "ETC1",
   "ETC2",
+];
+
+const muiscs = [
+  "Rap",
+  "R&B & Soul",
+  "Grammy Awards",
+  "Pop",
+  "K-pop",
+  "Music industry",
+  "EDM",
+  "Music news",
+  "Hip hop",
+  "Reggae",
+  "electronic",
+  "country",
+];
+
+const entertainments = [
+  "Anime",
+  "Movies & Tv",
+  "Harry Potter",
+  "Marvel Universe",
+  "Movie news",
+  "Naruto",
+  "Movies",
+  "Grammy Awards",
+  "Entertainment",
+  "Black Panther",
+  "Star Wars",
+  "Game of Thrones",
 ];
 
 class Interests2Screen extends StatefulWidget {
@@ -83,64 +110,126 @@ class _Interests2ScreenState extends State<Interests2Screen> {
       ),
       body: Scrollbar(
         controller: _scrollController,
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Gaps.v32,
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: Sizes.size20,
-                  right: Sizes.size20,
-                  bottom: Sizes.size16,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Gaps.v32,
+            const Padding(
+              padding: EdgeInsets.only(
+                left: Sizes.size20,
+                right: Sizes.size20,
+                bottom: Sizes.size16,
+              ),
+              child: Text(
+                "What do you want to see on Twitter?",
+                style: TextStyle(
+                  fontSize: Sizes.size28 + Sizes.size2,
+                  fontWeight: FontWeight.w800,
                 ),
-                child: Text(
-                  "What do you want to see on Twitter?",
-                  style: TextStyle(
-                    fontSize: Sizes.size28 + Sizes.size2,
-                    fontWeight: FontWeight.w800,
+              ),
+            ),
+            Gaps.v20,
+            const Padding(
+              padding: EdgeInsets.only(
+                left: Sizes.size20,
+                right: Sizes.size20,
+                bottom: Sizes.size16,
+              ),
+              child: Text(
+                "Interests are used to personalize your experience and will be visible on your profile.",
+                style: TextStyle(
+                  fontSize: Sizes.size16 + Sizes.size2,
+                ),
+              ),
+            ),
+            Gaps.v20,
+            Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.grey,
+                    width: 0.5,
                   ),
                 ),
               ),
-              Gaps.v20,
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: Sizes.size20,
-                  right: Sizes.size20,
-                  bottom: Sizes.size16,
+            ),
+            Gaps.v64,
+            const Padding(
+              padding: EdgeInsets.only(
+                left: Sizes.size20,
+                right: Sizes.size20,
+                bottom: Sizes.size16,
+              ),
+              child: Text(
+                "Music",
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w600,
                 ),
-                child: Text(
-                  "Interests are used to personalize your experience and will be visible on your profile.",
-                  style: TextStyle(
-                    fontSize: Sizes.size16 + Sizes.size2,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: Sizes.size20,
+                right: Sizes.size20,
+              ),
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                child: Wrap(
+                  runSpacing: 4,
+                  spacing: 8,
+                  direction: Axis.horizontal,
+                  children: List.generate(
+                    12,
+                    (index) {
+                      return Interes2tButton(
+                        interest: muiscs[index],
+                      );
+                    },
                   ),
                 ),
               ),
-              Gaps.v20,
-              Container(
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Colors.grey,
-                      width: 0.5,
-                    ),
+            ),
+            Gaps.v96,
+            const Padding(
+              padding: EdgeInsets.only(
+                left: Sizes.size20,
+                right: Sizes.size20,
+                bottom: Sizes.size16,
+              ),
+              child: Text(
+                "Entertainment",
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: Sizes.size20,
+                right: Sizes.size20,
+              ),
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                child: Wrap(
+                  runSpacing: 4,
+                  spacing: 8,
+                  direction: Axis.horizontal,
+                  children: List.generate(
+                    12,
+                    (index) {
+                      return Interes2tButton(
+                        interest: entertainments[index],
+                      );
+                    },
                   ),
                 ),
               ),
-              Gaps.v64,
-              Wrap(
-                runSpacing: 20,
-                spacing: 20,
-                children: [
-                  for (var interest in interests)
-                    Interes2tButton(
-                      interest: interest,
-                    ),
-                ],
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(

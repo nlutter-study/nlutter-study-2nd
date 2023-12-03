@@ -39,13 +39,6 @@ class _Interes2tButtonState extends State<Interes2tButton> {
             borderRadius: BorderRadius.circular(
               Sizes.size32,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 5,
-                spreadRadius: 5,
-              ),
-            ],
             border: Border.all(
               color: Colors.black.withOpacity(0.1),
             )),
