@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/onboarding/interests2_screen.dart';
-import 'package:tiktok/features/onboarding/tutorial_screen.dart';
 import 'package:tiktok/features/onboarding/widgets/interest_button.dart';
 
 const interests = [
@@ -32,6 +31,8 @@ class _InterestsScreenState extends State<InterestsScreen> {
   final ScrollController _scrollController = ScrollController();
 
   bool _showTitle = false;
+
+  num selectedCount = 0;
 
   @override
   void initState() {
@@ -68,6 +69,12 @@ class _InterestsScreenState extends State<InterestsScreen> {
         builder: (context) => const Interests2Screen(),
       ),
     );
+  }
+
+  void onPressInterest() {
+    setState(() {
+      selectedCount++;
+    });
   }
 
   @override
@@ -133,7 +140,8 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 spacing: 20,
                 children: [
                   for (var interest in interests)
-                    InterestButton(interest: interest),
+                    InterestButton(
+                        interest: interest, onPressInterest: onPressInterest),
                 ],
               ),
             ],
@@ -149,23 +157,60 @@ class _InterestsScreenState extends State<InterestsScreen> {
             left: Sizes.size24,
             right: Sizes.size24,
           ),
-          child: GestureDetector(
-            onTap: _onNextTap,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: Sizes.size20,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              if (selectedCount != 3)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.size20,
+                  ),
+                  child: Text("$selectedCount of 3 selected",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.w600,
+                      )),
+                ),
+              if (selectedCount == 3)
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.size20,
+                  ),
+                  child: Text("Great work 👍",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.w600,
+                      )),
+                ),
+              GestureDetector(
+                onTap: _onNextTap,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.size12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: selectedCount == 3
+                        ? Colors.black
+                        : Colors.grey.shade400,
+                    borderRadius: BorderRadius.circular(
+                      Sizes.size32,
+                    ),
+                  ),
+                  width: 100,
+                  child: const Text("Next",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Sizes.size24,
+                        fontWeight: FontWeight.w600,
+                      )),
+                ),
               ),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-              ),
-              child: const Text("다음",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: Sizes.size16,
-                    fontWeight: FontWeight.w600,
-                  )),
-            ),
+            ],
           ),
         ),
       ),
