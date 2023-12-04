@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/authentication/code_screen.dart';
+import 'package:tiktok/features/main_navigation/main_navigation2_screen.dart';
 
 void main() {
   runApp(const TicTokApp());
@@ -40,7 +40,7 @@ class TicTokApp extends StatelessWidget {
         Locale('ko', ''),
         Locale('en', ''),
       ],
-      home: const CodeScreen(),
+      home: const MainNavigation2(),
     );
   }
 }

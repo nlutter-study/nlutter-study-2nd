@@ -1,63 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/discover/discover_screen.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
-import 'package:tiktok/features/main_navigation/widgets/post_video_button.dart';
 import 'package:tiktok/features/videos/video_timeline_screen.dart';
 
-class MainNavigation extends StatefulWidget {
-  const MainNavigation({super.key});
+class MainNavigation2 extends StatefulWidget {
+  const MainNavigation2({super.key});
 
   @override
-  State<MainNavigation> createState() => _MainNavigationState();
+  State<MainNavigation2> createState() => _MainNavigation2State();
 }
 
-class _MainNavigationState extends State<MainNavigation> {
+class _MainNavigation2State extends State<MainNavigation2> {
   int _selectedIndex = 1;
 
   final screens = [
     const VideoTimelineScreen(),
-    const DiscoverScreen(),
-    Container(),
-    const Center(
-      child: Text(
-        "인박스",
-        style: TextStyle(
-          fontSize: 49,
-        ),
-      ),
-    ),
-    const Center(
-      child: Text(
-        "프로필",
-        style: TextStyle(
-          fontSize: 49,
-        ),
-      ),
-    ),
+    const Placeholder(),
+    const Placeholder(),
+    const Placeholder(),
+    const Placeholder(),
   ];
 
   void _onTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  void _onPostVideoButtonTap() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            title: const Text("Post Video"),
-          ),
-          body: const Center(
-            child: Text("Post Video"),
-          ),
-        ),
-      ),
-    );
   }
 
   @override
@@ -71,25 +39,18 @@ class _MainNavigationState extends State<MainNavigation> {
             offstage: _selectedIndex != 0,
             child: screens[0],
           ),
-          Offstage(
-            offstage: _selectedIndex != 1,
-            child: screens[_selectedIndex],
-          ),
-          Offstage(
-            offstage: _selectedIndex != 3,
-            child: screens[_selectedIndex],
-          ),
-          Offstage(
-            offstage: _selectedIndex != 4,
-            child: screens[_selectedIndex],
-          ),
+          screens[_selectedIndex],
+          screens[_selectedIndex],
+          screens[_selectedIndex],
+          screens[_selectedIndex],
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: _selectedIndex == 0 ? Colors.black : Colors.white,
+        color: Colors.white,
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(
-            Sizes.size12,
+            Sizes.size16,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,14 +70,13 @@ class _MainNavigationState extends State<MainNavigation> {
                 onTap: () => _onTap(1),
                 selectedIndex: _selectedIndex,
               ),
-              Gaps.h24,
-              GestureDetector(
-                onTap: _onPostVideoButtonTap,
-                child: PostVideoButton(
-                  inverted: _selectedIndex != 0,
-                ),
+              NavTab(
+                isSelected: _selectedIndex == 2,
+                icon: FontAwesomeIcons.message,
+                selectedIcon: FontAwesomeIcons.solidMessage,
+                onTap: () => _onTap(2),
+                selectedIndex: _selectedIndex,
               ),
-              Gaps.h24,
               NavTab(
                 isSelected: _selectedIndex == 3,
                 icon: FontAwesomeIcons.message,
