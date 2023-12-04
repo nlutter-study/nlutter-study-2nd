@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
-import 'package:tiktok/features/videos/video_timeline_screen.dart';
+import 'package:tiktok/features/posts/posts_screen.dart';
 
 class MainNavigation2 extends StatefulWidget {
   const MainNavigation2({super.key});
@@ -12,10 +12,10 @@ class MainNavigation2 extends StatefulWidget {
 }
 
 class _MainNavigation2State extends State<MainNavigation2> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   final screens = [
-    const VideoTimelineScreen(),
+    const PostsScreen(),
     const Placeholder(),
     const Placeholder(),
     const Placeholder(),
@@ -65,22 +65,22 @@ class _MainNavigation2State extends State<MainNavigation2> {
               ),
               NavTab(
                 isSelected: _selectedIndex == 1,
-                icon: FontAwesomeIcons.compass,
-                selectedIcon: FontAwesomeIcons.solidCompass,
+                icon: FontAwesomeIcons.magnifyingGlass,
+                selectedIcon: FontAwesomeIcons.magnifyingGlassArrowRight,
                 onTap: () => _onTap(1),
                 selectedIndex: _selectedIndex,
               ),
               NavTab(
                 isSelected: _selectedIndex == 2,
-                icon: FontAwesomeIcons.message,
-                selectedIcon: FontAwesomeIcons.solidMessage,
+                icon: FontAwesomeIcons.penToSquare,
+                selectedIcon: FontAwesomeIcons.solidPenToSquare,
                 onTap: () => _onTap(2),
                 selectedIndex: _selectedIndex,
               ),
               NavTab(
                 isSelected: _selectedIndex == 3,
-                icon: FontAwesomeIcons.message,
-                selectedIcon: FontAwesomeIcons.solidMessage,
+                icon: FontAwesomeIcons.heart,
+                selectedIcon: FontAwesomeIcons.solidHeart,
                 onTap: () => _onTap(3),
                 selectedIndex: _selectedIndex,
               ),
