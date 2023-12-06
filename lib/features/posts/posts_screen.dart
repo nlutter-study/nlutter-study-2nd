@@ -4,11 +4,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/features/posts/widgets/image_post.dart';
 import 'package:tiktok/features/posts/widgets/only_post.dart';
 
-class PostsScreen extends StatelessWidget {
+class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
 
+  @override
+  State<PostsScreen> createState() => _PostsScreenState();
+}
+
+class _PostsScreenState extends State<PostsScreen> {
   Future<void> onRefresh() async {
     await Future.delayed(const Duration(seconds: 1));
+    setState(() {});
   }
 
   @override

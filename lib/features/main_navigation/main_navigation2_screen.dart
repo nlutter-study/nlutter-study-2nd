@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/posts/posts_screen.dart';
+import 'package:tiktok/features/posts/postx2_screen.dart';
 
 class MainNavigation2 extends StatefulWidget {
   const MainNavigation2({super.key});
@@ -16,7 +17,6 @@ class _MainNavigation2State extends State<MainNavigation2> {
 
   final screens = [
     const PostsScreen(),
-    const Placeholder(),
     const Placeholder(),
     const Placeholder(),
     const Placeholder(),
@@ -74,7 +74,11 @@ class _MainNavigation2State extends State<MainNavigation2> {
                 isSelected: _selectedIndex == 2,
                 icon: FontAwesomeIcons.penToSquare,
                 selectedIcon: FontAwesomeIcons.solidPenToSquare,
-                onTap: () => _onTap(2),
+                onTap: () {
+                  showModalBottomSheet(
+                    
+                      context: context, builder: (context) => const PostX2());
+                },
                 selectedIndex: _selectedIndex,
               ),
               NavTab(
