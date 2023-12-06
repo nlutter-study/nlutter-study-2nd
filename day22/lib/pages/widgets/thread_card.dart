@@ -16,6 +16,7 @@ class ThreadCard extends StatelessWidget {
   final List<String> commentersProfileImagePaths;
   final int commentCount;
   final int likeCount;
+  final void Function() onSettingPressed;
 
   static const leftColumnWidth = 60.0;
   static const horizontalPadding = 14.0;
@@ -32,7 +33,8 @@ class ThreadCard extends StatelessWidget {
       required this.bodyImagePaths,
       required this.commentersProfileImagePaths,
       required this.commentCount,
-      required this.likeCount});
+      required this.likeCount,
+      required this.onSettingPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -173,10 +175,13 @@ class ThreadCard extends StatelessWidget {
   }
 
   Widget _setting() {
-    return const Icon(
-      Icons.more_horiz,
-      color: Colors.black,
-      size: 28,
+    return IconButton(
+      onPressed: onSettingPressed,
+      icon: const Icon(
+        Icons.more_horiz,
+        color: Colors.black,
+        size: 28,
+      ),
     );
   }
 
