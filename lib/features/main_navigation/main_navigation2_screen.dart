@@ -76,8 +76,9 @@ class _MainNavigation2State extends State<MainNavigation2> {
                 selectedIcon: FontAwesomeIcons.solidPenToSquare,
                 onTap: () {
                   showModalBottomSheet(
-                    
-                      context: context, builder: (context) => const PostX2());
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) => const PostX2());
                 },
                 selectedIndex: _selectedIndex,
               ),
