@@ -36,7 +36,6 @@ class HalfRoundedButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
         width: double.infinity,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(

@@ -4,6 +4,10 @@ import 'package:day22/pages/widgets/thread_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'divider_between_rounded_button.dart';
+import 'modal_bottom_sheet_top_decoration.dart';
+import 'next_page_button.dart';
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -21,8 +25,7 @@ class Home extends StatelessWidget {
               name: 'Taro Yamada',
               isAuthorized: true,
               timeOfCreation: '2m',
-              bodyText:
-                  'Hello, World! hahadkdgjasldkfjaslkdfjaklsdfjalksdjflkasjdflasjdfklasdf asdlfkjasdlkfjalskdjf',
+              bodyText: 'Hello, World! hahadkdgjasldkfjaslkdfjaklsdfjalksdjflkasjdflasjdfklasdf asdlfkjasdlkfjalskdjf',
               bodyImagePaths: const [
                 'assets/images/body_image_1.png',
                 'assets/images/body_image_2.png',
@@ -35,7 +38,7 @@ class Home extends StatelessWidget {
               ],
               commentCount: 3,
               likeCount: 5,
-              onSettingPressed: () => _showBottomCard(context),
+              onSettingPressed: () => _showSettingBottomCard(context),
             ),
             ThreadCard(
               profileImagePath: 'assets/images/profile_image_1.jpg',
@@ -58,8 +61,7 @@ class Home extends StatelessWidget {
               name: 'Taro Yamada',
               isAuthorized: true,
               timeOfCreation: '2m',
-              bodyText:
-                  'Hello, Woraslkdfjasdlkfjaskldfjalksdjfalksdjfklasdjflaksdjfklasdjfaskldjfald!',
+              bodyText: 'Hello, Woraslkdfjasdlkfjaskldfjalksdjfalksdjfklasdjflaksdjfklasdjfaskldjfald!',
               bodyImagePaths: const [],
               commentersProfileImagePaths: const [
                 'assets/images/profile_image_2.jpg',
@@ -101,64 +103,118 @@ class Home extends StatelessWidget {
     print('onSettingPressed');
   }
 
-  void _showBottomCard(BuildContext context) {
+  void _showSettingBottomCard(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _roundedDivider(),
-            HalfRoundedButton(
-              direction: HalfRoundedButtonDirection.upper,
-              label: 'Unfollow',
-              onPressed: () {},
-            ),
-            _dividerBetweenButtons(),
-            HalfRoundedButton(
-              direction: HalfRoundedButtonDirection.lower,
-              label: 'Mute',
-              onPressed: () {},
-            ),
-            const SizedBox(height: 30),
-            HalfRoundedButton(
-              direction: HalfRoundedButtonDirection.upper,
-              label: 'Hide',
-              onPressed: () {},
-            ),
-            _dividerBetweenButtons(),
-            HalfRoundedButton(
-              direction: HalfRoundedButtonDirection.lower,
-              label: 'Report',
-              labelColor: Colors.red,
-              onPressed: () {},
-            ),
-            const SizedBox(height: 50),
-          ],
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const ModalBottomSheetTopDecoration(),
+              HalfRoundedButton(
+                direction: HalfRoundedButtonDirection.upper,
+                label: 'Unfollow',
+                onPressed: () {},
+              ),
+              const DividerBetweenRoundedButton(),
+              HalfRoundedButton(
+                direction: HalfRoundedButtonDirection.lower,
+                label: 'Mute',
+                onPressed: () {},
+              ),
+              const SizedBox(height: 30),
+              HalfRoundedButton(
+                direction: HalfRoundedButtonDirection.upper,
+                label: 'Hide',
+                onPressed: () {},
+              ),
+              const DividerBetweenRoundedButton(),
+              HalfRoundedButton(
+                direction: HalfRoundedButtonDirection.lower,
+                label: 'Report',
+                labelColor: Colors.red,
+                onPressed: () => _onReportPressed(context),
+              ),
+              const SizedBox(height: 50),
+            ],
+          ),
         );
       },
       shape: _getShapeOfModalBottomSheet(),
     );
   }
 
-  _roundedDivider() {
-    return Container(
-      margin: const EdgeInsets.only(top: 15, bottom: 10),
-      height: 6,
-      width: 50,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade300,
-        borderRadius: BorderRadius.circular(10),
-      ),
-    );
+  _onReportPressed(BuildContext context) {
+    Navigator.pop(context);
+    _showReportBottomCard(context);
   }
 
-  _dividerBetweenButtons() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      height: 1,
-      width: double.infinity,
-      color: Colors.grey.shade300,
+  void _showReportBottomCard(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Center(child: ModalBottomSheetTopDecoration()),
+              const Center(
+                child: Text(
+                  'Report',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+                ),
+              ),
+              const SizedBox(height: 15),
+              const DividerBetweenRoundedButton(),
+              const SizedBox(height: 15),
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text(
+                  'Why are you reporting this thread?',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Text(
+                  "Your report is anonymoous, except if you're reporting an intellectual property infringment. If someone is in immediate danger, call the local emergency services - dont' wait.",
+                  style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
+                ),
+              ),
+              const SizedBox(height: 20),
+              NextPageButton(
+                label: "I just don't like it",
+                onPressed: () {},
+              ),
+              NextPageButton(
+                label: "It's unlawful content under NetzDG",
+                onPressed: () {},
+              ),
+              NextPageButton(
+                label: "It's spam",
+                onPressed: () {},
+              ),
+              NextPageButton(
+                label: "Hate speech or symbols",
+                onPressed: () {},
+              ),
+              NextPageButton(
+                label: "Nudity or sexual activity",
+                onPressed: () {},
+              ),
+              NextPageButton(
+                label: "What it is",
+                onPressed: () {},
+              ),
+            ],
+          ),
+        );
+      },
+      shape: _getShapeOfModalBottomSheet(),
     );
   }
 
