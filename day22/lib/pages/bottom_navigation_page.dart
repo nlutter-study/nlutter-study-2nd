@@ -8,26 +8,50 @@ class BottomNavigationPage extends StatefulWidget {
   State<BottomNavigationPage> createState() => _BottomNavigationPageState();
 }
 
-class _BottomNavigationPageState extends State<BottomNavigationPage> {
+class _BottomNavigationPageState extends State<BottomNavigationPage> with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _sclaeAnimation;
+
   int _selectedIndex = 0;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: _getPage(_selectedIndex),
-      ),
-      bottomNavigationBar: ThreadBottomNavigationBar(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
     );
+
+    _sclaeAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.9,
+    ).animate(_animationController);
   }
 
-  void _onItemTapped(int index) {
-    setState(
-      () {
-        _selectedIndex = index;
+  @override
+  dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _sclaeAnimation,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: _sclaeAnimation.value,
+          child: Scaffold(
+            backgroundColor: Colors.black,
+            body: Center(
+              child: _getPage(_selectedIndex),
+            ),
+            bottomNavigationBar: ThreadBottomNavigationBar(
+              selectedIndex: _selectedIndex,
+              onItemTapped: (index) => _onItemTapped(index: index, context: context),
+            ),
+          ),
+        );
       },
     );
   }
@@ -35,10 +59,9 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
   Widget _getPage(int index) {
     switch (index) {
       case 0:
+      case 2:
         return const Home();
       case 1:
-        return const Placeholder();
-      case 2:
         return const Placeholder();
       case 3:
         return const Placeholder();
@@ -47,5 +70,35 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
       default:
         return const Home();
     }
+  }
+
+  void _onItemTapped({required int index, required BuildContext context}) {
+    setState(
+      () {
+        _selectedIndex = index;
+      },
+    );
+
+    if (index == 2) {
+      _showNewThreadBottomSheet(context);
+    }
+  }
+
+  void _showNewThreadBottomSheet(BuildContext context) async {
+    _animationController.forward();
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16),
+        ),
+      ),
+      builder: (context) => const NewThreadBottomSheet(),
+    );
+    _animationController.reverse();
+    setState(() {
+      _selectedIndex = 0;
+    });
   }
 }

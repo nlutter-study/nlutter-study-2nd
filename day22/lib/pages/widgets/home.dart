@@ -13,77 +13,86 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _title(),
-            ThreadCard(
-              profileImagePath: 'assets/images/profile_image_1.jpg',
-              name: 'Taro Yamada',
-              isAuthorized: true,
-              timeOfCreation: '2m',
-              bodyText: 'Hello, World! hahadkdgjasldkfjaslkdfjaklsdfjalksdjflkasjdflasjdfklasdf asdlfkjasdlkfjalskdjf',
-              bodyImagePaths: const [
-                'assets/images/body_image_1.png',
-                'assets/images/body_image_2.png',
-                'assets/images/body_image_3.png',
-              ],
-              commentersProfileImagePaths: const [
-                'assets/images/profile_image_2.jpg',
-                'assets/images/profile_image_3.jpg',
-                'assets/images/profile_image_4.jpg',
-              ],
-              commentCount: 3,
-              likeCount: 5,
-              onSettingPressed: () => _showSettingBottomCard(context),
-            ),
-            ThreadCard(
-              profileImagePath: 'assets/images/profile_image_1.jpg',
-              name: 'Taro Test',
-              isAuthorized: true,
-              timeOfCreation: '2m',
-              bodyText: 'Hello, salkfjasdfWorld!',
-              bodyImagePaths: const [],
-              commentersProfileImagePaths: const [
-                'assets/images/profile_image_1.jpg',
-                'assets/images/profile_image_2.jpg',
-                'assets/images/profile_image_3.jpg',
-              ],
-              commentCount: 3,
-              likeCount: 5,
-              onSettingPressed: _onSettingPressed,
-            ),
-            ThreadCard(
-              profileImagePath: 'assets/images/profile_image_1.jpg',
-              name: 'Taro Yamada',
-              isAuthorized: true,
-              timeOfCreation: '2m',
-              bodyText: 'Hello, Woraslkdfjasdlkfjaskldfjalksdjfalksdjfklasdjflaksdjfklasdjfaskldjfald!',
-              bodyImagePaths: const [],
-              commentersProfileImagePaths: const [
-                'assets/images/profile_image_2.jpg',
-                'assets/images/profile_image_3.jpg',
-              ],
-              commentCount: 2,
-              likeCount: 5,
-              onSettingPressed: _onSettingPressed,
-            ),
-            ThreadCard(
-              profileImagePath: 'assets/images/profile_image_1.jpg',
-              name: 'Taro Yamada',
-              isAuthorized: true,
-              timeOfCreation: '2m',
-              bodyText: 'Hello, World!',
-              bodyImagePaths: const [],
-              commentersProfileImagePaths: const [],
-              commentCount: 0,
-              likeCount: 5,
-              onSettingPressed: _onSettingPressed,
-            ),
-          ],
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
+        ),
+      ),
+      child: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _title(),
+              ThreadCard(
+                profileImagePath: 'assets/images/profile_image_1.jpg',
+                name: 'Taro Yamada',
+                isAuthorized: true,
+                timeOfCreation: '2m',
+                bodyText: 'Hello, World! hahadkdgjasldkfjaslkdfjaklsdfjalksdjflkasjdflasjdfklasdf asdlfkjasdlkfjalskdjf',
+                bodyImagePaths: const [
+                  'assets/images/body_image_1.png',
+                  'assets/images/body_image_2.png',
+                  'assets/images/body_image_3.png',
+                ],
+                commentersProfileImagePaths: const [
+                  'assets/images/profile_image_2.jpg',
+                  'assets/images/profile_image_3.jpg',
+                  'assets/images/profile_image_4.jpg',
+                ],
+                commentCount: 3,
+                likeCount: 5,
+                onSettingPressed: () => _showSettingBottomCard(context),
+              ),
+              ThreadCard(
+                profileImagePath: 'assets/images/profile_image_1.jpg',
+                name: 'Taro Test',
+                isAuthorized: true,
+                timeOfCreation: '2m',
+                bodyText: 'Hello, salkfjasdfWorld!',
+                bodyImagePaths: const [],
+                commentersProfileImagePaths: const [
+                  'assets/images/profile_image_1.jpg',
+                  'assets/images/profile_image_2.jpg',
+                  'assets/images/profile_image_3.jpg',
+                ],
+                commentCount: 3,
+                likeCount: 5,
+                onSettingPressed: _onSettingPressed,
+              ),
+              ThreadCard(
+                profileImagePath: 'assets/images/profile_image_1.jpg',
+                name: 'Taro Yamada',
+                isAuthorized: true,
+                timeOfCreation: '2m',
+                bodyText: 'Hello, Woraslkdfjasdlkfjaskldfjalksdjfalksdjfklasdjflaksdjfklasdjfaskldjfald!',
+                bodyImagePaths: const [],
+                commentersProfileImagePaths: const [
+                  'assets/images/profile_image_2.jpg',
+                  'assets/images/profile_image_3.jpg',
+                ],
+                commentCount: 2,
+                likeCount: 5,
+                onSettingPressed: _onSettingPressed,
+              ),
+              ThreadCard(
+                profileImagePath: 'assets/images/profile_image_1.jpg',
+                name: 'Taro Yamada',
+                isAuthorized: true,
+                timeOfCreation: '2m',
+                bodyText: 'Hello, World!',
+                bodyImagePaths: const [],
+                commentersProfileImagePaths: const [],
+                commentCount: 0,
+                likeCount: 5,
+                onSettingPressed: _onSettingPressed,
+              ),
+            ],
+          ),
         ),
       ),
     );

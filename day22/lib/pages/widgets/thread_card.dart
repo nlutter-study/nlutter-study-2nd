@@ -82,14 +82,12 @@ class ThreadCard extends StatelessWidget {
   }
 
   _myProfile() {
-    return ProfileWithAddIcon(
-        size: headerHeight, profileImagePath: profileImagePath);
+    return ProfileWithAddIcon(size: headerHeight, profileImagePath: profileImagePath);
   }
 
   Widget _divider() {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      // height: 200,
       width: 4,
       color: Colors.grey.shade300,
     );
@@ -190,8 +188,7 @@ class ThreadCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Text(
         bodyText,
-        style: const TextStyle(
-            fontSize: 18, fontWeight: FontWeight.w500, height: 1.5),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, height: 1.5),
       ),
     );
   }
