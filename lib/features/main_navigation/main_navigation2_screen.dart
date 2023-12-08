@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/activity/activity_screen.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/posts/posts_screen.dart';
 import 'package:tiktok/features/posts/postx2_screen.dart';
@@ -19,7 +20,7 @@ class _MainNavigation2State extends State<MainNavigation2> {
   final screens = [
     const PostsScreen(),
     const SearchScreen(),
-    const Placeholder(),
+    const ActivityScreen(),
     const Placeholder(),
   ];
 
@@ -72,7 +73,7 @@ class _MainNavigation2State extends State<MainNavigation2> {
                 selectedIndex: _selectedIndex,
               ),
               NavTab(
-                isSelected: _selectedIndex == 2,
+                isSelected: _selectedIndex == 5,
                 icon: FontAwesomeIcons.penToSquare,
                 selectedIcon: FontAwesomeIcons.solidPenToSquare,
                 onTap: () {
@@ -84,17 +85,17 @@ class _MainNavigation2State extends State<MainNavigation2> {
                 selectedIndex: _selectedIndex,
               ),
               NavTab(
-                isSelected: _selectedIndex == 3,
+                isSelected: _selectedIndex == 2,
                 icon: FontAwesomeIcons.heart,
                 selectedIcon: FontAwesomeIcons.solidHeart,
-                onTap: () => _onTap(3),
+                onTap: () => _onTap(2),
                 selectedIndex: _selectedIndex,
               ),
               NavTab(
-                isSelected: _selectedIndex == 4,
+                isSelected: _selectedIndex == 3,
                 icon: FontAwesomeIcons.user,
                 selectedIcon: FontAwesomeIcons.solidUser,
-                onTap: () => _onTap(4),
+                onTap: () => _onTap(3),
                 selectedIndex: _selectedIndex,
               ),
             ],

@@ -5,13 +5,11 @@ import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 final tabs = [
-  "Top",
-  "Users",
-  "Videos",
-  "Sounds",
-  "LIVE",
-  "Shopping",
-  "Brands",
+  "All",
+  "Replies",
+  "Mentions",
+  "Views",
+  "Likes",
 ];
 
 class ActivityScreen extends StatefulWidget {
@@ -42,29 +40,32 @@ class ActivityScreenState extends State<ActivityScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 7,
+      length: 5,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          elevation: 1,
-          title: CupertinoSearchTextField(
-            controller: _searchController,
-            onChanged: _onSearchChanged,
-            onSubmitted: _onSearchSubmitted,
-          ),
           bottom: TabBar(
-            padding: const EdgeInsets.symmetric(
-              horizontal: Sizes.size16,
+            unselectedLabelColor: Colors.black,
+            unselectedLabelStyle: const TextStyle(
+              fontSize: Sizes.size16,
+              fontWeight: FontWeight.w600,
+              backgroundColor: Colors.white,
+              decorationColor: Colors.black,
             ),
-            splashFactory: NoSplash.splashFactory,
-            isScrollable: true,
+            labelColor: Colors.white,
             labelStyle: const TextStyle(
               fontSize: Sizes.size16,
               fontWeight: FontWeight.w600,
+              backgroundColor: Colors.black,
             ),
-            indicatorColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade500,
-            labelColor: Colors.black,
+            padding: const EdgeInsets.symmetric(
+              horizontal: Sizes.size16,
+            ),
+            isScrollable: true,
+            indicatorColor: Colors.white,
+            labelPadding: const EdgeInsets.symmetric(
+              horizontal: Sizes.size32,
+            ),
             tabs: [
               for (var tab in tabs)
                 Tab(
