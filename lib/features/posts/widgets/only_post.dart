@@ -429,7 +429,7 @@ class OnlyPost extends StatelessWidget {
                       Text(
                         truncateWithEllipsis(
                           faker.person.name(),
-                          20,
+                          15,
                         ),
                         style: const TextStyle(
                           fontSize: 20,

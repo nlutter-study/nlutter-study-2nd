@@ -107,86 +107,95 @@ class SearchFriendView extends StatelessWidget {
         horizontal: Sizes.size8,
         vertical: Sizes.size8,
       ),
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: Sizes.size24,
-          backgroundImage: NetworkImage(
-            faker.image.image(
-              keywords: ["people"],
+      child: Column(
+        children: [
+          ListTile(
+            leading: CircleAvatar(
+              radius: Sizes.size24,
+              backgroundImage: NetworkImage(
+                faker.image.image(
+                  keywords: ["people"],
+                ),
+              ),
             ),
-          ),
-        ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    Text(
+                      truncateWithEllipsis(
+                        faker.person.name(),
+                        15,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: Sizes.size4,
+                    ),
+                    const Icon(
+                      Icons.verified,
+                      color: Colors.blue,
+                      size: Sizes.size16,
+                    ),
+                  ],
+                ),
                 Text(
-                  truncateWithEllipsis(
-                    faker.person.name(),
-                    20,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                  faker.lorem.word(),
                   style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: Sizes.size20,
+                  ),
+                ),
+              ],
+            ),
+            subtitle: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: Sizes.size8,
+              ),
+              child: Text(
+                "${faker.randomGenerator.integer(1000)}K Followers",
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: Sizes.size16,
+                ),
+              ),
+            ),
+            trailing: Container(
+              width: Sizes.size96,
+              height: Sizes.size36,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(
+                  Sizes.size10,
+                ),
+                border: Border.all(
+                  color: Colors.grey.shade400,
+                ),
+              ),
+              child: const Center(
+                child: Text(
+                  "Follow",
+                  style: TextStyle(
                     color: Colors.black,
                     fontSize: Sizes.size16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(
-                  width: Sizes.size4,
-                ),
-                const Icon(
-                  Icons.verified,
-                  color: Colors.blue,
-                  size: Sizes.size16,
-                ),
-              ],
-            ),
-            Text(
-              faker.lorem.word(),
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: Sizes.size20,
-              ),
-            ),
-          ],
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: Sizes.size8,
-          ),
-          child: Text(
-            "${faker.randomGenerator.integer(1000)}K Followers",
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: Sizes.size16,
-            ),
-          ),
-        ),
-        trailing: Container(
-          width: Sizes.size96,
-          height: Sizes.size36,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              Sizes.size10,
-            ),
-            border: Border.all(
-              color: Colors.grey.shade400,
-            ),
-          ),
-          child: const Center(
-            child: Text(
-              "Follow",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: Sizes.size16,
-                fontWeight: FontWeight.bold,
               ),
             ),
           ),
-        ),
+          Divider(
+            color: Colors.grey.shade400,
+            height: Sizes.size10,
+            indent: 80,
+          ),
+        ],
       ),
     );
   }
