@@ -308,6 +308,10 @@ class OnlyPost extends StatelessWidget {
     );
   }
 
+  String truncateWithEllipsis(String text, int cutoff) {
+    return text.length > cutoff ? '${text.substring(0, cutoff)}...' : text;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -423,7 +427,10 @@ class OnlyPost extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        faker.person.name(),
+                        truncateWithEllipsis(
+                          faker.person.name(),
+                          20,
+                        ),
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

@@ -4,6 +4,7 @@ import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/posts/posts_screen.dart';
 import 'package:tiktok/features/posts/postx2_screen.dart';
+import 'package:tiktok/features/search/search_screen.dart';
 
 class MainNavigation2 extends StatefulWidget {
   const MainNavigation2({super.key});
@@ -17,7 +18,7 @@ class _MainNavigation2State extends State<MainNavigation2> {
 
   final screens = [
     const PostsScreen(),
-    const Placeholder(),
+    const SearchScreen(),
     const Placeholder(),
     const Placeholder(),
   ];

@@ -12,6 +12,10 @@ class ImagePost extends StatelessWidget {
 
   final Faker faker;
 
+  String truncateWithEllipsis(String text, int cutoff) {
+    return text.length > cutoff ? '${text.substring(0, cutoff)}...' : text;
+  }
+
   void onTapDot(BuildContext context) {
     showModalBottomSheet(
       clipBehavior: Clip.hardEdge,
@@ -423,7 +427,10 @@ class ImagePost extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        faker.person.name(),
+                        truncateWithEllipsis(
+                          faker.person.name(),
+                          20,
+                        ),
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
