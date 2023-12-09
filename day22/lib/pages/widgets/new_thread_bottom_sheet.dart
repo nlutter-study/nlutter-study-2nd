@@ -1,5 +1,6 @@
-import 'package:day22/pages/widgets/index.dart';
 import 'package:flutter/material.dart';
+
+import 'profile_image_from_asset.dart';
 
 class NewThreadBottomSheet extends StatefulWidget {
   const NewThreadBottomSheet({super.key});
@@ -125,7 +126,8 @@ class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
   }
 
   _myProfile() {
-    return const ProfileImageFromAsset(profileImagePath, imageSize: profileSize);
+    return const ProfileImageFromAsset(profileImagePath,
+        imageSize: profileSize);
   }
 
   _smallMyProfile() {
@@ -135,7 +137,8 @@ class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
           height: profileSize,
           width: profileSize,
           alignment: Alignment.center,
-          child: const ProfileImageFromAsset(profileImagePath, imageSize: profileSize / 2),
+          child: const ProfileImageFromAsset(profileImagePath,
+              imageSize: profileSize / 2),
         ),
         Container(
           height: profileSize,
@@ -208,7 +211,10 @@ class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
         children: [
           Text(
             'Anyone can reply',
-            style: TextStyle(color: Colors.grey.shade600, fontSize: 20, fontWeight: FontWeight.w500),
+            style: TextStyle(
+                color: Colors.grey.shade600,
+                fontSize: 20,
+                fontWeight: FontWeight.w500),
           ),
           GestureDetector(
             onTap: () {},

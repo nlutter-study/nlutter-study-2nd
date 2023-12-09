@@ -1,11 +1,18 @@
-import 'package:day22/pages/widgets/index.dart';
 import 'package:flutter/material.dart';
 
-class ProfileWithAddIcon extends StatelessWidget {
+import 'profile_image_from_asset.dart';
+
+class ProfileWithIcon extends StatelessWidget {
   final double size;
   final String profileImagePath;
-  const ProfileWithAddIcon(
-      {super.key, required this.size, required this.profileImagePath});
+  final IconData iconData;
+  final Color iconBackgroundColor;
+  const ProfileWithIcon(
+      {super.key,
+      required this.size,
+      required this.profileImagePath,
+      required this.iconData,
+      required this.iconBackgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +38,7 @@ class ProfileWithAddIcon extends StatelessWidget {
           right: 2,
           child: ClipOval(
             child: Container(
-              color: Colors.black,
+              color: iconBackgroundColor,
               height: size / 2 - 4,
               width: size / 2 - 4,
             ),
@@ -41,7 +48,7 @@ class ProfileWithAddIcon extends StatelessWidget {
           bottom: 4,
           right: 4,
           child: Icon(
-            Icons.add,
+            iconData,
             color: Colors.white,
             size: size / 2 - 8,
           ),

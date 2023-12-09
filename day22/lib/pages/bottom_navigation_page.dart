@@ -1,5 +1,10 @@
-import 'widgets/index.dart';
+import 'activity_tab/activity_tab.dart';
+
+import 'home_tab/home_tab.dart';
 import 'package:flutter/material.dart';
+
+import 'search_tab/search_tab.dart';
+import 'widgets/index.dart';
 
 class BottomNavigationPage extends StatefulWidget {
   const BottomNavigationPage({super.key});
@@ -8,7 +13,8 @@ class BottomNavigationPage extends StatefulWidget {
   State<BottomNavigationPage> createState() => _BottomNavigationPageState();
 }
 
-class _BottomNavigationPageState extends State<BottomNavigationPage> with SingleTickerProviderStateMixin {
+class _BottomNavigationPageState extends State<BottomNavigationPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _sclaeAnimation;
 
@@ -48,7 +54,8 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> with Single
             ),
             bottomNavigationBar: ThreadBottomNavigationBar(
               selectedIndex: _selectedIndex,
-              onItemTapped: (index) => _onItemTapped(index: index, context: context),
+              onItemTapped: (index) =>
+                  _onItemTapped(index: index, context: context),
             ),
           ),
         );
@@ -60,15 +67,15 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> with Single
     switch (index) {
       case 0:
       case 2:
-        return const Home();
+        return const HomeTab();
       case 1:
-        return const Placeholder();
+        return const SearchTab();
       case 3:
-        return const Placeholder();
+        return const ActivityTab();
       case 4:
         return const Placeholder();
       default:
-        return const Home();
+        return const HomeTab();
     }
   }
 

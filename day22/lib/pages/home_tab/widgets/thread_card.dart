@@ -1,7 +1,7 @@
-import 'package:day22/pages/widgets/double_profile_images.dart';
+import 'package:day22/pages/home_tab/widgets/double_profile_images.dart';
 import 'package:day22/pages/widgets/profile_image_from_asset.dart';
 import 'package:day22/pages/widgets/profile_with_add_icon.dart';
-import 'package:day22/pages/widgets/triple_profile_images.dart';
+import 'package:day22/pages/home_tab/widgets/triple_profile_images.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -82,7 +82,11 @@ class ThreadCard extends StatelessWidget {
   }
 
   _myProfile() {
-    return ProfileWithAddIcon(size: headerHeight, profileImagePath: profileImagePath);
+    return ProfileWithIcon(
+        size: headerHeight,
+        profileImagePath: profileImagePath,
+        iconBackgroundColor: Colors.black,
+        iconData: Icons.add);
   }
 
   Widget _divider() {
@@ -188,7 +192,8 @@ class ThreadCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Text(
         bodyText,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, height: 1.5),
+        style: const TextStyle(
+            fontSize: 18, fontWeight: FontWeight.w500, height: 1.5),
       ),
     );
   }

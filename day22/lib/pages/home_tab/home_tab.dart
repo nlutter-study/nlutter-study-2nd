@@ -1,15 +1,15 @@
-import 'package:day22/pages/widgets/half_rounded_button.dart';
-import 'package:day22/pages/widgets/index.dart';
-import 'package:day22/pages/widgets/thread_card.dart';
+import 'package:day22/pages/home_tab/widgets/half_rounded_button.dart';
+import 'package:day22/pages/home_tab/widgets/index.dart';
+import 'package:day22/pages/home_tab/widgets/thread_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'divider_between_rounded_button.dart';
-import 'modal_bottom_sheet_top_decoration.dart';
-import 'next_page_button.dart';
+import 'widgets/divider_between_rounded_button.dart';
+import 'widgets/modal_bottom_sheet_top_decoration.dart';
+import 'widgets/next_page_button.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomeTab extends StatelessWidget {
+  const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,8 @@ class Home extends StatelessWidget {
                 name: 'Taro Yamada',
                 isAuthorized: true,
                 timeOfCreation: '2m',
-                bodyText: 'Hello, World! hahadkdgjasldkfjaslkdfjaklsdfjalksdjflkasjdflasjdfklasdf asdlfkjasdlkfjalskdjf',
+                bodyText:
+                    'Hello, World! hahadkdgjasldkfjaslkdfjaklsdfjalksdjflkasjdflasjdfklasdf asdlfkjasdlkfjalskdjf',
                 bodyImagePaths: const [
                   'assets/images/body_image_1.png',
                   'assets/images/body_image_2.png',
@@ -69,7 +70,8 @@ class Home extends StatelessWidget {
                 name: 'Taro Yamada',
                 isAuthorized: true,
                 timeOfCreation: '2m',
-                bodyText: 'Hello, Woraslkdfjasdlkfjaskldfjalksdjfalksdjfklasdjflaksdjfklasdjfaskldjfald!',
+                bodyText:
+                    'Hello, Woraslkdfjasdlkfjaskldfjalksdjfalksdjfklasdjflaksdjfklasdjfaskldjfald!',
                 bodyImagePaths: const [],
                 commentersProfileImagePaths: const [
                   'assets/images/profile_image_2.jpg',
