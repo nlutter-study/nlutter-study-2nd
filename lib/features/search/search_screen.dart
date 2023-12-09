@@ -88,7 +88,7 @@ class SearchrScreenState extends State<SearchScreen> {
   }
 }
 
-class SearchFriendView extends StatelessWidget {
+class SearchFriendView extends StatefulWidget {
   const SearchFriendView({
     super.key,
     required this.faker,
@@ -96,8 +96,21 @@ class SearchFriendView extends StatelessWidget {
 
   final Faker faker;
 
+  @override
+  State<SearchFriendView> createState() => _SearchFriendViewState();
+}
+
+class _SearchFriendViewState extends State<SearchFriendView> {
   String truncateWithEllipsis(String text, int cutoff) {
     return text.length > cutoff ? '${text.substring(0, cutoff)}...' : text;
+  }
+
+  bool _isFollowed = false;
+
+  void _onFollow() {
+    setState(() {
+      _isFollowed = !_isFollowed;
+    });
   }
 
   @override
@@ -113,7 +126,7 @@ class SearchFriendView extends StatelessWidget {
             leading: CircleAvatar(
               radius: Sizes.size24,
               backgroundImage: NetworkImage(
-                faker.image.image(
+                widget.faker.image.image(
                   keywords: ["people"],
                 ),
               ),
@@ -125,7 +138,7 @@ class SearchFriendView extends StatelessWidget {
                   children: [
                     Text(
                       truncateWithEllipsis(
-                        faker.person.name(),
+                        widget.faker.person.name(),
                         15,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -147,7 +160,7 @@ class SearchFriendView extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  faker.lorem.word(),
+                  widget.faker.lorem.word(),
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: Sizes.size20,
@@ -160,7 +173,7 @@ class SearchFriendView extends StatelessWidget {
                 vertical: Sizes.size8,
               ),
               child: Text(
-                "${faker.randomGenerator.integer(1000)}K Followers",
+                "${widget.faker.randomGenerator.integer(1000)}K Followers",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: Sizes.size16,
@@ -178,13 +191,16 @@ class SearchFriendView extends StatelessWidget {
                   color: Colors.grey.shade400,
                 ),
               ),
-              child: const Center(
-                child: Text(
-                  "Follow",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: Sizes.size16,
-                    fontWeight: FontWeight.bold,
+              child: Center(
+                child: GestureDetector(
+                  onTap: _onFollow,
+                  child: Text(
+                    _isFollowed ? "Following" : "Follow",
+                    style: TextStyle(
+                      color: _isFollowed ? Colors.black : Colors.grey,
+                      fontSize: Sizes.size16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
