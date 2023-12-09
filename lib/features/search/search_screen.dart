@@ -180,26 +180,33 @@ class _SearchFriendViewState extends State<SearchFriendView> {
                 ),
               ),
             ),
-            trailing: Container(
-              width: Sizes.size96,
-              height: Sizes.size36,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  Sizes.size10,
-                ),
-                border: Border.all(
-                  color: Colors.grey.shade400,
-                ),
+            trailing: AnimatedOpacity(
+              duration: const Duration(
+                milliseconds: 2000,
               ),
-              child: Center(
-                child: GestureDetector(
-                  onTap: _onFollow,
-                  child: Text(
-                    _isFollowed ? "Following" : "Follow",
-                    style: TextStyle(
-                      color: _isFollowed ? Colors.black : Colors.grey,
-                      fontSize: Sizes.size16,
-                      fontWeight: FontWeight.bold,
+              opacity: _isFollowed ? 1 : 0.5,
+              child: GestureDetector(
+                onTap: _onFollow,
+                child: Container(
+                  width: Sizes.size96,
+                  height: Sizes.size36,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      Sizes.size10,
+                    ),
+                    border: Border.all(
+                      color: Colors.grey.shade400,
+                    ),
+                    color: _isFollowed ? Colors.black : Colors.white,
+                  ),
+                  child: Center(
+                    child: Text(
+                      _isFollowed ? "Following" : "Follow",
+                      style: TextStyle(
+                        color: _isFollowed ? Colors.white : Colors.grey,
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

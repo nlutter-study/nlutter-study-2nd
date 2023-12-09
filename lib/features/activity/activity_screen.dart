@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 final tabs = [
@@ -7,6 +8,7 @@ final tabs = [
   "Replies",
   "Mentions",
   "Views",
+  "Follows",
   "Likes",
 ];
 
@@ -105,8 +107,137 @@ class ActivityScreenState extends State<ActivityScreen> {
           ),
         ),
         body: TabBarView(children: [
-          ActivityFriendView(faker: faker),
-          for (var tab in tabs.skip(1))
+          Column(
+            children: [
+              const SizedBox(
+                height: Sizes.size20,
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "john_mobbin",
+                acting: "Mentioned you",
+                content:
+                    "Here's a thread you should follow if you love botany @jane_mobbin",
+                time: "4",
+                icon: FontAwesomeIcons.threads,
+                iconStyle: "threads",
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "john_mobbin",
+                acting: "Starting out my gardening club with thr...",
+                content: "Count me in!",
+                time: "4",
+                icon: FontAwesomeIcons.share,
+                iconStyle: "share",
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "the.plantdads",
+                acting: "Followed you",
+                content: "",
+                time: "5",
+                icon: FontAwesomeIcons.solidUser,
+                iconStyle: "user",
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "the.plantdads",
+                acting: "Definitely broken! 🧵👀🌱",
+                content: "",
+                time: "5",
+                icon: FontAwesomeIcons.solidHeart,
+                iconStyle: "heart",
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "theberryjungle",
+                acting: "🧵👀🌱",
+                content: "",
+                time: "5",
+                icon: FontAwesomeIcons.solidHeart,
+                iconStyle: "heart",
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: Sizes.size20,
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "john_mobbin",
+                acting: "Starting out my gardening club with thr...",
+                content: "Count me in!",
+                time: "4",
+                icon: FontAwesomeIcons.share,
+                iconStyle: "share",
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: Sizes.size20,
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "john_mobbin",
+                acting: "Mentioned you",
+                content:
+                    "Here's a thread you should follow if you love botany @jane_mobbin",
+                time: "4",
+                icon: FontAwesomeIcons.threads,
+                iconStyle: "threads",
+              ),
+            ],
+          ),
+          const Center(
+            child: Text("Views"),
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: Sizes.size20,
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "the.plantdads",
+                acting: "Followed you",
+                content: "",
+                time: "5",
+                icon: FontAwesomeIcons.solidUser,
+                iconStyle: "user",
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: Sizes.size20,
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "the.plantdads",
+                acting: "Definitely broken! 🧵👀🌱",
+                content: "",
+                time: "5",
+                icon: FontAwesomeIcons.solidHeart,
+                iconStyle: "heart",
+              ),
+              ActivityFriendView(
+                faker: faker,
+                name: "theberryjungle",
+                acting: "🧵👀🌱",
+                content: "",
+                time: "5",
+                icon: FontAwesomeIcons.solidHeart,
+                iconStyle: "heart",
+              ),
+            ],
+          ),
+          for (var tab in tabs.skip(6))
             Center(
               child: Text(tab),
             ),
@@ -120,9 +251,21 @@ class ActivityFriendView extends StatelessWidget {
   const ActivityFriendView({
     super.key,
     required this.faker,
+    required this.name,
+    required this.acting,
+    required this.content,
+    required this.time,
+    required this.icon,
+    required this.iconStyle,
   });
 
   final Faker faker;
+  final String name;
+  final String acting;
+  final String content;
+  final String time;
+  final IconData icon;
+  final String iconStyle;
 
   String truncateWithEllipsis(String text, int cutoff) {
     return text.length > cutoff ? '${text.substring(0, cutoff)}...' : text;
@@ -138,13 +281,48 @@ class ActivityFriendView extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
-            leading: CircleAvatar(
-              radius: Sizes.size24,
-              backgroundImage: NetworkImage(
-                faker.image.image(
-                  keywords: ["people"],
+            leading: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                CircleAvatar(
+                  radius: Sizes.size24,
+                  backgroundImage: NetworkImage(
+                    faker.image.image(
+                      keywords: ["people"],
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  top: 30,
+                  left: 30,
+                  child: Container(
+                    padding: const EdgeInsets.all(
+                      Sizes.size2,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        Sizes.size20,
+                      ),
+                      border: Border.all(
+                        width: 2,
+                        color: Colors.white,
+                      ),
+                      color: iconStyle == "threads"
+                          ? Colors.green.shade400
+                          : iconStyle == "share"
+                              ? Colors.blue.shade400
+                              : iconStyle == "user"
+                                  ? Colors.purple.shade800
+                                  : Colors.red.shade600,
+                    ),
+                    child: Icon(
+                      icon,
+                      color: Colors.white,
+                      size: Sizes.size16,
+                    ),
+                  ),
+                ),
+              ],
             ),
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,7 +331,7 @@ class ActivityFriendView extends StatelessWidget {
                   children: [
                     Text(
                       truncateWithEllipsis(
-                        faker.person.name(),
+                        name,
                         15,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -167,34 +345,69 @@ class ActivityFriendView extends StatelessWidget {
                     const SizedBox(
                       width: Sizes.size4,
                     ),
-                    const Icon(
-                      Icons.verified,
-                      color: Colors.blue,
-                      size: Sizes.size16,
+                    Text(
+                      "${time}h",
+                      style: TextStyle(
+                        color: Colors.grey.shade500,
+                        fontSize: Sizes.size16,
+                      ),
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: Sizes.size6,
+                ),
                 Text(
-                  faker.lorem.word(),
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: Sizes.size20,
+                  acting,
+                  style: TextStyle(
+                    color: Colors.grey.shade500,
+                    fontSize: Sizes.size16,
                   ),
                 ),
               ],
             ),
-            subtitle: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: Sizes.size8,
-              ),
-              child: Text(
-                "${faker.randomGenerator.integer(1000)}K Followers",
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: Sizes.size16,
-                ),
-              ),
-            ),
+            subtitle: iconStyle == "user" || iconStyle == "heart"
+                ? null
+                : Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: Sizes.size8,
+                    ),
+                    child: Text(
+                      content,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: Sizes.size16,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+            trailing: iconStyle == "user"
+                ? Container(
+                    width: Sizes.size96,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Sizes.size4,
+                      vertical: Sizes.size8,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        Sizes.size8,
+                      ),
+                      border: Border.all(
+                        width: 2,
+                        color: Colors.grey.shade300,
+                      ),
+                      color: Colors.white,
+                    ),
+                    child: Text(
+                      "Following",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey.shade400,
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                : null,
           ),
           Divider(
             color: Colors.grey.shade400,
