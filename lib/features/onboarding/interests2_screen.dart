@@ -178,23 +178,63 @@ class _Interests2ScreenState extends State<Interests2Screen> {
                   return SingleChildScrollView(
                     controller: _scrollController,
                     scrollDirection: Axis.horizontal,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        minWidth: 400,
-                      ),
-                      child: Wrap(
-                        runSpacing: 4,
-                        spacing: 8,
-                        direction: Axis.horizontal,
-                        children: List.generate(
-                          12,
-                          (index) {
-                            return Interes2tButton(
-                              interest: interests[index],
-                            );
-                          },
+                    child: Column(
+                      children: [
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            minWidth: 400,
+                          ),
+                          child: Wrap(
+                            runSpacing: 4,
+                            spacing: 8,
+                            direction: Axis.horizontal,
+                            children: List.generate(
+                              12,
+                              (index) {
+                                return Interes2tButton(
+                                  interest: interests[index],
+                                );
+                              },
+                            ),
+                          ),
                         ),
-                      ),
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            minWidth: 400,
+                          ),
+                          child: Wrap(
+                            runSpacing: 4,
+                            spacing: 8,
+                            direction: Axis.horizontal,
+                            children: List.generate(
+                              12,
+                              (index) {
+                                return Interes2tButton(
+                                  interest: interests[index],
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            minWidth: 400,
+                          ),
+                          child: Wrap(
+                            runSpacing: 4,
+                            spacing: 8,
+                            direction: Axis.horizontal,
+                            children: List.generate(
+                              12,
+                              (index) {
+                                return Interes2tButton(
+                                  interest: interests[index],
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },
