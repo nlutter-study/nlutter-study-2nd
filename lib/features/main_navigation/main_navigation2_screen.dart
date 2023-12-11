@@ -6,6 +6,7 @@ import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/posts/posts_screen.dart';
 import 'package:tiktok/features/posts/postx2_screen.dart';
 import 'package:tiktok/features/search/search_screen.dart';
+import 'package:tiktok/features/users/user_profile_screen.dart';
 
 class MainNavigation2 extends StatefulWidget {
   const MainNavigation2({super.key});
@@ -15,13 +16,13 @@ class MainNavigation2 extends StatefulWidget {
 }
 
 class _MainNavigation2State extends State<MainNavigation2> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
 
   final screens = [
     const PostsScreen(),
     const SearchScreen(),
     const ActivityScreen(),
-    const Placeholder(),
+    const UserProfileScreen(),
   ];
 
   void _onTap(int index) {
@@ -41,10 +42,20 @@ class _MainNavigation2State extends State<MainNavigation2> {
             offstage: _selectedIndex != 0,
             child: screens[0],
           ),
-          screens[_selectedIndex],
-          screens[_selectedIndex],
-          screens[_selectedIndex],
-          screens[_selectedIndex],
+          Offstage(
+              offstage: _selectedIndex != 1, child: screens[_selectedIndex]),
+          Offstage(
+            offstage: _selectedIndex != 2,
+            child: screens[_selectedIndex],
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: screens[_selectedIndex],
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: screens[_selectedIndex],
+          ),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
