@@ -3,12 +3,13 @@ import 'package:tiktok/constants/sizes.dart';
 
 class PersistentTabBar extends SliverPersistentHeaderDelegate {
   final Function onTabTapped;
-  final int _selectedTab;
+  final int selectedTab;
+  bool selected = false;
 
   PersistentTabBar({
+    required this.selectedTab,
     required this.onTabTapped,
-    required int selectedTab,
-  }) : _selectedTab = selectedTab;
+  });
 
   @override
   Widget build(
@@ -24,9 +25,19 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
         ),
       ),
       labelColor: Colors.black,
-      tabs: [
+      unselectedLabelColor: Colors.grey,
+      indicatorColor: Colors.black,
+      labelStyle: const TextStyle(
+        fontSize: Sizes.size16,
+        fontWeight: FontWeight.w600,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: Sizes.size16,
+        fontWeight: FontWeight.w600,
+      ),
+      tabs: const [
         Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: Sizes.size16,
             vertical: Sizes.size16,
           ),
@@ -35,7 +46,6 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
             style: TextStyle(
               fontSize: Sizes.size16,
               fontWeight: FontWeight.w600,
-              color: _selectedTab == 0 ? Colors.black : Colors.grey,
             ),
           ),
         ),
@@ -44,7 +54,6 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
           style: TextStyle(
             fontSize: Sizes.size16,
             fontWeight: FontWeight.w600,
-            color: _selectedTab == 1 ? Colors.black : Colors.grey,
           ),
         ),
       ],
@@ -52,16 +61,13 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  // TODO: implement maxExtent
-  double get maxExtent => 1;
+  double get maxExtent => 50;
 
   @override
-  // TODO: implement minExtent
-  double get minExtent => 1;
+  double get minExtent => 50;
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    // TODO: implement shouldRebuild
-    throw UnimplementedError();
+    return false;
   }
 }
