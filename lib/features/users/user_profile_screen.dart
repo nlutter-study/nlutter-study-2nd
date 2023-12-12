@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/settings/settings_screen.dart';
 import 'package:tiktok/features/users/widgets/persistent_tab_bar.dart';
 import 'package:tiktok/features/users/widgets/user_post1.dart';
 import 'package:tiktok/features/users/widgets/user_post2.dart';
@@ -21,6 +22,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     setState(() {
       selectedTab = index;
     });
+  }
+
+  void _onGearPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SettingsScreen(),
+      ),
+    );
   }
 
   @override
@@ -50,7 +59,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     icon: const FaIcon(
                       FontAwesomeIcons.gripLines,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      _onGearPressed();
+                    },
                   ),
                 ],
               ),
