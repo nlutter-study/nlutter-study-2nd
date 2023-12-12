@@ -14,49 +14,60 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return TabBar(
-      onTap: (index) {
-        onTabTapped(index);
-      },
-      indicator: const UnderlineTabIndicator(
-        borderSide: BorderSide(
-          width: 2,
-          color: Colors.black,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey.shade300,
+            width: 1,
+          ),
         ),
       ),
-      labelColor: Colors.black,
-      unselectedLabelColor: Colors.grey,
-      indicatorColor: Colors.black,
-      labelStyle: const TextStyle(
-        fontSize: Sizes.size16,
-        fontWeight: FontWeight.w600,
-      ),
-      unselectedLabelStyle: const TextStyle(
-        fontSize: Sizes.size16,
-        fontWeight: FontWeight.w600,
-      ),
-      tabs: const [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: Sizes.size16,
-            vertical: Sizes.size16,
+      child: TabBar(
+        onTap: (index) {
+          onTabTapped(index);
+        },
+        indicator: const UnderlineTabIndicator(
+          borderSide: BorderSide(
+            width: 2,
+            color: Colors.black,
           ),
-          child: Text(
-            'Threads',
+        ),
+        labelColor: Colors.black,
+        unselectedLabelColor: Colors.grey,
+        indicatorColor: Colors.black,
+        labelStyle: const TextStyle(
+          fontSize: Sizes.size16,
+          fontWeight: FontWeight.w600,
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: Sizes.size16,
+          fontWeight: FontWeight.w600,
+        ),
+        tabs: const [
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: Sizes.size16,
+              vertical: Sizes.size16,
+            ),
+            child: Text(
+              'Threads',
+              style: TextStyle(
+                fontSize: Sizes.size16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Text(
+            'Replies',
             style: TextStyle(
               fontSize: Sizes.size16,
               fontWeight: FontWeight.w600,
             ),
           ),
-        ),
-        Text(
-          'Replies',
-          style: TextStyle(
-            fontSize: Sizes.size16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
