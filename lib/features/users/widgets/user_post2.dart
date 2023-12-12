@@ -18,7 +18,7 @@ class UserPost2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180,
+      height: 400,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: Sizes.size4,
@@ -27,22 +27,19 @@ class UserPost2 extends StatelessWidget {
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: Sizes.size12,
-                        vertical: Sizes.size48,
-                      ),
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          faker.image.image(),
-                          scale: 1.5,
-                        ),
-                      ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Sizes.size12,
+                    vertical: Sizes.size2,
+                  ),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      faker.image.image(),
+                      scale: 1.5,
                     ),
-                  ],
+                  ),
                 ),
                 Expanded(
                   child: Column(
@@ -87,6 +84,67 @@ class UserPost2 extends StatelessWidget {
                         faker.lorem.sentence(),
                         style: const TextStyle(
                           fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: Sizes.size8,
+                      ),
+                      Container(
+                        height: 240,
+                        width: 330,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  ScaleTransition(
+                                    scale: const AlwaysStoppedAnimation(0.8),
+                                    child: CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                        faker.image.image(),
+                                        scale: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  Text("  ${faker.person.name()}"),
+                                  const Icon(
+                                    Icons.check_circle,
+                                    color: Colors.blue,
+                                    size: 15,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: Sizes.size8,
+                              ),
+                              Text("  ${faker.lorem.sentence()}"),
+                              const SizedBox(
+                                height: Sizes.size8,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  width: 330,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.grey,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Image.network(
+                                    faker.image.image(),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(

@@ -27,22 +27,19 @@ class UserPost1 extends StatelessWidget {
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: Sizes.size12,
-                        vertical: Sizes.size48,
-                      ),
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          faker.image.image(),
-                          scale: 1.5,
-                        ),
-                      ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Sizes.size12,
+                    vertical: Sizes.size2,
+                  ),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      faker.image.image(),
+                      scale: 1.5,
                     ),
-                  ],
+                  ),
                 ),
                 Expanded(
                   child: Column(
