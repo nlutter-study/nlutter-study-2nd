@@ -11,5 +11,5 @@ class ImageUrlUtils {
 
   static String? getBigImageUrl(String? imagePath) {
     return (imagePath == null) ? null : '$_baseUrl/$_sizeBig/$imagePath';
-   }
+  }
 }

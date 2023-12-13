@@ -113,8 +113,10 @@ class _CardListWidget extends StatelessWidget {
                     height: imageHeight,
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
-                      color:
-                          Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.3),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Image.network(

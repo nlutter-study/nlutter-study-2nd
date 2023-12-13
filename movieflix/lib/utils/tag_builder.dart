@@ -3,5 +3,6 @@ class TagBuilder {
 
   TagBuilder._();
 
-  static String buildImageTag(String middle, int id) => '$_prefixImage-$middle-$id';
+  static String buildImageTag(String middle, int id) =>
+      '$_prefixImage-$middle-$id';
 }

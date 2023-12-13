@@ -54,7 +54,8 @@ class DetailMovie {
 
   String get formattedRuntime => '${runtime ~/ 60}h ${runtime % 60}m';
 
-  String get formattedGenres => genres.getRange(0, min(3, genres.length)).join(', ');
+  String get formattedGenres =>
+      genres.getRange(0, min(3, genres.length)).join(', ');
 
   @override
   String toString() {

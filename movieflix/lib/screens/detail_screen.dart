@@ -24,12 +24,14 @@ class DetailScreen extends StatelessWidget {
       tag: TagBuilder.buildImageTag(middleTag, id),
       child: Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
-          fit: BoxFit.fitHeight,
-          image: NetworkImage(imageUrl),
-        ),),
+          image: DecorationImage(
+            fit: BoxFit.fitHeight,
+            image: NetworkImage(imageUrl),
+          ),
+        ),
         child: Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+          backgroundColor:
+              Theme.of(context).colorScheme.primary.withOpacity(0.2),
           appBar: AppBar(
             title: Text(
               'Back to list',

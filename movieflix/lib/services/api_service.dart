@@ -21,7 +21,8 @@ class ApiService {
     final response = await http.get(uri);
     _handleErrorStatusCode(response);
     _printDebug(response.body);
-    final List<dynamic> results = _utf8JsonDecode(response.bodyBytes)[_resultsField];
+    final List<dynamic> results =
+        _utf8JsonDecode(response.bodyBytes)[_resultsField];
     return results.map((e) => SimpleMovie.fromJson(e)).toList();
   }
 
@@ -30,7 +31,8 @@ class ApiService {
     final response = await http.get(uri);
     _handleErrorStatusCode(response);
     _printDebug(response.body);
-    final List<dynamic> results = _utf8JsonDecode(response.bodyBytes)[_resultsField];
+    final List<dynamic> results =
+        _utf8JsonDecode(response.bodyBytes)[_resultsField];
     return results.map((e) => SimpleMovie.fromJson(e)).toList();
   }
 
@@ -39,7 +41,8 @@ class ApiService {
     final response = await http.get(uri);
     _handleErrorStatusCode(response);
     _printDebug(response.body);
-    final List<dynamic> results = _utf8JsonDecode(response.bodyBytes)[_resultsField];
+    final List<dynamic> results =
+        _utf8JsonDecode(response.bodyBytes)[_resultsField];
     return results.map((e) => SimpleMovie.fromJson(e)).toList();
   }
 
@@ -54,7 +57,8 @@ class ApiService {
   static void _handleErrorStatusCode(http.Response response) {
     if (response.statusCode != 200) {
       throw Exception(
-          'API 요청 실패 (url: ${response.request?.url}, status code: ${response.statusCode}',);
+        'API 요청 실패 (url: ${response.request?.url}, status code: ${response.statusCode}',
+      );
     }
   }
 
