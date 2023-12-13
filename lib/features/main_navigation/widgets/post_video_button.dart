@@ -67,7 +67,7 @@ class PostVideoButton extends StatelessWidget {
               color: !inverted ? Colors.black : Colors.white,
             ),
           ),
-        )
+        ),
       ],
     );
   }

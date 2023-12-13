@@ -50,7 +50,7 @@ class _InterestButtonState extends State<InterestButton> {
                 ),
                 border: Border.all(
                   color: Colors.black.withOpacity(0.1),
-                )),
+                ),),
             child: Text(
               widget.interest,
               style: TextStyle(

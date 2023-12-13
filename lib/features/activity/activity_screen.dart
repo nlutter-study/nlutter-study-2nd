@@ -57,7 +57,7 @@ class ActivityScreenState extends State<ActivityScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              )
+              ),
             ],
           ),
           bottom: TabBar(
@@ -241,7 +241,7 @@ class ActivityScreenState extends State<ActivityScreen> {
             Center(
               child: Text(tab),
             ),
-        ]),
+        ],),
       ),
     );
   }
@@ -377,7 +377,7 @@ class ActivityFriendView extends StatelessWidget {
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w500,),
                     ),
                   ),
             trailing: iconStyle == "user"

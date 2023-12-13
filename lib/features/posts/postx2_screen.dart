@@ -32,7 +32,7 @@ class _PostX2State extends State<PostX2> {
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
-                  fontWeight: FontWeight.bold)),
+                  fontWeight: FontWeight.bold,),),
           leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
@@ -48,7 +48,7 @@ class _PostX2State extends State<PostX2> {
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
-                    fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w500,),
               ),
             ),
           ),

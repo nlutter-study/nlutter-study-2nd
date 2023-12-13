@@ -97,7 +97,7 @@ class _VideoCommentsState extends State<VideoComments> {
                               ),
                             ),
                           ],
-                        )),
+                        ),),
                         Gaps.h10,
                         Column(
                           children: [
@@ -115,7 +115,7 @@ class _VideoCommentsState extends State<VideoComments> {
                               ),
                             ),
                           ],
-                        )
+                        ),
                       ],
                     );
                   },
@@ -197,17 +197,17 @@ class _VideoCommentsState extends State<VideoComments> {
                                             color:
                                                 Theme.of(context).primaryColor,
                                           ),
-                                        )
+                                        ),
                                     ],
-                                  )),
+                                  ),),
                             ),
                           ),
-                        )),
+                        ),),
                       ],
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -312,7 +312,7 @@ class _Interests2ScreenState extends State<Interests2Screen> {
                         color: Colors.white,
                         fontSize: Sizes.size24,
                         fontWeight: FontWeight.w600,
-                      )),
+                      ),),
                 ),
               ),
             ],

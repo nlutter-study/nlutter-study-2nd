@@ -141,7 +141,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 children: [
                   for (var interest in interests)
                     InterestButton(
-                        interest: interest, onPressInterest: onPressInterest),
+                        interest: interest, onPressInterest: onPressInterest,),
                 ],
               ),
             ],
@@ -171,7 +171,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                         color: Colors.grey.shade600,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.w600,
-                      )),
+                      ),),
                 ),
               if (selectedCount == 3)
                 Container(
@@ -184,7 +184,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                         color: Colors.grey.shade600,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.w600,
-                      )),
+                      ),),
                 ),
               GestureDetector(
                 onTap: _onNextTap,
@@ -207,7 +207,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                         color: Colors.white,
                         fontSize: Sizes.size24,
                         fontWeight: FontWeight.w600,
-                      )),
+                      ),),
                 ),
               ),
             ],

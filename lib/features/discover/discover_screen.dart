@@ -100,7 +100,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           fit: BoxFit.cover,
                           placeholder: "assets/images/moi.jpeg",
                           image:
-                              "https://img.hani.co.kr/imgdb/resize/2018/0620/152936920972_20180620.JPG"),
+                              "https://img.hani.co.kr/imgdb/resize/2018/0620/152936920972_20180620.JPG",),
                     ),
                   ),
                   Gaps.v10,
@@ -125,7 +125,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         CircleAvatar(
                           radius: 15,
                           backgroundImage: NetworkImage(
-                              "https://avatars.githubusercontent.com/u/48057918?v=4"),
+                              "https://avatars.githubusercontent.com/u/48057918?v=4",),
                         ),
                         Gaps.v4,
                         Expanded(
@@ -144,7 +144,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               );
             },
@@ -153,7 +153,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             Center(
               child: Text(tab),
             ),
-        ]),
+        ],),
       ),
     );
   }

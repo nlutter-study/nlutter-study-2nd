@@ -13,7 +13,7 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+      BuildContext context, double shrinkOffset, bool overlapsContent,) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,

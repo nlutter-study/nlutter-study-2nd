@@ -41,7 +41,7 @@ class _Interes2tButtonState extends State<Interes2tButton> {
             ),
             border: Border.all(
               color: Colors.black.withOpacity(0.1),
-            )),
+            ),),
         child: Text(
           widget.interest,
           style: TextStyle(

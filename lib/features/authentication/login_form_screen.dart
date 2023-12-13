@@ -82,7 +82,7 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                   disabled: false,
                   big: true,
                 ),
-              )
+              ),
             ],
           ),
         ),

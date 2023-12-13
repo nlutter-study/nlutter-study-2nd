@@ -23,7 +23,7 @@ class VideoButton extends StatelessWidget {
           text,
           style: TextStyle(
               color: Colors.white.withOpacity(0.8),
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold,),
         ),
       ],
     );

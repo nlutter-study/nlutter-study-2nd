@@ -43,7 +43,7 @@ class _MainNavigation2State extends State<MainNavigation2> {
             child: screens[0],
           ),
           Offstage(
-              offstage: _selectedIndex != 1, child: screens[_selectedIndex]),
+              offstage: _selectedIndex != 1, child: screens[_selectedIndex],),
           Offstage(
             offstage: _selectedIndex != 2,
             child: screens[_selectedIndex],
@@ -91,7 +91,7 @@ class _MainNavigation2State extends State<MainNavigation2> {
                   showModalBottomSheet(
                       isScrollControlled: true,
                       context: context,
-                      builder: (context) => const PostX2());
+                      builder: (context) => const PostX2(),);
                 },
                 selectedIndex: _selectedIndex,
               ),
