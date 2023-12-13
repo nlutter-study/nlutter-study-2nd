@@ -129,10 +129,10 @@ class DetailMetaWidget extends StatelessWidget {
                   child: TextButton(
                     onPressed: () {},
                     style: TextButton.styleFrom(
-                      backgroundColor: Color(0xFFF8D849),
+                      backgroundColor: const Color(0xFFF8D849),
                       textStyle: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    child: Text('Buy Ticket'),
+                    child: const Text('Buy Ticket'),
                   ),
                 ),
               ),
