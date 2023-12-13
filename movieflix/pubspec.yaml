@@ -89,8 +89,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-# review on https://github.com/nlutter-study/nlutter-study-2nd/pull/5#discussion_r1422559481
-linter:
-  rules:
-    require_trailing_commas: true

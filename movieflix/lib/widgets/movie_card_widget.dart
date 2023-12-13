@@ -97,7 +97,7 @@ class _CardListWidget extends StatelessWidget {
                   middleTag: middleTag,
                 ),
               ),
-            )
+            ),
           },
           child: Container(
             width: imageWidth,
@@ -187,7 +187,7 @@ class _EmptyCardListWidget extends StatelessWidget {
                             .primary
                             .withOpacity(0.3),
                       ),
-                    )
+                    ),
                 ],
               ),
             ),

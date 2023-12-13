@@ -27,7 +27,7 @@ class DetailScreen extends StatelessWidget {
             image: DecorationImage(
           fit: BoxFit.fitHeight,
           image: NetworkImage(imageUrl),
-        )),
+        ),),
         child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.2),
           appBar: AppBar(
