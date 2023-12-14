@@ -1,0 +1,26 @@
+name: Flutter Build Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Flutter actions
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "2.0.6"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run build check on all projects
+        run: |
+          for dir in $(find . -name 'main.dart' -exec dirname {} \;); do
+            (cd $dir && flutter build apk)
+          done
