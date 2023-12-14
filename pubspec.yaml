@@ -47,6 +47,8 @@ dependencies:
   shared_preferences: ^2.2.2
 
   faker: ^2.1.0
+  camera: ^0.10.5+7
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:
