@@ -16,7 +16,7 @@ class MainNavigation2 extends StatefulWidget {
 }
 
 class _MainNavigation2State extends State<MainNavigation2> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 0;
 
   final screens = [
     const PostsScreen(),
@@ -43,7 +43,9 @@ class _MainNavigation2State extends State<MainNavigation2> {
             child: screens[0],
           ),
           Offstage(
-              offstage: _selectedIndex != 1, child: screens[_selectedIndex],),
+            offstage: _selectedIndex != 1,
+            child: screens[_selectedIndex],
+          ),
           Offstage(
             offstage: _selectedIndex != 2,
             child: screens[_selectedIndex],
@@ -89,9 +91,10 @@ class _MainNavigation2State extends State<MainNavigation2> {
                 selectedIcon: FontAwesomeIcons.solidPenToSquare,
                 onTap: () {
                   showModalBottomSheet(
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (context) => const PostX2(),);
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) => const PostX2(),
+                  );
                 },
                 selectedIndex: _selectedIndex,
               ),

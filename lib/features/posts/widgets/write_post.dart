@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import 'package:camera/camera.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/videos/video_recording_screen.dart';
 
 class WritePost extends StatefulWidget {
   const WritePost({
@@ -18,6 +22,8 @@ class WritePost extends StatefulWidget {
 class _WritePostState extends State<WritePost> {
   final TextEditingController textController = TextEditingController();
   bool isPostButtonEnabled = false;
+
+  XFile imageFile = XFile('');
 
   @override
   void initState() {
@@ -138,11 +144,79 @@ class _WritePostState extends State<WritePost> {
                           ),
                           maxLines: 2,
                         ),
-                        const FaIcon(
-                          FontAwesomeIcons.paperclip,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
+                        if (imageFile.path.isNotEmpty)
+                          GestureDetector(
+                            onTap: () async {
+                              XFile result = await Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const VideoRecordingScreen(),
+                                ),
+                              );
+                              setState(() {
+                                imageFile = result;
+                              });
+                            },
+                            child: Stack(
+                              children: [
+                                Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      Sizes.size14,
+                                    ),
+                                  ),
+                                  child: Image.file(
+                                    File(imageFile.path),
+                                    height: 200,
+                                    width: 300,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Positioned(
+                                  right: 20,
+                                  top: 20,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        imageFile = XFile('');
+                                      });
+                                    },
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.black,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.close,
+                                        color: Colors.white,
+                                        size: 30,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        if (!imageFile.path.isNotEmpty)
+                          GestureDetector(
+                            onTap: () async {
+                              XFile result = await Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const VideoRecordingScreen(),
+                                ),
+                              );
+                              setState(() {
+                                imageFile = result;
+                              });
+                            },
+                            child: const FaIcon(
+                              FontAwesomeIcons.paperclip,
+                              size: 20,
+                              color: Colors.grey,
+                            ),
+                          ),
                       ],
                     ),
                   ),

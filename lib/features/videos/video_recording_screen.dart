@@ -68,13 +68,9 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
   }
 
   void _onTapUp() {
-    print("tap up");
     _cameraController.takePicture().then((XFile? file) {
       if (mounted) {
-        print(file);
-        setState(() {
-          // imageFile = file;
-        });
+        Navigator.pop(context, file);
       }
     });
   }
@@ -117,6 +113,20 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
                       ),
                     ),
                     child: CameraPreview(_cameraController),
+                  ),
+                  Positioned(
+                    top: Sizes.size52,
+                    left: Sizes.size16,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.chevron_left_sharp,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: Sizes.size96 + Sizes.size96,
