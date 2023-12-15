@@ -9,11 +9,13 @@ import '../widgets/stars.dart';
 class Detail extends ConsumerWidget {
   final int movieId;
   final FetchType fetchType;
+  // ignore: non_constant_identifier_names
   final String poster_path;
   const Detail({
     Key? key,
     required this.movieId,
     required this.fetchType,
+    // ignore: non_constant_identifier_names
     required this.poster_path,
   }) : super(key: key);
 
@@ -85,7 +87,7 @@ class Detail extends ConsumerWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Stars(score: movie.vote_average / 2),
+                        Stars(score: movie.voteAverage / 2),
                         Gaps.v24,
                         Text(
                           "${(int.parse(movie.runtime) / 60).round()}h ${int.parse(movie.runtime) % 60}m | ${movie.genres}",

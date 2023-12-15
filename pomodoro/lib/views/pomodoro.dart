@@ -68,9 +68,7 @@ class _PomodoroState extends State<Pomodoro> {
             Text(
               'Minchodoro',
               textAlign: TextAlign.start,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
         ),
