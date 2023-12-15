@@ -49,6 +49,7 @@ dependencies:
   faker: ^2.1.0
   camera: ^0.10.5+7
   permission_handler: ^10.2.0
+  image_picker: 0.8.6+1
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
@@ -73,6 +74,15 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
         Navigator.pop(context, file);
       }
     });
+  }
+
+  Future<void> _onPickImage(context) async {
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile != null) {
+      Navigator.pop(context, pickedFile);
+    }
   }
 
   @override
@@ -188,6 +198,34 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
                                   Colors.red,
                                 ],
                               ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    bottom: Sizes.size52,
+                    right: Sizes.size64,
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Camera",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Gaps.h60,
+                        GestureDetector(
+                          onTap: () {
+                            _onPickImage(context);
+                          },
+                          child: const Text(
+                            "Library",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
                             ),
                           ),
                         ),

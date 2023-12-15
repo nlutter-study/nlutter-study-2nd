@@ -129,9 +129,9 @@ class _WritePostState extends State<WritePost> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          widget.faker.person.name(),
-                          style: const TextStyle(
+                        const Text(
+                          "원장",
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
