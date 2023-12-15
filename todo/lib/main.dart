@@ -41,10 +41,10 @@ class TodoApp extends StatelessWidget {
             ),
           ],
         ),
-        body: Center(
+        body: const Center(
           child: SingleChildScrollView(
             child: Column(
-              children: const [
+              children: [
                 Calendar(),
                 Gaps.v36,
                 Task(
