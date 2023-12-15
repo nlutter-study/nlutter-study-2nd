@@ -62,9 +62,9 @@ class _PomodoroState extends State<Pomodoro> {
         elevation: 0,
         backgroundColor:
             isBreak ? Colors.purple : Theme.of(context).primaryColor,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text(
               'Minchodoro',
               textAlign: TextAlign.start,
