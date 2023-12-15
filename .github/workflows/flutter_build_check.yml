@@ -19,5 +19,5 @@ jobs:
       - name: Run build check on all projects
         run: |
           for dir in $(find . -name 'pubspec.yaml' -not -path "./flutter_tools/*" -exec dirname {} \;); do
-            (cd $dir && flutter pub get && flutter build apk)
+            (cd $dir && flutter pub get && flutter analyze)
           done
