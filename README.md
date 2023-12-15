@@ -4,6 +4,8 @@ Nomad flutter study의 리뷰를 위한 repository 입니다.
 
 ## Review guide
 
+![5-diagram.png](assets/5-diagram.png)
+
 ### 1. [현재 repository](https://github.com/nlutter-study/nlutter-study-2nd)에서 fork 버튼을 눌러 본인 github 계정 소유의 repository 를 만듭니다.
 
 ![1-click-fork.png](assets/1-click-fork.png)
