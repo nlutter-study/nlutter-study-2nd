@@ -79,25 +79,26 @@ class _VideoCommentsState extends State<VideoComments> {
                         ),
                         Gaps.h10,
                         const Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "원장",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: Sizes.size14,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "원장",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: Sizes.size14,
+                                ),
                               ),
-                            ),
-                            Gaps.v3,
-                            Text(
-                              "여기는 우리 집 안이야",
-                              style: TextStyle(
-                                fontSize: Sizes.size14,
+                              Gaps.v3,
+                              Text(
+                                "여기는 우리 집 안이야",
+                                style: TextStyle(
+                                  fontSize: Sizes.size14,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),),
+                            ],
+                          ),
+                        ),
                         Gaps.h10,
                         Column(
                           children: [
@@ -139,31 +140,31 @@ class _VideoCommentsState extends State<VideoComments> {
                         ),
                         Gaps.h10,
                         Expanded(
-                            child: SizedBox(
-                          height: Sizes.size44,
-                          child: TextField(
-                            onTap: _onStartWriting,
-                            expands: true,
-                            maxLines: null,
-                            minLines: null,
-                            textInputAction: TextInputAction.newline,
-                            cursorColor: Theme.of(context).primaryColor,
-                            decoration: InputDecoration(
-                              border: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(
-                                    Sizes.size12,
+                          child: SizedBox(
+                            height: Sizes.size44,
+                            child: TextField(
+                              onTap: _onStartWriting,
+                              expands: true,
+                              maxLines: null,
+                              minLines: null,
+                              textInputAction: TextInputAction.newline,
+                              cursorColor: Theme.of(context).primaryColor,
+                              decoration: InputDecoration(
+                                border: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      Sizes.size12,
+                                    ),
                                   ),
+                                  borderSide: BorderSide.none,
                                 ),
-                                borderSide: BorderSide.none,
-                              ),
-                              filled: true,
-                              fillColor: Colors.grey.shade200,
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: Sizes.size12,
-                              ),
-                              hintText: "댓글을 입력하세요",
-                              suffixIcon: Padding(
+                                filled: true,
+                                fillColor: Colors.grey.shade200,
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: Sizes.size12,
+                                ),
+                                hintText: "댓글을 입력하세요",
+                                suffixIcon: Padding(
                                   padding: const EdgeInsets.only(
                                     right: Sizes.size14,
                                   ),
@@ -199,10 +200,12 @@ class _VideoCommentsState extends State<VideoComments> {
                                           ),
                                         ),
                                     ],
-                                  ),),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),),
+                        ),
                       ],
                     ),
                   ),

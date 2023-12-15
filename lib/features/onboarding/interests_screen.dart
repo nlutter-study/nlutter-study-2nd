@@ -141,7 +141,9 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 children: [
                   for (var interest in interests)
                     InterestButton(
-                        interest: interest, onPressInterest: onPressInterest,),
+                      interest: interest,
+                      onPressInterest: onPressInterest,
+                    ),
                 ],
               ),
             ],
@@ -165,26 +167,30 @@ class _InterestsScreenState extends State<InterestsScreen> {
                   padding: const EdgeInsets.symmetric(
                     vertical: Sizes.size20,
                   ),
-                  child: Text("$selectedCount of 3 selected",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: Sizes.size16,
-                        fontWeight: FontWeight.w600,
-                      ),),
+                  child: Text(
+                    "$selectedCount of 3 selected",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: Sizes.size16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               if (selectedCount == 3)
                 Container(
                   padding: const EdgeInsets.symmetric(
                     vertical: Sizes.size20,
                   ),
-                  child: Text("Great work 👍",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: Sizes.size16,
-                        fontWeight: FontWeight.w600,
-                      ),),
+                  child: Text(
+                    "Great work 👍",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: Sizes.size16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               GestureDetector(
                 onTap: _onNextTap,
@@ -201,13 +207,15 @@ class _InterestsScreenState extends State<InterestsScreen> {
                     ),
                   ),
                   width: 100,
-                  child: const Text("Next",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: Sizes.size24,
-                        fontWeight: FontWeight.w600,
-                      ),),
+                  child: const Text(
+                    "Next",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: Sizes.size24,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               ),
             ],

@@ -28,11 +28,14 @@ class _PostX2State extends State<PostX2> {
           toolbarHeight: 70,
           leadingWidth: 100,
           elevation: 1,
-          title: const Text('New thread',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,),),
+          title: const Text(
+            'New thread',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
@@ -46,9 +49,10 @@ class _PostX2State extends State<PostX2> {
                 textAlign: TextAlign.center,
                 "Cancel",
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,),
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),

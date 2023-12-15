@@ -35,13 +35,14 @@ class _Interes2tButtonState extends State<Interes2tButton> {
           horizontal: Sizes.size24,
         ),
         decoration: BoxDecoration(
-            color: _isSelected ? Theme.of(context).primaryColor : Colors.white,
-            borderRadius: BorderRadius.circular(
-              Sizes.size32,
-            ),
-            border: Border.all(
-              color: Colors.black.withOpacity(0.1),
-            ),),
+          color: _isSelected ? Theme.of(context).primaryColor : Colors.white,
+          borderRadius: BorderRadius.circular(
+            Sizes.size32,
+          ),
+          border: Border.all(
+            color: Colors.black.withOpacity(0.1),
+          ),
+        ),
         child: Text(
           widget.interest,
           style: TextStyle(

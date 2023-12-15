@@ -54,11 +54,12 @@ class _VideoPostState extends State<VideoPost>
     super.initState();
     _initVideoPlayer();
     _animationController = AnimationController(
-        duration: _animationDuration,
-        vsync: this,
-        lowerBound: 1.0,
-        upperBound: 1.5,
-        value: 1.5,);
+      duration: _animationDuration,
+      vsync: this,
+      lowerBound: 1.0,
+      upperBound: 1.5,
+      value: 1.5,
+    );
   }
 
   @override
@@ -135,18 +136,22 @@ class _VideoPostState extends State<VideoPost>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("@원장",
-                    style: TextStyle(
-                      fontSize: Sizes.size20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),),
+                Text(
+                  "@원장",
+                  style: TextStyle(
+                    fontSize: Sizes.size20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Gaps.v10,
-                Text("여기는 우리 집 안이야",
-                    style: TextStyle(
-                      fontSize: Sizes.size16,
-                      color: Colors.white,
-                    ),),
+                Text(
+                  "여기는 우리 집 안이야",
+                  style: TextStyle(
+                    fontSize: Sizes.size16,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
@@ -156,7 +161,9 @@ class _VideoPostState extends State<VideoPost>
                 child: AnimatedBuilder(
                   animation: _animationController,
                   builder: (context, child) => Transform.scale(
-                      scale: _animationController.value, child: child,),
+                    scale: _animationController.value,
+                    child: child,
+                  ),
                   child: AnimatedOpacity(
                     opacity: _isPaused ? 1 : 0,
                     duration: _animationDuration,
@@ -180,7 +187,8 @@ class _VideoPostState extends State<VideoPost>
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
-                      "https://avatars.githubusercontent.com/u/48057918?v=4",),
+                    "https://avatars.githubusercontent.com/u/48057918?v=4",
+                  ),
                   child: Text("원장"),
                 ),
                 Gaps.v24,

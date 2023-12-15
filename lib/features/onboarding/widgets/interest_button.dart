@@ -43,14 +43,15 @@ class _InterestButtonState extends State<InterestButton> {
             width: 200,
             height: 100,
             decoration: BoxDecoration(
-                color:
-                    _isSelected ? Theme.of(context).primaryColor : Colors.white,
-                borderRadius: BorderRadius.circular(
-                  Sizes.size16,
-                ),
-                border: Border.all(
-                  color: Colors.black.withOpacity(0.1),
-                ),),
+              color:
+                  _isSelected ? Theme.of(context).primaryColor : Colors.white,
+              borderRadius: BorderRadius.circular(
+                Sizes.size16,
+              ),
+              border: Border.all(
+                color: Colors.black.withOpacity(0.1),
+              ),
+            ),
             child: Text(
               widget.interest,
               style: TextStyle(

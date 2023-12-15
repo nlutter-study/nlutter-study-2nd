@@ -306,13 +306,15 @@ class _Interests2ScreenState extends State<Interests2Screen> {
                     ),
                   ),
                   width: 100,
-                  child: const Text("Next",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: Sizes.size24,
-                        fontWeight: FontWeight.w600,
-                      ),),
+                  child: const Text(
+                    "Next",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: Sizes.size24,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               ),
             ],

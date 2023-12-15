@@ -98,142 +98,144 @@ class ActivityScreenState extends State<ActivityScreen> {
             ],
           ),
         ),
-        body: TabBarView(children: [
-          Column(
-            children: [
-              const SizedBox(
-                height: Sizes.size20,
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "john_mobbin",
-                acting: "Mentioned you",
-                content:
-                    "Here's a thread you should follow if you love botany @jane_mobbin",
-                time: "4",
-                icon: FontAwesomeIcons.threads,
-                iconStyle: "threads",
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "john_mobbin",
-                acting: "Starting out my gardening club with thr...",
-                content: "Count me in!",
-                time: "4",
-                icon: FontAwesomeIcons.share,
-                iconStyle: "share",
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "the.plantdads",
-                acting: "Followed you",
-                content: "",
-                time: "5",
-                icon: FontAwesomeIcons.solidUser,
-                iconStyle: "user",
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "the.plantdads",
-                acting: "Definitely broken! 🧵👀🌱",
-                content: "",
-                time: "5",
-                icon: FontAwesomeIcons.solidHeart,
-                iconStyle: "heart",
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "theberryjungle",
-                acting: "🧵👀🌱",
-                content: "",
-                time: "5",
-                icon: FontAwesomeIcons.solidHeart,
-                iconStyle: "heart",
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              const SizedBox(
-                height: Sizes.size20,
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "john_mobbin",
-                acting: "Starting out my gardening club with thr...",
-                content: "Count me in!",
-                time: "4",
-                icon: FontAwesomeIcons.share,
-                iconStyle: "share",
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              const SizedBox(
-                height: Sizes.size20,
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "john_mobbin",
-                acting: "Mentioned you",
-                content:
-                    "Here's a thread you should follow if you love botany @jane_mobbin",
-                time: "4",
-                icon: FontAwesomeIcons.threads,
-                iconStyle: "threads",
-              ),
-            ],
-          ),
-          const Center(
-            child: Text("Views"),
-          ),
-          Column(
-            children: [
-              const SizedBox(
-                height: Sizes.size20,
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "the.plantdads",
-                acting: "Followed you",
-                content: "",
-                time: "5",
-                icon: FontAwesomeIcons.solidUser,
-                iconStyle: "user",
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              const SizedBox(
-                height: Sizes.size20,
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "the.plantdads",
-                acting: "Definitely broken! 🧵👀🌱",
-                content: "",
-                time: "5",
-                icon: FontAwesomeIcons.solidHeart,
-                iconStyle: "heart",
-              ),
-              ActivityFriendView(
-                faker: faker,
-                name: "theberryjungle",
-                acting: "🧵👀🌱",
-                content: "",
-                time: "5",
-                icon: FontAwesomeIcons.solidHeart,
-                iconStyle: "heart",
-              ),
-            ],
-          ),
-          for (var tab in tabs.skip(6))
-            Center(
-              child: Text(tab),
+        body: TabBarView(
+          children: [
+            Column(
+              children: [
+                const SizedBox(
+                  height: Sizes.size20,
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "john_mobbin",
+                  acting: "Mentioned you",
+                  content:
+                      "Here's a thread you should follow if you love botany @jane_mobbin",
+                  time: "4",
+                  icon: FontAwesomeIcons.threads,
+                  iconStyle: "threads",
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "john_mobbin",
+                  acting: "Starting out my gardening club with thr...",
+                  content: "Count me in!",
+                  time: "4",
+                  icon: FontAwesomeIcons.share,
+                  iconStyle: "share",
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "the.plantdads",
+                  acting: "Followed you",
+                  content: "",
+                  time: "5",
+                  icon: FontAwesomeIcons.solidUser,
+                  iconStyle: "user",
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "the.plantdads",
+                  acting: "Definitely broken! 🧵👀🌱",
+                  content: "",
+                  time: "5",
+                  icon: FontAwesomeIcons.solidHeart,
+                  iconStyle: "heart",
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "theberryjungle",
+                  acting: "🧵👀🌱",
+                  content: "",
+                  time: "5",
+                  icon: FontAwesomeIcons.solidHeart,
+                  iconStyle: "heart",
+                ),
+              ],
             ),
-        ],),
+            Column(
+              children: [
+                const SizedBox(
+                  height: Sizes.size20,
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "john_mobbin",
+                  acting: "Starting out my gardening club with thr...",
+                  content: "Count me in!",
+                  time: "4",
+                  icon: FontAwesomeIcons.share,
+                  iconStyle: "share",
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                const SizedBox(
+                  height: Sizes.size20,
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "john_mobbin",
+                  acting: "Mentioned you",
+                  content:
+                      "Here's a thread you should follow if you love botany @jane_mobbin",
+                  time: "4",
+                  icon: FontAwesomeIcons.threads,
+                  iconStyle: "threads",
+                ),
+              ],
+            ),
+            const Center(
+              child: Text("Views"),
+            ),
+            Column(
+              children: [
+                const SizedBox(
+                  height: Sizes.size20,
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "the.plantdads",
+                  acting: "Followed you",
+                  content: "",
+                  time: "5",
+                  icon: FontAwesomeIcons.solidUser,
+                  iconStyle: "user",
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                const SizedBox(
+                  height: Sizes.size20,
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "the.plantdads",
+                  acting: "Definitely broken! 🧵👀🌱",
+                  content: "",
+                  time: "5",
+                  icon: FontAwesomeIcons.solidHeart,
+                  iconStyle: "heart",
+                ),
+                ActivityFriendView(
+                  faker: faker,
+                  name: "theberryjungle",
+                  acting: "🧵👀🌱",
+                  content: "",
+                  time: "5",
+                  icon: FontAwesomeIcons.solidHeart,
+                  iconStyle: "heart",
+                ),
+              ],
+            ),
+            for (var tab in tabs.skip(6))
+              Center(
+                child: Text(tab),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -367,9 +369,10 @@ class ActivityFriendView extends StatelessWidget {
                     child: Text(
                       content,
                       style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w500,),
+                        color: Colors.black,
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
             trailing: iconStyle == "user"
