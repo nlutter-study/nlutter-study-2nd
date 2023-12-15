@@ -27,13 +27,9 @@ class SearchrScreenState extends State<SearchScreen> {
 
   final ScrollController _scrollController = ScrollController();
 
-  void _onSearchChanged(String value) {
-    print(value);
-  }
+  void _onSearchChanged(String value) {}
 
-  void _onSearchSubmitted(String value) {
-    print(value);
-  }
+  void _onSearchSubmitted(String value) {}
 
   @override
   void dispose() {

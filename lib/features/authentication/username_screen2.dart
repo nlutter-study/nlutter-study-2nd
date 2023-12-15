@@ -59,16 +59,13 @@ class _UsernameScreen2State extends State<UsernameScreen2> {
       return null;
     }
     final regExp = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",);
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    );
 
     if (!regExp.hasMatch(_email)) {
       return "유효하지 않은 이메일입니다.";
     }
     return null;
-  }
-
-  void _onScaffoldTap() {
-    FocusScope.of(context).unfocus();
   }
 
   void _onNextTap() {

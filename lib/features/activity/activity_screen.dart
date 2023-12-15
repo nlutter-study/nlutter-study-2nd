@@ -22,14 +22,6 @@ class ActivityScreen extends StatefulWidget {
 class ActivityScreenState extends State<ActivityScreen> {
   int _selectedIndex = 0;
 
-  void _onSearchChanged(String value) {
-    print(value);
-  }
-
-  void _onSearchSubmitted(String value) {
-    print(value);
-  }
-
   @override
   void dispose() {
     super.dispose();

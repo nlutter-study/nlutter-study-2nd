@@ -320,7 +320,7 @@ class _CodeScreenState extends State<CodeScreen> {
             check
                 ? const Center(
                     child: FaIcon(
-                      FontAwesomeIcons.checkCircle,
+                      FontAwesomeIcons.circleCheck,
                       size: Sizes.size40,
                       color: Colors.green,
                     ),

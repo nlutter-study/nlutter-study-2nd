@@ -25,13 +25,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   final TextEditingController _searchController =
       TextEditingController(text: "초기값");
 
-  void _onSearchChanged(String value) {
-    print(value);
-  }
+  void _onSearchChanged(String value) {}
 
-  void _onSearchSubmitted(String value) {
-    print(value);
-  }
+  void _onSearchSubmitted(String value) {}
 
   @override
   void dispose() {
@@ -73,87 +69,91 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ],
           ),
         ),
-        body: TabBarView(children: [
-          GridView.builder(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            padding: const EdgeInsets.symmetric(
-              horizontal: Sizes.size6,
-            ),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: Sizes.size10,
-              mainAxisSpacing: Sizes.size10,
-              childAspectRatio: 9 / 20,
-            ),
-            itemCount: 20,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Sizes.size10),
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    child: AspectRatio(
-                      aspectRatio: 9 / 16,
-                      child: FadeInImage.assetNetwork(
+        body: TabBarView(
+          children: [
+            GridView.builder(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.size6,
+              ),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: Sizes.size10,
+                mainAxisSpacing: Sizes.size10,
+                childAspectRatio: 9 / 20,
+              ),
+              itemCount: 20,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Sizes.size10),
+                      ),
+                      clipBehavior: Clip.hardEdge,
+                      child: AspectRatio(
+                        aspectRatio: 9 / 16,
+                        child: FadeInImage.assetNetwork(
                           fit: BoxFit.cover,
                           placeholder: "assets/images/moi.jpeg",
                           image:
-                              "https://img.hani.co.kr/imgdb/resize/2018/0620/152936920972_20180620.JPG",),
-                    ),
-                  ),
-                  Gaps.v10,
-                  const Text(
-                    "미라이노 타메니 유메가 히토츠 카나우타비 보쿠와 키미다케오 모토메테이루",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: Sizes.size16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Gaps.v5,
-                  DefaultTextStyle(
-                    style: TextStyle(
-                      fontSize: Sizes.size14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.grey.shade500,
-                    ),
-                    child: const Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 15,
-                          backgroundImage: NetworkImage(
-                              "https://avatars.githubusercontent.com/u/48057918?v=4",),
+                              "https://img.hani.co.kr/imgdb/resize/2018/0620/152936920972_20180620.JPG",
                         ),
-                        Gaps.v4,
-                        Expanded(
-                          child: Text(
-                            "원장",
+                      ),
+                    ),
+                    Gaps.v10,
+                    const Text(
+                      "미라이노 타메니 유메가 히토츠 카나우타비 보쿠와 키미다케오 모토메테이루",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: Sizes.size16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Gaps.v5,
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        fontSize: Sizes.size14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey.shade500,
+                      ),
+                      child: const Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 15,
+                            backgroundImage: NetworkImage(
+                              "https://avatars.githubusercontent.com/u/48057918?v=4",
+                            ),
                           ),
-                        ),
-                        Gaps.h4,
-                        FaIcon(
-                          FontAwesomeIcons.heart,
-                          size: Sizes.size14,
-                        ),
-                        Gaps.h2,
-                        Text(
-                          "1.2M",
-                        ),
-                      ],
+                          Gaps.v4,
+                          Expanded(
+                            child: Text(
+                              "원장",
+                            ),
+                          ),
+                          Gaps.h4,
+                          FaIcon(
+                            FontAwesomeIcons.heart,
+                            size: Sizes.size14,
+                          ),
+                          Gaps.h2,
+                          Text(
+                            "1.2M",
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              );
-            },
-          ),
-          for (var tab in tabs.skip(1))
-            Center(
-              child: Text(tab),
+                  ],
+                );
+              },
             ),
-        ],),
+            for (var tab in tabs.skip(1))
+              Center(
+                child: Text(tab),
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -126,7 +126,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                         GestureDetector(
                           onTap: _onClearTap,
                           child: const FaIcon(
-                            FontAwesomeIcons.checkCircle,
+                            FontAwesomeIcons.circleCheck,
                             color: Colors.green,
                             size: Sizes.size20,
                           ),

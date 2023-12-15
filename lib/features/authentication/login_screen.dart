@@ -8,10 +8,6 @@ import 'package:tiktok/features/authentication/widgets/auth_button.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  void _onLoginTap(BuildContext context) {
-    Navigator.of(context).pop();
-  }
-
   void _onEmailLoginTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
