@@ -16,11 +16,8 @@ jobs:
         with:
           flutter-version: "2.0.6"
 
-      - name: Install dependencies
-        run: flutter pub get
-
       - name: Run build check on all projects
         run: |
-          for dir in $(find . -name 'main.dart' -exec dirname {} \;); do
-            (cd $dir && flutter build apk)
+          for dir in $(find . -name 'pubspec.yaml' -exec dirname {} \;); do
+            (cd $dir && flutter pub get && flutter build apk)
           done
