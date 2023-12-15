@@ -1,0 +1,40 @@
+name: Flutter Build Check
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Flutter actions
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "3.16.3"
+
+      - name: Install yq
+        run: |
+          sudo add-apt-repository ppa:rmescandon/yq
+          sudo apt update
+          sudo apt install yq -y
+
+      - name: Run build check on all projects
+        run: |
+          for dir in $(find . -name 'pubspec.yaml' -not -path "./flutter_tools/*" -exec dirname {} \;); do
+            cd $dir
+            if [ ! -f analysis_options.yaml ] || [ $(yq e '.linter.rules.require_trailing_commas' analysis_options.yaml) != 'true' ]; then
+              echo "`linter.rules.require_trailing_commas: true` is missing in $dir/analysis_options.yaml"
+              exit 1
+            fi
+            flutter analyze
+            dart format --set-exit-if-changed .
+            cd -
+          done
