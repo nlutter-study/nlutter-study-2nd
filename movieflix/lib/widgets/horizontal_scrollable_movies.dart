@@ -93,7 +93,7 @@ class HorizontalScrollableMovies extends ConsumerWidget {
                       ],
                     ),
                   ),
-                ]
+                ],
               ],
             ),
           );

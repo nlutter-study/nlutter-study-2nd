@@ -63,7 +63,7 @@ class TimeTile extends StatelessWidget {
             time < 10 ? "0${time.toString()}" : time.toString(),
             style: const TextStyle(fontSize: 48, color: Colors.purple),
           ),
-        )
+        ),
       ],
     );
   }

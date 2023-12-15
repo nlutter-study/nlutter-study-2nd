@@ -141,7 +141,7 @@ class Detail extends ConsumerWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

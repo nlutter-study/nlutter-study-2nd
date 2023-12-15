@@ -65,7 +65,7 @@ class TodoApp extends StatelessWidget {
                     "MORE",
                     "5",
                     "6",
-                    "7"
+                    "7",
                   ],
                   backgroundColor: 0xF09C6BCE,
                   title: "DAILY\nPROJECT",
@@ -77,7 +77,7 @@ class TodoApp extends StatelessWidget {
                   participants: ["DEN", "NANA", "MARK"],
                   backgroundColor: 0xF0BBEE4B,
                   title: "WEEKLY\nPLANNING",
-                )
+                ),
               ],
             ),
           ),

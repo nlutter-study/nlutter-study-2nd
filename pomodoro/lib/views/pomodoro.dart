@@ -108,7 +108,7 @@ class _PomodoroState extends State<Pomodoro> {
                   fontSize: 32,
                 ),
               ),
-              TimeTile(time: sec % 60)
+              TimeTile(time: sec % 60),
             ],
           ),
           SingleChildScrollView(
@@ -124,7 +124,7 @@ class _PomodoroState extends State<Pomodoro> {
                       targetMin = min;
                       sec = min * 60;
                     }),
-                  )
+                  ),
               ],
             ),
           ),

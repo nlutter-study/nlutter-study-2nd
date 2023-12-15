@@ -83,9 +83,9 @@ class Task extends StatelessWidget {
                         )
                       : Container(),
                 ],
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

@@ -46,9 +46,9 @@ class Calendar extends StatelessWidget {
                         fontSize: Sizes.size44,
                         color: Colors.grey,
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
