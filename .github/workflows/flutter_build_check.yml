@@ -26,5 +26,6 @@ jobs:
             fi
             flutter pub get
             flutter analyze
+            dart format --set-exit-if-changed .
             cd -
           done
