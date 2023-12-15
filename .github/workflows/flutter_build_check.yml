@@ -34,7 +34,6 @@ jobs:
               echo "`linter.rules.require_trailing_commas: true` is missing in $dir/analysis_options.yaml"
               exit 1
             fi
-            flutter pub get
             flutter analyze
             dart format --set-exit-if-changed .
             cd -
