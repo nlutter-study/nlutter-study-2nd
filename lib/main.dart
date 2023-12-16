@@ -15,7 +15,9 @@ class TicTokApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TicTok',
+      themeMode: ThemeMode.system,
       theme: ThemeData(
+        brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,
         primaryColor: Colors.blue,
         textSelectionTheme: const TextSelectionThemeData(
@@ -29,6 +31,25 @@ class TicTokApp extends StatelessWidget {
           titleTextStyle: TextStyle(
             fontSize: Sizes.size16 + Sizes.size2,
             color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        primaryColor: Colors.white,
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Colors.white,
+        ),
+        splashColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            fontSize: Sizes.size16 + Sizes.size2,
+            color: Colors.white,
             fontWeight: FontWeight.w600,
           ),
         ),
