@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/utils.dart';
 
 class ImagePost extends StatelessWidget {
   const ImagePost({
@@ -514,18 +515,19 @@ class ImagePost extends StatelessWidget {
                   const SizedBox(
                     height: Sizes.size8,
                   ),
-                  const Row(
+                  Row(
                     children: [
                       SizedBox(
                         height: 30,
                         width: 30,
                         child: Icon(
                           FontAwesomeIcons.heart,
-                          color: Colors.black,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
                           size: 25,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: Sizes.size8,
                       ),
                       SizedBox(
@@ -533,11 +535,12 @@ class ImagePost extends StatelessWidget {
                         width: 30,
                         child: Icon(
                           FontAwesomeIcons.comment,
-                          color: Colors.black,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
                           size: 25,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: Sizes.size8,
                       ),
                       SizedBox(
@@ -545,11 +548,12 @@ class ImagePost extends StatelessWidget {
                         width: 30,
                         child: Icon(
                           FontAwesomeIcons.recycle,
-                          color: Colors.black,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
                           size: 25,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: Sizes.size8,
                       ),
                       SizedBox(
@@ -557,7 +561,8 @@ class ImagePost extends StatelessWidget {
                         width: 30,
                         child: Icon(
                           FontAwesomeIcons.paperPlane,
-                          color: Colors.black,
+                          color:
+                              isDarkMode(context) ? Colors.white : Colors.black,
                           size: 25,
                         ),
                       ),

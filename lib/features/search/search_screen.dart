@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/utils.dart';
 
 // final tabs = [
 //   "Top",
@@ -45,14 +46,14 @@ class SearchrScreenState extends State<SearchScreen> {
         shrinkWrap: true,
         controller: _scrollController,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(
+          Padding(
+            padding: const EdgeInsets.symmetric(
               horizontal: Sizes.size24,
             ),
             child: Text(
               "Search",
               style: TextStyle(
-                color: Colors.black,
+                color: isDarkMode(context) ? Colors.white : Colors.black,
                 fontSize: Sizes.size32,
                 fontWeight: FontWeight.bold,
               ),
@@ -139,8 +140,9 @@ class _SearchFriendViewState extends State<SearchFriendView> {
                       ),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style: TextStyle(
+                        color:
+                            isDarkMode(context) ? Colors.white : Colors.black,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -170,8 +172,8 @@ class _SearchFriendViewState extends State<SearchFriendView> {
               ),
               child: Text(
                 "${widget.faker.randomGenerator.integer(1000)}K Followers",
-                style: const TextStyle(
-                  color: Colors.black,
+                style: TextStyle(
+                  color: isDarkMode(context) ? Colors.white : Colors.black,
                   fontSize: Sizes.size16,
                 ),
               ),

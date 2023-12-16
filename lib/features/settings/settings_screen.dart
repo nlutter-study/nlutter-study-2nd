@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/features/settings/privacy_screen.dart';
+import 'package:tiktok/utils.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -18,9 +19,9 @@ class SettingsScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black,
+                color: isDarkMode(context) ? Colors.white : Colors.black,
               ),
             ),
             const Text(
@@ -42,25 +43,25 @@ class SettingsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.userPlus,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('Follow and invite friends'),
+            title: const Text('Follow and invite friends'),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.bell,
               size: 27,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('Notifications'),
+            title: const Text('Notifications'),
           ),
           ListTile(
-            leading: const FaIcon(
+            leading: FaIcon(
               FontAwesomeIcons.lock,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
             title: const Text('Privacy'),
             onTap: () => Navigator.of(context).push(
@@ -69,26 +70,26 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleUser,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('Account'),
+            title: const Text('Account'),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleQuestion,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('Help'),
+            title: const Text('Help'),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleInfo,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('About'),
+            title: const Text('About'),
           ),
           const Divider(
             height: 1,

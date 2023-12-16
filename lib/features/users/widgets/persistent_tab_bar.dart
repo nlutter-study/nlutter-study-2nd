@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/utils.dart';
 
 class PersistentTabBar extends SliverPersistentHeaderDelegate {
   final Function onTabTapped;
@@ -19,10 +20,12 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
   ) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDarkMode(context) ? Colors.black : Colors.white,
         border: Border(
           bottom: BorderSide(
-            color: Colors.grey.shade300,
+            color: isDarkMode(context)
+                ? Colors.grey.shade300
+                : Colors.grey.shade300,
             width: 1,
           ),
         ),
@@ -31,15 +34,16 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
         onTap: (index) {
           onTabTapped(index);
         },
-        indicator: const UnderlineTabIndicator(
+        indicator: UnderlineTabIndicator(
           borderSide: BorderSide(
             width: 2,
-            color: Colors.black,
+            color: isDarkMode(context) ? Colors.white : Colors.black,
           ),
         ),
-        labelColor: Colors.black,
-        unselectedLabelColor: Colors.grey,
-        indicatorColor: Colors.black,
+        labelColor: !isDarkMode(context) ? Colors.black : Colors.white,
+        unselectedLabelColor:
+            !isDarkMode(context) ? Colors.grey.shade500 : Colors.white,
+        indicatorColor: !isDarkMode(context) ? Colors.black : Colors.white,
         labelStyle: const TextStyle(
           fontSize: Sizes.size16,
           fontWeight: FontWeight.w600,

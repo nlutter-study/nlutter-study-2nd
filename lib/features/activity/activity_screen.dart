@@ -2,6 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/utils.dart';
 
 final tabs = [
   "All",
@@ -35,7 +36,7 @@ class ActivityScreenState extends State<ActivityScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          leading: const Stack(
+          leading: Stack(
             clipBehavior: Clip.none,
             children: [
               Positioned(
@@ -44,7 +45,7 @@ class ActivityScreenState extends State<ActivityScreen> {
                 child: Text(
                   "Activity",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: isDarkMode(context) ? Colors.white : Colors.black,
                     fontSize: Sizes.size32,
                     fontWeight: FontWeight.bold,
                   ),
@@ -64,18 +65,20 @@ class ActivityScreenState extends State<ActivityScreen> {
                 _selectedIndex = index;
               });
             },
-            unselectedLabelColor: Colors.black,
+            unselectedLabelColor:
+                !isDarkMode(context) ? Colors.black : Colors.white,
             unselectedLabelStyle: const TextStyle(
               fontSize: Sizes.size16,
               fontWeight: FontWeight.w600,
             ),
-            labelColor: Colors.white,
+            labelColor: isDarkMode(context) ? Colors.black : Colors.white,
             labelStyle: const TextStyle(
               fontSize: Sizes.size16,
               fontWeight: FontWeight.w600,
             ),
             isScrollable: true,
-            indicatorColor: Colors.white,
+            indicatorColor:
+                isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
             tabs: [
               for (var tab in tabs)
                 Container(
@@ -85,10 +88,16 @@ class ActivityScreenState extends State<ActivityScreen> {
                       Sizes.size10,
                     ),
                     color: _selectedIndex == tabs.indexOf(tab)
-                        ? Colors.black
-                        : Colors.white,
+                        ? isDarkMode(context)
+                            ? Colors.white
+                            : Colors.black
+                        : !isDarkMode(context)
+                            ? Colors.white
+                            : Colors.black,
                     border: Border.all(
-                      color: Colors.grey.shade300,
+                      color: isDarkMode(context)
+                          ? Colors.grey.shade700
+                          : Colors.grey.shade300,
                     ),
                   ),
                   child: Tab(
@@ -330,8 +339,9 @@ class ActivityFriendView extends StatelessWidget {
                       ),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style: TextStyle(
+                        color:
+                            isDarkMode(context) ? Colors.white : Colors.black,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -368,8 +378,9 @@ class ActivityFriendView extends StatelessWidget {
                     ),
                     child: Text(
                       content,
-                      style: const TextStyle(
-                        color: Colors.black,
+                      style: TextStyle(
+                        color:
+                            isDarkMode(context) ? Colors.white : Colors.black,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.w500,
                       ),

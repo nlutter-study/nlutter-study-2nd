@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/utils.dart';
 
 class PrivacyScreen extends StatefulWidget {
   const PrivacyScreen({super.key});
@@ -23,9 +24,9 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black,
+                color: isDarkMode(context) ? Colors.white : Colors.black,
               ),
             ),
             const Text(
@@ -48,9 +49,9 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
       body: Column(
         children: [
           ListTile(
-            leading: const FaIcon(
+            leading: FaIcon(
               FontAwesomeIcons.lock,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
             title: const Text('Private profile'),
             trailing: CupertinoSwitch(
@@ -62,75 +63,75 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
               },
             ),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.at,
               size: 24,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('Mentions'),
-            leadingAndTrailingTextStyle: TextStyle(
+            title: const Text('Mentions'),
+            leadingAndTrailingTextStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
             trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
               size: 16,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.bellSlash,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('Muted'),
+            title: const Text('Muted'),
             trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
               size: 16,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.eyeSlash,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('Hidden Words'),
+            title: const Text('Hidden Words'),
             trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
               size: 16,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.users,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
-            title: Text('Profiles you follow'),
+            title: const Text('Profiles you follow'),
             trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
               size: 16,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
           const Divider(
             height: 1,
             thickness: 1,
           ),
-          const ListTile(
+          ListTile(
             title: Text(
               'Other privacy settings',
               style: TextStyle(
-                color: Colors.black,
+                color: isDarkMode(context) ? Colors.white : Colors.black,
                 fontWeight: FontWeight.w600,
               ),
             ),
             trailing: FaIcon(
               FontAwesomeIcons.arrowUpRightFromSquare,
               size: 16,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
           Padding(
@@ -146,38 +147,38 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
               ),
             ),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleXmark,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
             title: Text(
               'Blocked profiles',
               style: TextStyle(
-                color: Colors.black,
+                color: isDarkMode(context) ? Colors.white : Colors.black,
               ),
             ),
             trailing: FaIcon(
               FontAwesomeIcons.arrowUpRightFromSquare,
               size: 16,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
-          const ListTile(
+          ListTile(
             leading: FaIcon(
               FontAwesomeIcons.heartCircleXmark,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
             title: Text(
               'Hide likes',
               style: TextStyle(
-                color: Colors.black,
+                color: isDarkMode(context) ? Colors.white : Colors.black,
               ),
             ),
             trailing: FaIcon(
               FontAwesomeIcons.arrowUpRightFromSquare,
               size: 16,
-              color: Colors.black,
+              color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
         ],
