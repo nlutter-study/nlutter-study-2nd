@@ -7,6 +7,7 @@ import 'package:tiktok/features/posts/posts_screen.dart';
 import 'package:tiktok/features/posts/postx2_screen.dart';
 import 'package:tiktok/features/search/search_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
+import 'package:tiktok/utils.dart';
 
 class MainNavigation2 extends StatefulWidget {
   const MainNavigation2({super.key});
@@ -61,7 +62,7 @@ class _MainNavigation2State extends State<MainNavigation2> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
+        color: isDarkMode(context) ? Colors.black : Colors.white,
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(
