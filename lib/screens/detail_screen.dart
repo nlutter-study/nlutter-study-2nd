@@ -69,7 +69,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           blurRadius: 15,
                           offset: const Offset(10, 10),
                           color: Colors.black.withOpacity(0.03),
-                        )
+                        ),
                       ],
                     ),
                     child: Image.network(widget.posterPath),
@@ -146,7 +146,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 }
                 return const Text("...");
               },
-            )
+            ),
           ],
         ),
       ),
