@@ -31,7 +31,7 @@ jobs:
           for dir in $(find . -name 'pubspec.yaml' -not -path "./flutter_tools/*" -exec dirname {} \;); do
             cd $dir
             if [ ! -f analysis_options.yaml ] || [ $(yq e '.linter.rules.require_trailing_commas' analysis_options.yaml) != 'true' ]; then
-              echo "`linter.rules.require_trailing_commas: true` is missing in $dir/analysis_options.yaml"
+              echo "linter.rules.require_trailing_commas: true is missing in $dir/analysis_options.yaml"
               exit 1
             fi
             flutter analyze
