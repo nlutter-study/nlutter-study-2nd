@@ -33,7 +33,11 @@ class MovieCardWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: isDisplayTitle ? (imageHeight + 80) : (imageHeight + 10),
+          height: imageHeight +
+              switch (isDisplayTitle) {
+                true => 80,
+                false => 10,
+              },
           child: FutureBuilder(
             future: movieApiFuture,
             builder: (context, snapshot) {
