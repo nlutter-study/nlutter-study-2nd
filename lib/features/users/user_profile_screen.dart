@@ -9,7 +9,12 @@ import 'package:tiktok/features/users/widgets/user_post_with_image.dart';
 import 'package:tiktok/utils.dart';
 
 class UserProfileScreen extends StatefulWidget {
-  const UserProfileScreen({super.key});
+  const UserProfileScreen({
+    super.key,
+    required this.username,
+  });
+
+  final String username;
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();

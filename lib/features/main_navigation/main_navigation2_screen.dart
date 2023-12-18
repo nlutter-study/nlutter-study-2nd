@@ -10,6 +10,8 @@ import 'package:tiktok/features/users/user_profile_screen.dart';
 import 'package:tiktok/utils.dart';
 
 class MainNavigation2 extends StatefulWidget {
+  static var routeName = '/';
+
   const MainNavigation2({super.key});
 
   @override
@@ -19,17 +21,10 @@ class MainNavigation2 extends StatefulWidget {
 class _MainNavigation2State extends State<MainNavigation2> {
   int _selectedIndex = 0;
 
-  final screens = [
-    const PostsScreen(),
-    const SearchScreen(),
-    const ActivityScreen(),
-    const UserProfileScreen(),
-  ];
-
   void _onTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    _selectedIndex = index;
+
+    setState(() {});
   }
 
   @override
@@ -41,23 +36,21 @@ class _MainNavigation2State extends State<MainNavigation2> {
         children: [
           Offstage(
             offstage: _selectedIndex != 0,
-            child: screens[0],
+            child: const PostsScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: screens[_selectedIndex],
-          ),
-          Offstage(
-            offstage: _selectedIndex != 2,
-            child: screens[_selectedIndex],
+            child: const SearchScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 3,
-            child: screens[_selectedIndex],
+            child: const UserProfileScreen(
+              username: 'Jane',
+            ),
           ),
           Offstage(
-            offstage: _selectedIndex != 4,
-            child: screens[_selectedIndex],
+            offstage: _selectedIndex != 2,
+            child: const ActivityScreen(),
           ),
         ],
       ),

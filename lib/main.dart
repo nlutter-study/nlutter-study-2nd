@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/main_navigation/main_navigation2_screen.dart';
+import 'package:tiktok/router.dart';
 
 void main() {
   runApp(const TicTokApp());
@@ -13,7 +13,8 @@ class TicTokApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'TicTok',
       themeMode: ThemeMode.system,
       theme: ThemeData(
@@ -62,7 +63,6 @@ class TicTokApp extends StatelessWidget {
         Locale('ko', ''),
         Locale('en', ''),
       ],
-      home: const MainNavigation2(),
     );
   }
 }

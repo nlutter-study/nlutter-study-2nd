@@ -15,6 +15,8 @@ import 'package:tiktok/utils.dart';
 // ];
 
 class SearchScreen extends StatefulWidget {
+  static var routeName = '/search';
+
   const SearchScreen({super.key});
 
   @override
