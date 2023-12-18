@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/posts/widgets/write_post.dart';
 
-class PostX2 extends StatefulWidget {
-  const PostX2({super.key});
+class PostWrite extends StatefulWidget {
+  const PostWrite({super.key});
 
   @override
-  State<PostX2> createState() => _PostX2State();
+  State<PostWrite> createState() => _PostWriteState();
 }
 
-class _PostX2State extends State<PostX2> {
+class _PostWriteState extends State<PostWrite> {
   var faker = Faker();
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/activity/activity_screen.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/posts/posts_screen.dart';
-import 'package:tiktok/features/posts/postx2_screen.dart';
+import 'package:tiktok/features/posts/post_write_screen.dart';
 import 'package:tiktok/features/search/search_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
 import 'package:tiktok/utils.dart';
@@ -94,7 +94,7 @@ class _MainNavigation2State extends State<MainNavigation2> {
                   showModalBottomSheet(
                     isScrollControlled: true,
                     context: context,
-                    builder: (context) => const PostX2(),
+                    builder: (context) => const PostWrite(),
                   );
                 },
                 selectedIndex: _selectedIndex,

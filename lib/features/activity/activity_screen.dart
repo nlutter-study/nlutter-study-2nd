@@ -54,6 +54,7 @@ class ActivityScreenState extends State<ActivityScreen> {
             ],
           ),
           bottom: TabBar(
+            tabAlignment: TabAlignment.start,
             labelPadding: const EdgeInsets.symmetric(
               horizontal: Sizes.size4,
             ),

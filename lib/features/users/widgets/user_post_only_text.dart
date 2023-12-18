@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/utils.dart';
 
-class UserPost1 extends StatelessWidget {
-  const UserPost1({
+class UserPostOnlyText extends StatelessWidget {
+  const UserPostOnlyText({
     super.key,
     required this.faker,
   });

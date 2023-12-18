@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/settings/settings_screen.dart';
 import 'package:tiktok/features/users/widgets/persistent_tab_bar.dart';
-import 'package:tiktok/features/users/widgets/user_post1.dart';
-import 'package:tiktok/features/users/widgets/user_post2.dart';
+import 'package:tiktok/features/users/widgets/user_post_only_text.dart';
+import 'package:tiktok/features/users/widgets/user_post_with_image.dart';
 import 'package:tiktok/utils.dart';
 
 class UserProfileScreen extends StatefulWidget {
@@ -306,9 +306,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
                           if (index % 2 == 0) {
-                            return UserPost1(faker: faker);
+                            return UserPostOnlyText(faker: faker);
                           }
-                          return UserPost2(faker: faker);
+                          return UserPostWithImage(faker: faker);
                         },
                       ),
                     ),
@@ -320,9 +320,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
                           if (index % 2 == 0) {
-                            return UserPost1(faker: faker);
+                            return UserPostOnlyText(faker: faker);
                           }
-                          return UserPost2(faker: faker);
+                          return UserPostWithImage(faker: faker);
                         },
                       ),
                     ),
