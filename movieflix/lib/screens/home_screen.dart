@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieflix/models/image_type.dart';
 
 import '../services/api_service.dart';
 import '../widgets/movie_card_widget.dart';
@@ -25,23 +26,18 @@ class HomeScreen extends StatelessWidget {
             MovieCardWidget(
               movieApiFuture: ApiService.getPopularMovies(),
               title: "Popular Movies",
-              imageHeight: 220,
-              imageWidth: 320,
+              imageType: CardImageType.landscape(),
               isDisplayTitle: false,
             ),
             MovieCardWidget(
               movieApiFuture: ApiService.getNowPlayingMovies(),
               title: "Now in Cinemas",
-              imageHeight: 150,
-              imageWidth: 150,
-              isDisplayTitle: true,
+              imageType: CardImageType.square(),
             ),
             MovieCardWidget(
               movieApiFuture: ApiService.getComingSoonMovies(),
               title: "Coming soon",
-              imageHeight: 150,
-              imageWidth: 150,
-              isDisplayTitle: true,
+              imageType: CardImageType.square(),
             ),
             const SizedBox(height: 30),
           ],

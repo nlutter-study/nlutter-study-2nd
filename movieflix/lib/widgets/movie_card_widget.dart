@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieflix/models/image_type.dart';
 
 import '../models/movie_meta.dart';
 import '../screens/detail_screen.dart';
@@ -9,15 +10,13 @@ class MovieCardWidget extends StatelessWidget {
     super.key,
     required this.movieApiFuture,
     required this.title,
-    required this.imageHeight,
-    required this.imageWidth,
+    required this.imageType,
     this.isDisplayTitle = true,
   });
 
   final Future<List<SimpleMovie>> movieApiFuture;
   final String title;
-  final double imageHeight;
-  final double imageWidth;
+  final CardImageType imageType;
   final bool isDisplayTitle;
 
   @override
@@ -33,7 +32,7 @@ class MovieCardWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: imageHeight +
+          height: imageType.height +
               switch (isDisplayTitle) {
                 true => 80,
                 false => 10,
@@ -55,14 +54,12 @@ class MovieCardWidget extends StatelessWidget {
               }
               if (!snapshot.hasData) {
                 return _EmptyCardListWidget(
-                  imageWidth: imageWidth,
-                  imageHeight: imageHeight,
+                  imageType: imageType,
                   isDisplayTitle: isDisplayTitle,
                 );
               }
               return _CardListWidget(
-                imageWidth: imageWidth,
-                imageHeight: imageHeight,
+                imageType: imageType,
                 isDisplayTitle: isDisplayTitle,
                 movies: snapshot.data!,
                 middleTag: title,
@@ -77,15 +74,13 @@ class MovieCardWidget extends StatelessWidget {
 
 class _CardListWidget extends StatelessWidget {
   const _CardListWidget({
-    required this.imageWidth,
-    required this.imageHeight,
+    required this.imageType,
     required this.isDisplayTitle,
     required this.movies,
     required this.middleTag,
   });
 
-  final double imageWidth;
-  final double imageHeight;
+  final CardImageType imageType;
   final bool isDisplayTitle;
   final List<SimpleMovie> movies;
   final String middleTag;
@@ -116,7 +111,7 @@ class _CardListWidget extends StatelessWidget {
             ),
           },
           child: Container(
-            width: imageWidth,
+            width: imageType.width,
             decoration: const BoxDecoration(color: Colors.transparent),
             clipBehavior: Clip.hardEdge,
             child: Column(
@@ -125,8 +120,8 @@ class _CardListWidget extends StatelessWidget {
                 Hero(
                   tag: TagBuilder.buildImageTag(middleTag, movies[index].id),
                   child: Container(
-                    width: imageWidth,
-                    height: imageHeight,
+                    width: imageType.width,
+                    height: imageType.height,
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                       color: Theme.of(context)
@@ -137,7 +132,7 @@ class _CardListWidget extends StatelessWidget {
                     ),
                     child: Image.network(
                       movies[index].imageUrl!,
-                      height: imageHeight,
+                      height: imageType.width,
                       fit: BoxFit.fitHeight,
                     ),
                   ),
@@ -160,14 +155,12 @@ class _CardListWidget extends StatelessWidget {
 
 class _EmptyCardListWidget extends StatelessWidget {
   const _EmptyCardListWidget({
-    required this.imageWidth,
-    required this.imageHeight,
     required this.isDisplayTitle,
+    required this.imageType,
   });
 
-  final double imageWidth;
-  final double imageHeight;
   final bool isDisplayTitle;
+  final CardImageType imageType;
 
   @override
   Widget build(BuildContext context) {
@@ -183,8 +176,8 @@ class _EmptyCardListWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: imageWidth,
-                    height: imageHeight,
+                    width: imageType.width,
+                    height: imageType.height,
                     clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                       color: Theme.of(context)
@@ -197,7 +190,7 @@ class _EmptyCardListWidget extends StatelessWidget {
                   const SizedBox(height: 10),
                   if (isDisplayTitle)
                     Container(
-                      width: imageWidth - 10,
+                      width: imageType.width - 10,
                       height: 18,
                       decoration: BoxDecoration(
                         color: Theme.of(context)
