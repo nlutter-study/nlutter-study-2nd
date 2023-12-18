@@ -37,6 +37,18 @@ class MovieCardWidget extends StatelessWidget {
           child: FutureBuilder(
             future: movieApiFuture,
             builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('서버 점검 중입니다. 관리자에게 문의해주세요.'),
+                    ),
+                  );
+                });
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
               if (!snapshot.hasData) {
                 return _EmptyCardListWidget(
                   imageWidth: imageWidth,
