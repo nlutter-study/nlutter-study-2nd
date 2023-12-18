@@ -1,0 +1,9 @@
+addAssignees: author
+
+addReviewers: true
+reviewers:
+  - devgony
+  - jinwook-song
+numberOfReviewers: 0
+
+runOnDraft: true
