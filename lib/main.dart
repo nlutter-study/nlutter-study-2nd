@@ -1,7 +1,6 @@
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/router.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 void main() async {
