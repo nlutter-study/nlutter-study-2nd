@@ -1,9 +1,12 @@
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/navs/thread_main_nav.dart';
+import 'package:challenge/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 void main() async {
+  GoRouter.optionURLReflectsImperativeAPIs = true; // flutter web 브라우저 라우트 표시
   runApp(const FlutterApp());
 }
 
@@ -12,7 +15,8 @@ class FlutterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       themeMode: ThemeMode.system,
       darkTheme: ThemeData(
         textTheme: Typography.whiteCupertino,
@@ -87,7 +91,6 @@ class FlutterApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const ThreadMainNav(),
     );
   }
 }

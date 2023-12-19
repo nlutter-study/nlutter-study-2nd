@@ -1,6 +1,7 @@
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/navs/thread_screen.dart';
 import 'package:challenge/navs/widgets/thread_nav_tab.dart';
+import 'package:challenge/router.dart';
 import 'package:challenge/screens/thread_activity_screen.dart';
 import 'package:challenge/screens/thread_home_screen.dart';
 import 'package:challenge/screens/thread_post_screen.dart';
@@ -9,12 +10,17 @@ import 'package:challenge/screens/thread_search_screen.dart';
 import 'package:challenge/widgets/bottom_sheet/thread_new_post_botton_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 const threadLogoUrl =
     "https://seeklogo.com/images/T/threads-logo-E9BA734BF6-seeklogo.com.png?v=638252100960000000";
 
 class ThreadMainNav extends StatefulWidget {
-  const ThreadMainNav({super.key});
+  final MainNavTab currentTab;
+  const ThreadMainNav({
+    super.key,
+    this.currentTab = MainNavTab.home,
+  });
 
   @override
   State<ThreadMainNav> createState() => _MainNavState();
@@ -26,11 +32,13 @@ class _MainNavState extends State<ThreadMainNav> {
       screen: const ThreadHomeScreen(),
       icon: FontAwesomeIcons.house,
       label: "home",
+      tabRoute: MainNavTab.home,
     ),
     ThreadScreen(
       screen: const ThreadSearchScreen(),
       icon: FontAwesomeIcons.magnifyingGlass,
       label: "search",
+      tabRoute: MainNavTab.search,
     ),
     ThreadScreen(
       screen: const ThreadPostScreen(), // TODO : remove
@@ -41,14 +49,15 @@ class _MainNavState extends State<ThreadMainNav> {
       screen: const ThreadActivityScreen(),
       icon: FontAwesomeIcons.heart,
       label: "activity",
+      tabRoute: MainNavTab.activity,
     ),
     ThreadScreen(
       screen: const ThreadProfileScreen(),
       icon: FontAwesomeIcons.person,
       label: "profile",
+      tabRoute: MainNavTab.profile,
     ),
   ];
-  int _selectedIndex = 0;
 
   void _onPost() {
     showModalBottomSheet(
@@ -61,23 +70,27 @@ class _MainNavState extends State<ThreadMainNav> {
     );
   }
 
-  void _setSelectedIndex(int selectedIndex) {
-    setState(() {
-      _selectedIndex = selectedIndex;
-    });
+  void _setSelectedIndex(MainNavTab selectedTab) {
+    context.go("/${selectedTab.name}");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
-        index: _selectedIndex,
+        index: _getTabIndex(), // post 건너뛰기
         children: [
           for (var screen in _screenList) screen.screen,
         ],
       ),
       bottomNavigationBar: _bottomAppBar(),
     );
+  }
+
+  int _getTabIndex() {
+    return widget.currentTab.index > 1
+        ? widget.currentTab.index + 1
+        : widget.currentTab.index;
   }
 
   BottomAppBar _bottomAppBar() {
@@ -94,13 +107,13 @@ class _MainNavState extends State<ThreadMainNav> {
         children: [
           for (var screen in _screenList)
             ThreadNavTab(
-              isSelected: _selectedIndex == _screenList.indexOf(screen),
+              isSelected: widget.currentTab == screen.tabRoute,
               icon: screen.icon,
               label: screen.label,
               onTap: screen.label == "post"
                   ? _onPost
                   : () => _setSelectedIndex(
-                        _screenList.indexOf(screen),
+                        screen.tabRoute!,
                       ),
             ),
         ],
