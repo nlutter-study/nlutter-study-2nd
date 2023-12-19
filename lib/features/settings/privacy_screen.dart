@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok/utils.dart';
 
 class PrivacyScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           children: [
             IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                GoRouter.of(context).pop();
               },
               icon: Icon(
                 Icons.arrow_back_ios,

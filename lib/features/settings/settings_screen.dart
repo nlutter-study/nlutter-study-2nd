@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok/features/settings/privacy_screen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok/utils.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -17,7 +17,7 @@ class SettingsScreen extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                GoRouter.of(context).pop();
               },
               icon: Icon(
                 Icons.arrow_back_ios,
@@ -64,11 +64,9 @@ class SettingsScreen extends StatelessWidget {
               color: isDarkMode(context) ? Colors.white : Colors.black,
             ),
             title: const Text('Privacy'),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const PrivacyScreen(),
-              ),
-            ),
+            onTap: () {
+              context.push('/settings/privacy');
+            },
           ),
           ListTile(
             leading: FaIcon(

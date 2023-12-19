@@ -1,8 +1,8 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok/constants/sizes.dart';
-import 'package:tiktok/features/settings/settings_screen.dart';
 import 'package:tiktok/features/users/widgets/persistent_tab_bar.dart';
 import 'package:tiktok/features/users/widgets/user_post_only_text.dart';
 import 'package:tiktok/features/users/widgets/user_post_with_image.dart';
@@ -31,11 +31,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   }
 
   void _onGearPressed() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const SettingsScreen(),
-      ),
-    );
+    context.push("/settings");
   }
 
   @override
