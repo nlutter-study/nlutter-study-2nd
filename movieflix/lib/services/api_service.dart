@@ -2,67 +2,84 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 
 import '../models/movie_meta.dart';
 
-class ApiService {
-  static const String _baseUrl = 'https://movies-api.nomadcoders.workers.dev';
-  static const String _popularPath = 'popular';
-  static const String _nowPlaying = 'now-playing';
-  static const String _comingSoon = 'coming-soon';
-  static const String _detail = 'movie?id=';
+const _apiBaseUrl = 'https://movies-api.nomadcoders.workers.dev';
 
+class ApiService {
+  static const String _detail = 'movie?id=';
   static const String _resultsField = 'results';
 
   ApiService._(); // private constructor to prevent calling constructor outside
 
-  static Future<List<SimpleMovie>> getPopularMovies() async {
-    final uri = Uri.parse('$_baseUrl/$_popularPath');
-    final response = await _doRequest(() => http.get(uri));
-    // final response =
-    //     await _doRequest(() => throw ClientException('something error'));
-    final List<dynamic> results =
-        _utf8JsonDecode(response.bodyBytes)[_resultsField];
-    return results.map((e) => SimpleMovie.fromJson(e)).toList();
-  }
-
-  static Future<List<SimpleMovie>> getNowPlayingMovies() async {
-    final uri = Uri.parse('$_baseUrl/$_nowPlaying');
-    final response = await _doRequest(() => http.get(uri));
-    final List<dynamic> results =
-        _utf8JsonDecode(response.bodyBytes)[_resultsField];
-    return results.map((e) => SimpleMovie.fromJson(e)).toList();
-  }
-
-  static Future<List<SimpleMovie>> getComingSoonMovies() async {
-    final uri = Uri.parse('$_baseUrl/$_comingSoon');
-    final response = await _doRequest(() => http.get(uri));
-    final List<dynamic> results =
-        _utf8JsonDecode(response.bodyBytes)[_resultsField];
-    return results.map((e) => SimpleMovie.fromJson(e)).toList();
+  static Future<List<SimpleMovie>> getSimpleMovies(FetchType fetchType) async {
+    final List<dynamic> listData =
+        await fetchData(fetchType.apiPathUrl, DataType.list);
+    return listData.map((e) => SimpleMovie.fromJson(e)).toList();
   }
 
   static Future<DetailMovie> getDetailMovie(int id) async {
-    final uri = Uri.parse('$_baseUrl/$_detail$id');
-    final response = await _doRequest(() => http.get(uri));
-    return DetailMovie.fromJson(_utf8JsonDecode(response.bodyBytes));
+    final objectData =
+        await fetchData('$_apiBaseUrl/$_detail$id', DataType.object);
+    return DetailMovie.fromJson(objectData);
   }
 
-  static Future<Response> _doRequest(Future<Response> Function() func) async {
+  static Future<dynamic> fetchData(String path, DataType dataType) async {
     try {
-      return await func();
-    } on ClientException catch (e) {
-      debugPrint("catch client exception: $e");
-      rethrow; // TODO: 커스텀 익셉션 필요 시 던지기 or 응답 Default 로 변경
+      final uri = Uri.parse(path);
+      final response = await http.get(uri);
+      final decoded = jsonDecode(utf8.decode(response.bodyBytes));
+
+      return switch (dataType) {
+        DataType.list => decoded[_resultsField],
+        DataType.object => decoded,
+      };
     } catch (e, s) {
-      debugPrint("catch other exceptions: $e");
+      debugPrint("Error: ${e.toString()}");
       debugPrintStack(stackTrace: s);
-      rethrow;
+      throw Exception(
+        'API 요청 실패',
+      );
     }
   }
+}
 
-  static dynamic _utf8JsonDecode(Uint8List unit) {
-    return jsonDecode(utf8.decode(unit));
-  }
+enum DataType { object, list }
+
+sealed class FetchType {
+  FetchType._(this.path, this.title);
+
+  final String path;
+  final String title;
+
+  factory FetchType.popular() => Popular._('popular', 'Popular Movies');
+
+  factory FetchType.nowPlaying() =>
+      NowPlaying._('now-playing', 'Now in Cinemas');
+
+  factory FetchType.comingSoon() => ComingSoon._('coming-soon', 'Coming Soon');
+
+  String get apiPathUrl => '$_apiBaseUrl/$path';
+}
+
+class Popular extends FetchType {
+  Popular._(
+    String path,
+    String title,
+  ) : super._(path, title);
+}
+
+class NowPlaying extends FetchType {
+  NowPlaying._(
+    String path,
+    String title,
+  ) : super._(path, title);
+}
+
+class ComingSoon extends FetchType {
+  ComingSoon._(
+    String path,
+    String title,
+  ) : super._(path, title);
 }

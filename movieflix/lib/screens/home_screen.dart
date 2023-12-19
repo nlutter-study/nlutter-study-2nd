@@ -24,19 +24,16 @@ class HomeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 120),
             MovieCardWidget(
-              movieApiFuture: ApiService.getPopularMovies(),
-              title: "Popular Movies",
+              fetchType: FetchType.popular(),
               imageType: CardImageType.landscape(),
               isDisplayTitle: false,
             ),
             MovieCardWidget(
-              movieApiFuture: ApiService.getNowPlayingMovies(),
-              title: "Now in Cinemas",
+              fetchType: FetchType.nowPlaying(),
               imageType: CardImageType.square(),
             ),
             MovieCardWidget(
-              movieApiFuture: ApiService.getComingSoonMovies(),
-              title: "Coming soon",
+              fetchType: FetchType.comingSoon(),
               imageType: CardImageType.square(),
             ),
             const SizedBox(height: 30),

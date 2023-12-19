@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieflix/models/image_type.dart';
+import 'package:movieflix/services/api_service.dart';
 
 import '../models/movie_meta.dart';
 import '../screens/detail_screen.dart';
@@ -8,14 +9,12 @@ import '../utils/tag_builder.dart';
 class MovieCardWidget extends StatelessWidget {
   const MovieCardWidget({
     super.key,
-    required this.movieApiFuture,
-    required this.title,
+    required this.fetchType,
     required this.imageType,
     this.isDisplayTitle = true,
   });
 
-  final Future<List<SimpleMovie>> movieApiFuture;
-  final String title;
+  final FetchType fetchType;
   final CardImageType imageType;
   final bool isDisplayTitle;
 
@@ -27,7 +26,7 @@ class MovieCardWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(20),
           child: Text(
-            title,
+            fetchType.title,
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
@@ -38,7 +37,7 @@ class MovieCardWidget extends StatelessWidget {
                 false => 10,
               },
           child: FutureBuilder(
-            future: movieApiFuture,
+            future: ApiService.getSimpleMovies(fetchType),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -62,7 +61,7 @@ class MovieCardWidget extends StatelessWidget {
                 imageType: imageType,
                 isDisplayTitle: isDisplayTitle,
                 movies: snapshot.data!,
-                middleTag: title,
+                middleTag: fetchType.title,
               );
             },
           ),
