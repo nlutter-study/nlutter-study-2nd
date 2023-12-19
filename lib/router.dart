@@ -34,6 +34,7 @@ final router = GoRouter(
       routes: [
         GoRoute(
           path: Routes.privacy,
+          name: Routes.privacy,
           builder: (context, state) => const ThreadPrivacyScreen(),
         ),
       ],
