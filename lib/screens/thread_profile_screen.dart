@@ -2,8 +2,6 @@ import 'package:challenge/constants/gaps.dart';
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/data/post_data.dart';
 import 'package:challenge/router.dart';
-import 'package:challenge/screens/thread_settings_screen.dart';
-import 'package:challenge/utils/navigator_util.dart';
 import 'package:challenge/utils/utils.dart';
 import 'package:challenge/widgets/home_screens/thread_post_card.dart';
 import 'package:challenge/widgets/profile_screen/sliver_persistent_header.dart';

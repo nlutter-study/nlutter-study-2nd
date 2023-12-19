@@ -1,7 +1,5 @@
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/router.dart';
-import 'package:challenge/screens/thread_privacy_screen.dart';
-import 'package:challenge/utils/navigator_util.dart';
 import 'package:challenge/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

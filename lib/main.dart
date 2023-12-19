@@ -1,5 +1,4 @@
 import 'package:challenge/constants/sizes.dart';
-import 'package:challenge/navs/thread_main_nav.dart';
 import 'package:challenge/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

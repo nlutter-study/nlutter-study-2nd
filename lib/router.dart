@@ -1,9 +1,5 @@
 import 'package:challenge/navs/thread_main_nav.dart';
-import 'package:challenge/screens/thread_activity_screen.dart';
-import 'package:challenge/screens/thread_home_screen.dart';
 import 'package:challenge/screens/thread_privacy_screen.dart';
-import 'package:challenge/screens/thread_profile_screen.dart';
-import 'package:challenge/screens/thread_search_screen.dart';
 import 'package:challenge/screens/thread_settings_screen.dart';
 import 'package:go_router/go_router.dart';
 
