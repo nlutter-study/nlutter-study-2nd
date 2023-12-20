@@ -1,0 +1,1 @@
+ /Users/rok/Practice/nomad/movieflix/.dart_tool/flutter_build/3aab2641d27c5ec9abf344adfdc8bbc4/native_assets.yaml: 
