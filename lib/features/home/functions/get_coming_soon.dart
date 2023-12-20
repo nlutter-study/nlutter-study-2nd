@@ -6,7 +6,10 @@ import '../../../model/movie_model.dart';
 import '../screens/poster_screen.dart';
 
 ListView getComingSoon(
-    AsyncSnapshot<List<MovieModel>> snapshot, double width, double height,) {
+  AsyncSnapshot<List<MovieModel>> snapshot,
+  double width,
+  double height,
+) {
   return ListView.separated(
     scrollDirection: Axis.horizontal,
     itemCount: snapshot.data!.length,
@@ -20,10 +23,11 @@ ListView getComingSoon(
             PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) =>
                   PosterScreen(
-                      title: movie.title,
-                      poster: movie.poster,
-                      id: movie.id,
-                      tag: heroTag,),
+                title: movie.title,
+                poster: movie.poster,
+                id: movie.id,
+                tag: heroTag,
+              ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 var begin = 0.0;

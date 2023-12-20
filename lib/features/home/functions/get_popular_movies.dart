@@ -113,10 +113,11 @@ class _PopularMoviesViewState extends State<PopularMoviesView> {
                   PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) =>
                         PosterScreen(
-                            title: movie.title,
-                            poster: movie.poster,
-                            id: movie.id,
-                            tag: heroTag,),
+                      title: movie.title,
+                      poster: movie.poster,
+                      id: movie.id,
+                      tag: heroTag,
+                    ),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       var begin = 0.0;
@@ -229,8 +230,9 @@ class _PopularMoviesViewState extends State<PopularMoviesView> {
                     child: Text(
                       copyData.isEmpty
                           ? Genre.get(widget.snapshot.data![0].genres[0])
-                          : Genre.get(copyData[currentPage % copyData.length]
-                              .genres[0],),
+                          : Genre.get(
+                              copyData[currentPage % copyData.length].genres[0],
+                            ),
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                   ),

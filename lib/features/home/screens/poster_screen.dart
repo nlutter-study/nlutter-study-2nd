@@ -77,135 +77,140 @@ class _PosterScreenState extends State<PosterScreen> {
         }
       },
       child: Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            leadingWidth: 100,
-            leading: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Row(
-                children: [
-                  const Gap(20),
-                  DFIcons.back,
-                  const Gap(6),
-                  SizedBox(
-                    height: 40,
-                    child: Image.asset(
-                      'assets/images/deviflix.png',
-                      width: 57,
-                      alignment: Alignment.topLeft,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          body: SingleChildScrollView(
-            child: Column(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          leadingWidth: 100,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Row(
               children: [
-                const Gap(120),
-                Hero(
-                  tag: widget.tag,
-                  child: Image.network(
-                    'https://image.tmdb.org/t/p/w500${widget.poster}',
-                    width: 273,
-                    height: 410,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Gap(20),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width - 40,
-                        child: Hero(
-                          tag: widget.title,
-                          child: Material(
-                            color: Colors.transparent,
-                            child: Text(widget.title,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style:
-                                    Theme.of(context).textTheme.headlineLarge,),
-                          ),
-                        ),
-                      ),
-                      FutureBuilder(
-                          future: detailMovie,
-                          builder: (context,
-                              AsyncSnapshot<MovieDetailModel> snapshot,) {
-                            if (snapshot.connectionState ==
-                                    ConnectionState.done &&
-                                snapshot.hasData) {
-                              movieDetails = snapshot.data; // 데이터를 변수에 저장합니다.
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Gap(20),
-                                  Hero(
-                                    tag: "genres",
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: Wrap(
-                                        spacing: 10, // 가로 간격
-                                        runSpacing: 10, // 세로 간격
-                                        children: [
-                                          for (int i = 0;
-                                              i < snapshot.data!.genres.length;
-                                              i++)
-                                            Container(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 15,
-                                                      vertical: 2,),
-                                              decoration: BoxDecoration(
-                                                color: DFColors.chipColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                              ),
-                                              child: Text(
-                                                '${snapshot.data!.genres[i]['name']}',
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: DFColors.darkTextColor,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  const Gap(40),
-                                  FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Hero(
-                                      tag: "star",
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        child: StarRating(
-                                            rating: snapshot.data!.vote,),
-                                      ),
-                                    ),
-                                  ),
-                                  const Gap(30),
-                                  const ShimmerArrows(),
-                                ],
-                              );
-                            }
-                            return const Text("...");
-                          },),
-                    ],
+                const Gap(20),
+                DFIcons.back,
+                const Gap(6),
+                SizedBox(
+                  height: 40,
+                  child: Image.asset(
+                    'assets/images/deviflix.png',
+                    width: 57,
+                    alignment: Alignment.topLeft,
                   ),
                 ),
               ],
             ),
-          ),),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Gap(120),
+              Hero(
+                tag: widget.tag,
+                child: Image.network(
+                  'https://image.tmdb.org/t/p/w500${widget.poster}',
+                  width: 273,
+                  height: 410,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Gap(20),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width - 40,
+                      child: Hero(
+                        tag: widget.title,
+                        child: Material(
+                          color: Colors.transparent,
+                          child: Text(
+                            widget.title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                        ),
+                      ),
+                    ),
+                    FutureBuilder(
+                      future: detailMovie,
+                      builder: (
+                        context,
+                        AsyncSnapshot<MovieDetailModel> snapshot,
+                      ) {
+                        if (snapshot.connectionState == ConnectionState.done &&
+                            snapshot.hasData) {
+                          movieDetails = snapshot.data; // 데이터를 변수에 저장합니다.
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Gap(20),
+                              Hero(
+                                tag: "genres",
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: Wrap(
+                                    spacing: 10, // 가로 간격
+                                    runSpacing: 10, // 세로 간격
+                                    children: [
+                                      for (int i = 0;
+                                          i < snapshot.data!.genres.length;
+                                          i++)
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 15,
+                                            vertical: 2,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: DFColors.chipColor,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Text(
+                                            '${snapshot.data!.genres[i]['name']}',
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              color: DFColors.darkTextColor,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const Gap(40),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Hero(
+                                  tag: "star",
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: StarRating(
+                                      rating: snapshot.data!.vote,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Gap(30),
+                              const ShimmerArrows(),
+                            ],
+                          );
+                        }
+                        return const Text("...");
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

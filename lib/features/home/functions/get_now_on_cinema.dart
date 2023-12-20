@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import '../../../model/movie_model.dart';
 
 ListView getNowOnCinema(
-    AsyncSnapshot<List<MovieModel>> snapshot, double width, double height,) {
+  AsyncSnapshot<List<MovieModel>> snapshot,
+  double width,
+  double height,
+) {
   // 필름 홀 사이의 간격과 크기
   const double holeSize = 10.0;
   const double holeSpacing = 15.0;
@@ -27,10 +30,11 @@ ListView getNowOnCinema(
             PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) =>
                   PosterScreen(
-                      title: movie.title,
-                      poster: movie.poster,
-                      id: movie.id,
-                      tag: heroTag,),
+                title: movie.title,
+                poster: movie.poster,
+                id: movie.id,
+                tag: heroTag,
+              ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 var begin = 0.0;
@@ -71,7 +75,8 @@ ListView getNowOnCinema(
                         width: holeSize,
                         height: holeSize,
                         margin: const EdgeInsets.symmetric(
-                            vertical: filmHeight / 2 - holeSize / 2,),
+                          vertical: filmHeight / 2 - holeSize / 2,
+                        ),
                         decoration: const BoxDecoration(
                           color: Colors.black,
                           borderRadius:
@@ -97,7 +102,8 @@ ListView getNowOnCinema(
                         width: holeSize,
                         height: holeSize,
                         margin: const EdgeInsets.symmetric(
-                            vertical: filmHeight / 2 - holeSize / 2,),
+                          vertical: filmHeight / 2 - holeSize / 2,
+                        ),
                         decoration: const BoxDecoration(
                           color: Colors.black,
                           borderRadius:
