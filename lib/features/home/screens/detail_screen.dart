@@ -56,7 +56,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     width: 57,
                     alignment: Alignment.topLeft,
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -96,7 +96,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                 color: Colors.white,
                                 fontSize: 28,
                                 fontWeight: FontWeight.w700,
-                              )),
+                              ),),
                         ),
                       ),
                     ),
@@ -107,7 +107,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         color: Colors.transparent,
                         child: FittedBox(
                             fit: BoxFit.scaleDown,
-                            child: StarRating(rating: widget.rating)),
+                            child: StarRating(rating: widget.rating),),
                       ),
                     ),
                     const SizedBox(height: 15),
@@ -124,7 +124,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               for (int i = 0; i < widget.genres.length; i++)
                                 Container(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 2),
+                                      horizontal: 15, vertical: 2,),
                                   decoration: BoxDecoration(
                                     color: DFColors.chipColor,
                                     borderRadius: BorderRadius.circular(20),
@@ -177,12 +177,12 @@ class _DetailScreenState extends State<DetailScreen> {
                             );
                           }
                           return const Text("...");
-                        }),
+                        },),
                   ],
                 ),
               ),
             ),
           ],
-        ));
+        ),);
   }
 }

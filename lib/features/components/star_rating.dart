@@ -49,7 +49,7 @@ Row buildRatingStars(double rating) {
       // 빈 별 그리기
       for (int i = 0; i < emptyStars; i++)
         const Icon(Icons.star_border,
-            color: DFColors.starYellowColor, size: 24),
+            color: DFColors.starYellowColor, size: 24,),
     ],
   );
 }

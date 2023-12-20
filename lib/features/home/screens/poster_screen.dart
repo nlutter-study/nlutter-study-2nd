@@ -96,7 +96,7 @@ class _PosterScreenState extends State<PosterScreen> {
                       width: 57,
                       alignment: Alignment.topLeft,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -131,14 +131,14 @@ class _PosterScreenState extends State<PosterScreen> {
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style:
-                                    Theme.of(context).textTheme.headlineLarge),
+                                    Theme.of(context).textTheme.headlineLarge,),
                           ),
                         ),
                       ),
                       FutureBuilder(
                           future: detailMovie,
                           builder: (context,
-                              AsyncSnapshot<MovieDetailModel> snapshot) {
+                              AsyncSnapshot<MovieDetailModel> snapshot,) {
                             if (snapshot.connectionState ==
                                     ConnectionState.done &&
                                 snapshot.hasData) {
@@ -162,7 +162,7 @@ class _PosterScreenState extends State<PosterScreen> {
                                               padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 15,
-                                                      vertical: 2),
+                                                      vertical: 2,),
                                               decoration: BoxDecoration(
                                                 color: DFColors.chipColor,
                                                 borderRadius:
@@ -189,7 +189,7 @@ class _PosterScreenState extends State<PosterScreen> {
                                       child: Material(
                                         color: Colors.transparent,
                                         child: StarRating(
-                                            rating: snapshot.data!.vote),
+                                            rating: snapshot.data!.vote,),
                                       ),
                                     ),
                                   ),
@@ -199,13 +199,13 @@ class _PosterScreenState extends State<PosterScreen> {
                               );
                             }
                             return const Text("...");
-                          }),
+                          },),
                     ],
                   ),
                 ),
               ],
             ),
-          )),
+          ),),
     );
   }
 }

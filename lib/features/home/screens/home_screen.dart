@@ -133,7 +133,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 colors: const [
                                   Color(0xFFBC0404),
-                                  Color(0xFFFAFF00)
+                                  Color(0xFFFAFF00),
                                 ],
                                 gradientDirection: GradientDirection.btt,
                               ),

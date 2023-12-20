@@ -116,7 +116,7 @@ class _PopularMoviesViewState extends State<PopularMoviesView> {
                             title: movie.title,
                             poster: movie.poster,
                             id: movie.id,
-                            tag: heroTag),
+                            tag: heroTag,),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       var begin = 0.0;
@@ -230,7 +230,7 @@ class _PopularMoviesViewState extends State<PopularMoviesView> {
                       copyData.isEmpty
                           ? Genre.get(widget.snapshot.data![0].genres[0])
                           : Genre.get(copyData[currentPage % copyData.length]
-                              .genres[0]),
+                              .genres[0],),
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                   ),
