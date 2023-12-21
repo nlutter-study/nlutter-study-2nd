@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/features/settings/repos/dark_config_repo.dart';
+import 'package:tiktok/features/settings/view_models/dark_config_vm.dart';
 import 'package:tiktok/router.dart';
 
-void main() {
-  runApp(const TicTokApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final preferences = await SharedPreferences.getInstance();
+  final repository = DarkConfigRepository(preferences);
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => DarkConfigViewModel(repository),
+        ),
+      ],
+      child: const TicTokApp(),
+    ),
+  );
 }
 
 class TicTokApp extends StatelessWidget {
@@ -16,7 +34,9 @@ class TicTokApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       title: 'TicTok',
-      themeMode: ThemeMode.system,
+      themeMode: context.watch<DarkConfigViewModel>().isDark
+          ? ThemeMode.dark
+          : ThemeMode.light,
       theme: ThemeData(
         brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:tiktok/features/settings/view_models/dark_config_vm.dart';
 import 'package:tiktok/utils.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -43,6 +45,14 @@ class SettingsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          SwitchListTile.adaptive(
+            value: context.read<DarkConfigViewModel>().isDark,
+            onChanged: (value) {
+              context.read<DarkConfigViewModel>().setDark(value);
+            },
+            title: const Text('Dark mode'),
+            subtitle: const Text('Switch to dark mode'),
+          ),
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.userPlus,
