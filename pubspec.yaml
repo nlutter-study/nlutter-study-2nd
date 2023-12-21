@@ -38,6 +38,7 @@ dependencies:
   go_router: ^12.1.3
   font_awesome_flutter: ^10.6.0
   shared_preferences: ^2.2.2
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:
