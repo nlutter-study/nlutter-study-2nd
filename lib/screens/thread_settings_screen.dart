@@ -2,7 +2,6 @@ import 'package:challenge/commons/view_models/app_config_vm.dart';
 import 'package:challenge/constants/gaps.dart';
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/router.dart';
-import 'package:challenge/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -38,7 +37,6 @@ class _ThreadSettingsScreenState extends State<ThreadSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = isDarkMode(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
