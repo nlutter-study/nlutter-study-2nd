@@ -1,9 +1,12 @@
+import 'package:challenge/commons/view_models/app_config_vm.dart';
+import 'package:challenge/constants/gaps.dart';
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/router.dart';
 import 'package:challenge/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class ThreadSettingsScreen extends StatefulWidget {
   const ThreadSettingsScreen({super.key});
@@ -39,7 +42,6 @@ class _ThreadSettingsScreenState extends State<ThreadSettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        backgroundColor: getBackgroundColorByMode(isDark),
         title: const Text(
           "Settings",
           style: TextStyle(
@@ -49,6 +51,23 @@ class _ThreadSettingsScreenState extends State<ThreadSettingsScreen> {
       ),
       body: ListView(
         children: [
+          SwitchListTile.adaptive(
+            value: context.watch<AppConfigViewModel>().getIsDarkMode(),
+            onChanged: (value) {
+              context.read<AppConfigViewModel>().setDarkMode(value);
+            },
+            title: Row(
+              children: [
+                Icon(
+                  context.watch<AppConfigViewModel>().getIsDarkMode()
+                      ? FontAwesomeIcons.moon
+                      : FontAwesomeIcons.sun,
+                ),
+                Gaps.h14,
+                const Text("Dark mode"),
+              ],
+            ),
+          ),
           _listTile(
             text: "Follow and invite friends",
             icon: const FaIcon(
