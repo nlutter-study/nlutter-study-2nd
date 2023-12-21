@@ -38,7 +38,6 @@ class _ThreadSettingsScreenState extends State<ThreadSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = isDarkMode(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
