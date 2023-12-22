@@ -3,18 +3,19 @@ import 'package:challenge/constants/gaps.dart';
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-class ThreadSettingsScreen extends StatefulWidget {
+class ThreadSettingsScreen extends ConsumerStatefulWidget {
   const ThreadSettingsScreen({super.key});
 
   @override
-  State<ThreadSettingsScreen> createState() => _ThreadSettingsScreenState();
+  ThreadSettingsScreenState createState() => ThreadSettingsScreenState();
 }
 
-class _ThreadSettingsScreenState extends State<ThreadSettingsScreen> {
+class ThreadSettingsScreenState extends ConsumerState<ThreadSettingsScreen> {
   bool isProgressing = false;
   void _onLogOut() {
     setState(() {
@@ -50,14 +51,12 @@ class _ThreadSettingsScreenState extends State<ThreadSettingsScreen> {
       body: ListView(
         children: [
           SwitchListTile.adaptive(
-            value: context.watch<AppConfigViewModel>().getIsDarkMode(),
-            onChanged: (value) {
-              context.read<AppConfigViewModel>().setDarkMode(value);
-            },
+            value: ref.watch(appConfigProvider).isDarkMode,
+            onChanged: ref.read(appConfigProvider.notifier).setDarkMode,
             title: Row(
               children: [
                 Icon(
-                  context.watch<AppConfigViewModel>().getIsDarkMode()
+                  ref.watch(appConfigProvider).isDarkMode
                       ? FontAwesomeIcons.moon
                       : FontAwesomeIcons.sun,
                 ),

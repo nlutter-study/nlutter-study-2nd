@@ -3,6 +3,7 @@ import 'package:challenge/commons/view_models/app_config_vm.dart';
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,25 +14,24 @@ void main() async {
   final preferences = await SharedPreferences.getInstance();
   final repository = AppConfigRepository(preferences);
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => AppConfigViewModel(repository: repository),
-        ),
+    ProviderScope(
+      overrides: [
+        appConfigProvider
+            .overrideWith(() => AppConfigViewModel(repository: repository)),
       ],
       child: const FlutterApp(),
     ),
   );
 }
 
-class FlutterApp extends StatelessWidget {
+class FlutterApp extends ConsumerWidget {
   const FlutterApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: router,
-      themeMode: context.watch<AppConfigViewModel>().getIsDarkMode()
+      themeMode: ref.watch(appConfigProvider).isDarkMode
           ? ThemeMode.dark
           : ThemeMode.light,
       darkTheme: ThemeData(

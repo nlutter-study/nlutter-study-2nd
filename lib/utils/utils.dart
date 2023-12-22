@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 bool isDarkMode(BuildContext context) =>
-    MediaQuery.of(context).platformBrightness == Brightness.dark;
+    // MediaQuery.of(context).platformBrightness == Brightness.dark;
+    Theme.of(context).brightness == Brightness.dark;
 
 Color getTextColorByMode(bool isDarkMode) =>
     isDarkMode ? Colors.white : Colors.black;

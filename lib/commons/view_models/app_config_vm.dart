@@ -1,20 +1,22 @@
 import 'package:challenge/commons/models/app_config_model.dart';
 import 'package:challenge/commons/repos/app_config_repo.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AppConfigViewModel extends ChangeNotifier {
+class AppConfigViewModel extends Notifier<AppConfigModel> {
   final AppConfigRepository repository;
-  late final AppConfigModel _model = AppConfigModel(
-    isDarkMode: repository.getIsDarkMode(),
-  );
 
   AppConfigViewModel({required this.repository});
 
-  bool getIsDarkMode() => _model.isDarkMode;
-
   void setDarkMode(bool value) {
     repository.setDarkMode(value);
-    _model.isDarkMode = value;
-    notifyListeners();
+    state = AppConfigModel(isDarkMode: value);
+  }
+
+  @override
+  AppConfigModel build() {
+    return AppConfigModel(isDarkMode: repository.getIsDarkMode());
   }
 }
+
+final appConfigProvider = NotifierProvider<AppConfigViewModel, AppConfigModel>(
+    () => throw UnimplementedError());
