@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/utils.dart';
 
 class PersistentTabBar extends SliverPersistentHeaderDelegate {
   final Function onTabTapped;
   final int selectedTab;
+  late WidgetRef ref;
   bool selected = false;
 
   PersistentTabBar({
     required this.selectedTab,
     required this.onTabTapped,
+    required this.ref,
   });
 
   @override
@@ -20,10 +23,10 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
   ) {
     return Container(
       decoration: BoxDecoration(
-        color: isDarkMode(context) ? Colors.black : Colors.white,
+        color: isDarkMode(context, ref) ? Colors.black : Colors.white,
         border: Border(
           bottom: BorderSide(
-            color: isDarkMode(context)
+            color: isDarkMode(context, ref)
                 ? Colors.grey.shade300
                 : Colors.grey.shade300,
             width: 1,
@@ -37,13 +40,13 @@ class PersistentTabBar extends SliverPersistentHeaderDelegate {
         indicator: UnderlineTabIndicator(
           borderSide: BorderSide(
             width: 2,
-            color: isDarkMode(context) ? Colors.white : Colors.black,
+            color: isDarkMode(context, ref) ? Colors.white : Colors.black,
           ),
         ),
-        labelColor: !isDarkMode(context) ? Colors.black : Colors.white,
+        labelColor: !isDarkMode(context, ref) ? Colors.black : Colors.white,
         unselectedLabelColor:
-            !isDarkMode(context) ? Colors.grey.shade500 : Colors.white,
-        indicatorColor: !isDarkMode(context) ? Colors.black : Colors.white,
+            !isDarkMode(context, ref) ? Colors.grey.shade500 : Colors.white,
+        indicatorColor: !isDarkMode(context, ref) ? Colors.black : Colors.white,
         labelStyle: const TextStyle(
           fontSize: Sizes.size16,
           fontWeight: FontWeight.w600,

@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok/constants/sizes.dart';
@@ -8,7 +9,7 @@ import 'package:tiktok/features/users/widgets/user_post_only_text.dart';
 import 'package:tiktok/features/users/widgets/user_post_with_image.dart';
 import 'package:tiktok/utils.dart';
 
-class UserProfileScreen extends StatefulWidget {
+class UserProfileScreen extends ConsumerStatefulWidget {
   const UserProfileScreen({
     super.key,
     required this.username,
@@ -17,10 +18,10 @@ class UserProfileScreen extends StatefulWidget {
   final String username;
 
   @override
-  State<UserProfileScreen> createState() => _UserProfileScreenState();
+  UserProfileScreenState createState() => UserProfileScreenState();
 }
 
-class _UserProfileScreenState extends State<UserProfileScreen> {
+class UserProfileScreenState extends ConsumerState<UserProfileScreen> {
   final faker = Faker();
   int selectedTab = 0;
 
@@ -47,7 +48,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   leading: IconButton(
                     icon: FaIcon(
                       FontAwesomeIcons.globe,
-                      color: isDarkMode(context)
+                      color: isDarkMode(context, ref)
                           ? Colors.white.withOpacity(0.8)
                           : Colors.black.withOpacity(0.8),
                     ),
@@ -295,6 +296,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   delegate: PersistentTabBar(
                     onTabTapped: _onTabTapped,
                     selectedTab: selectedTab,
+                    ref: ref,
                   ),
                 ),
               ];

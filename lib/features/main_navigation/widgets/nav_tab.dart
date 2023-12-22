@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/utils.dart';
 
-class NavTab extends StatelessWidget {
+class NavTab extends ConsumerWidget {
   const NavTab({
     super.key,
     required this.isSelected,
@@ -20,12 +21,12 @@ class NavTab extends StatelessWidget {
   final int selectedIndex;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Expanded(
       child: GestureDetector(
         onTap: () => onTap(),
         child: Container(
-          color: isDarkMode(context) ? Colors.black : Colors.white,
+          color: isDarkMode(context, ref) ? Colors.black : Colors.white,
           child: AnimatedOpacity(
             opacity: isSelected ? 1 : 0.5,
             duration: const Duration(milliseconds: 300),
@@ -34,7 +35,8 @@ class NavTab extends StatelessWidget {
               children: [
                 FaIcon(
                   isSelected ? selectedIcon : icon,
-                  color: !isDarkMode(context) ? Colors.black : Colors.white,
+                  color:
+                      !isDarkMode(context, ref) ? Colors.black : Colors.white,
                   size: Sizes.size28,
                 ),
               ],

@@ -1,13 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok/features/settings/models/dark_config_model.dart';
 import 'package:tiktok/features/settings/repos/dark_config_repo.dart';
 
-class DarkConfigViewModel extends ChangeNotifier {
+class DarkConfigViewModel extends Notifier<DarkConfigModel> {
   final DarkConfigRepository _repository;
-
-  late final DarkConfigModel _model = DarkConfigModel(
-    isDark: _repository.isDark(),
-  );
 
   DarkConfigViewModel(
     this._repository,
@@ -15,11 +11,18 @@ class DarkConfigViewModel extends ChangeNotifier {
 
   void setDark(bool value) {
     _repository.setDark(value);
-    _model.isDark = value;
-    notifyListeners();
+    state = DarkConfigModel(isDark: value);
   }
 
-  bool get isDark => _model.isDark;
-
-  static isDarkMode(BuildContext context) {}
+  @override
+  DarkConfigModel build() {
+    return DarkConfigModel(
+      isDark: _repository.isDark(),
+    );
+  }
 }
+
+final darkConfigViewModelProvider =
+    NotifierProvider<DarkConfigViewModel, DarkConfigModel>(
+  () => throw UnimplementedError(),
+);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok/constants/sizes.dart';
@@ -10,7 +11,7 @@ import 'package:tiktok/features/search/search_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
 import 'package:tiktok/utils.dart';
 
-class MainNavigation2 extends StatefulWidget {
+class MainNavigation2 extends ConsumerStatefulWidget {
   static const String routeName = 'mainNavigation';
 
   final String tab;
@@ -21,10 +22,10 @@ class MainNavigation2 extends StatefulWidget {
   });
 
   @override
-  State<MainNavigation2> createState() => _MainNavigation2State();
+  MainNavigation2State createState() => MainNavigation2State();
 }
 
-class _MainNavigation2State extends State<MainNavigation2> {
+class MainNavigation2State extends ConsumerState<MainNavigation2> {
   final List<String> _tabs = [
     '',
     'search',
@@ -71,7 +72,7 @@ class _MainNavigation2State extends State<MainNavigation2> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: isDarkMode(context) ? Colors.black : Colors.white,
+        color: isDarkMode(context, ref) ? Colors.black : Colors.white,
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(

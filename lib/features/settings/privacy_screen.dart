@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok/utils.dart';
 
-class PrivacyScreen extends StatefulWidget {
+class PrivacyScreen extends ConsumerStatefulWidget {
   const PrivacyScreen({super.key});
 
   @override
-  State<PrivacyScreen> createState() => _PrivacyScreenState();
+  PrivacyScreenState createState() => PrivacyScreenState();
 }
 
-class _PrivacyScreenState extends State<PrivacyScreen> {
+class PrivacyScreenState extends ConsumerState<PrivacyScreen> {
   bool _isPrivate = true;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
               },
               icon: Icon(
                 Icons.arrow_back_ios,
-                color: isDarkMode(context) ? Colors.white : Colors.black,
+                color: isDarkMode(context, ref) ? Colors.white : Colors.black,
               ),
             ),
             const Text(
@@ -52,7 +53,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.lock,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Private profile'),
             trailing: CupertinoSwitch(
@@ -68,7 +69,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
             leading: FaIcon(
               FontAwesomeIcons.at,
               size: 24,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Mentions'),
             leadingAndTrailingTextStyle: const TextStyle(
@@ -78,43 +79,43 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
             trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
               size: 16,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
           ),
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.bellSlash,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Muted'),
             trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
               size: 16,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
           ),
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.eyeSlash,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Hidden Words'),
             trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
               size: 16,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
           ),
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.users,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Profiles you follow'),
             trailing: FaIcon(
               FontAwesomeIcons.chevronRight,
               size: 16,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
           ),
           const Divider(
@@ -125,14 +126,14 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
             title: Text(
               'Other privacy settings',
               style: TextStyle(
-                color: isDarkMode(context) ? Colors.white : Colors.black,
+                color: isDarkMode(context, ref) ? Colors.white : Colors.black,
                 fontWeight: FontWeight.w600,
               ),
             ),
             trailing: FaIcon(
               FontAwesomeIcons.arrowUpRightFromSquare,
               size: 16,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
           ),
           Padding(
@@ -151,35 +152,35 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleXmark,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: Text(
               'Blocked profiles',
               style: TextStyle(
-                color: isDarkMode(context) ? Colors.white : Colors.black,
+                color: isDarkMode(context, ref) ? Colors.white : Colors.black,
               ),
             ),
             trailing: FaIcon(
               FontAwesomeIcons.arrowUpRightFromSquare,
               size: 16,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
           ),
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.heartCircleXmark,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: Text(
               'Hide likes',
               style: TextStyle(
-                color: isDarkMode(context) ? Colors.white : Colors.black,
+                color: isDarkMode(context, ref) ? Colors.white : Colors.black,
               ),
             ),
             trailing: FaIcon(
               FontAwesomeIcons.arrowUpRightFromSquare,
               size: 16,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
           ),
         ],

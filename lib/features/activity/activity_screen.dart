@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/utils.dart';
@@ -13,14 +14,14 @@ final tabs = [
   "Likes",
 ];
 
-class ActivityScreen extends StatefulWidget {
+class ActivityScreen extends ConsumerStatefulWidget {
   const ActivityScreen({super.key});
 
   @override
-  State<ActivityScreen> createState() => ActivityScreenState();
+  ActivityScreenState createState() => ActivityScreenState();
 }
 
-class ActivityScreenState extends State<ActivityScreen> {
+class ActivityScreenState extends ConsumerState<ActivityScreen> {
   int _selectedIndex = 0;
 
   @override
@@ -45,7 +46,8 @@ class ActivityScreenState extends State<ActivityScreen> {
                 child: Text(
                   "Activity",
                   style: TextStyle(
-                    color: isDarkMode(context) ? Colors.white : Colors.black,
+                    color:
+                        isDarkMode(context, ref) ? Colors.white : Colors.black,
                     fontSize: Sizes.size32,
                     fontWeight: FontWeight.bold,
                   ),
@@ -67,19 +69,19 @@ class ActivityScreenState extends State<ActivityScreen> {
               });
             },
             unselectedLabelColor:
-                !isDarkMode(context) ? Colors.black : Colors.white,
+                !isDarkMode(context, ref) ? Colors.black : Colors.white,
             unselectedLabelStyle: const TextStyle(
               fontSize: Sizes.size16,
               fontWeight: FontWeight.w600,
             ),
-            labelColor: isDarkMode(context) ? Colors.black : Colors.white,
+            labelColor: isDarkMode(context, ref) ? Colors.black : Colors.white,
             labelStyle: const TextStyle(
               fontSize: Sizes.size16,
               fontWeight: FontWeight.w600,
             ),
             isScrollable: true,
             indicatorColor:
-                isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
+                isDarkMode(context, ref) ? Colors.grey.shade900 : Colors.white,
             tabs: [
               for (var tab in tabs)
                 Container(
@@ -89,14 +91,14 @@ class ActivityScreenState extends State<ActivityScreen> {
                       Sizes.size10,
                     ),
                     color: _selectedIndex == tabs.indexOf(tab)
-                        ? isDarkMode(context)
+                        ? isDarkMode(context, ref)
                             ? Colors.white
                             : Colors.black
-                        : !isDarkMode(context)
+                        : !isDarkMode(context, ref)
                             ? Colors.white
                             : Colors.black,
                     border: Border.all(
-                      color: isDarkMode(context)
+                      color: isDarkMode(context, ref)
                           ? Colors.grey.shade700
                           : Colors.grey.shade300,
                     ),
@@ -251,7 +253,7 @@ class ActivityScreenState extends State<ActivityScreen> {
   }
 }
 
-class ActivityFriendView extends StatelessWidget {
+class ActivityFriendView extends ConsumerWidget {
   const ActivityFriendView({
     super.key,
     required this.faker,
@@ -276,7 +278,7 @@ class ActivityFriendView extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: Sizes.size8,
@@ -341,8 +343,9 @@ class ActivityFriendView extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
-                        color:
-                            isDarkMode(context) ? Colors.white : Colors.black,
+                        color: isDarkMode(context, ref)
+                            ? Colors.white
+                            : Colors.black,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -380,8 +383,9 @@ class ActivityFriendView extends StatelessWidget {
                     child: Text(
                       content,
                       style: TextStyle(
-                        color:
-                            isDarkMode(context) ? Colors.white : Colors.black,
+                        color: isDarkMode(context, ref)
+                            ? Colors.white
+                            : Colors.black,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.w500,
                       ),

@@ -1,20 +1,11 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/utils.dart';
 
-// final tabs = [
-//   "Top",
-//   "Users",
-//   "Videos",
-//   "Sounds",
-//   "LIVE",
-//   "Shopping",
-//   "Brands",
-// ];
-
-class SearchScreen extends StatefulWidget {
+class SearchScreen extends ConsumerStatefulWidget {
   static var routeName = '/search';
 
   const SearchScreen({
@@ -25,10 +16,10 @@ class SearchScreen extends StatefulWidget {
   final String? tab;
 
   @override
-  State<SearchScreen> createState() => SearchrScreenState();
+  SearchrScreenState createState() => SearchrScreenState();
 }
 
-class SearchrScreenState extends State<SearchScreen> {
+class SearchrScreenState extends ConsumerState<SearchScreen> {
   var faker = Faker();
   final TextEditingController _searchController =
       TextEditingController(text: "");
@@ -60,7 +51,7 @@ class SearchrScreenState extends State<SearchScreen> {
             child: Text(
               "Search",
               style: TextStyle(
-                color: isDarkMode(context) ? Colors.white : Colors.black,
+                color: isDarkMode(context, ref) ? Colors.white : Colors.black,
                 fontSize: Sizes.size32,
                 fontWeight: FontWeight.bold,
               ),
@@ -92,7 +83,7 @@ class SearchrScreenState extends State<SearchScreen> {
   }
 }
 
-class SearchFriendView extends StatefulWidget {
+class SearchFriendView extends ConsumerStatefulWidget {
   const SearchFriendView({
     super.key,
     required this.faker,
@@ -101,10 +92,10 @@ class SearchFriendView extends StatefulWidget {
   final Faker faker;
 
   @override
-  State<SearchFriendView> createState() => _SearchFriendViewState();
+  SearchFriendViewState createState() => SearchFriendViewState();
 }
 
-class _SearchFriendViewState extends State<SearchFriendView> {
+class SearchFriendViewState extends ConsumerState<SearchFriendView> {
   String truncateWithEllipsis(String text, int cutoff) {
     return text.length > cutoff ? '${text.substring(0, cutoff)}...' : text;
   }
@@ -148,8 +139,9 @@ class _SearchFriendViewState extends State<SearchFriendView> {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: TextStyle(
-                        color:
-                            isDarkMode(context) ? Colors.white : Colors.black,
+                        color: isDarkMode(context, ref)
+                            ? Colors.white
+                            : Colors.black,
                         fontSize: Sizes.size16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -180,7 +172,7 @@ class _SearchFriendViewState extends State<SearchFriendView> {
               child: Text(
                 "${widget.faker.randomGenerator.integer(1000)}K Followers",
                 style: TextStyle(
-                  color: isDarkMode(context) ? Colors.white : Colors.black,
+                  color: isDarkMode(context, ref) ? Colors.white : Colors.black,
                   fontSize: Sizes.size16,
                 ),
               ),

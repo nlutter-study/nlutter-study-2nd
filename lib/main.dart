@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/settings/repos/dark_config_repo.dart';
@@ -14,10 +14,10 @@ void main() async {
   final repository = DarkConfigRepository(preferences);
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => DarkConfigViewModel(repository),
+    ProviderScope(
+      overrides: [
+        darkConfigViewModelProvider.overrideWith(
+          () => DarkConfigViewModel(repository),
         ),
       ],
       child: const TicTokApp(),
@@ -25,16 +25,16 @@ void main() async {
   );
 }
 
-class TicTokApp extends StatelessWidget {
+class TicTokApp extends ConsumerWidget {
   const TicTokApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: router,
       title: 'TicTok',
-      themeMode: context.watch<DarkConfigViewModel>().isDark
+      themeMode: ref.watch(darkConfigViewModelProvider).isDark
           ? ThemeMode.dark
           : ThemeMode.light,
       theme: ThemeData(

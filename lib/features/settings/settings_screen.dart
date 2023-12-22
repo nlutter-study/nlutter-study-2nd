@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:tiktok/features/settings/view_models/dark_config_vm.dart';
 import 'package:tiktok/utils.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 100,
@@ -23,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
               },
               icon: Icon(
                 Icons.arrow_back_ios,
-                color: isDarkMode(context) ? Colors.white : Colors.black,
+                color: isDarkMode(context, ref) ? Colors.white : Colors.black,
               ),
             ),
             const Text(
@@ -46,9 +46,9 @@ class SettingsScreen extends StatelessWidget {
       body: Column(
         children: [
           SwitchListTile.adaptive(
-            value: context.read<DarkConfigViewModel>().isDark,
+            value: ref.watch(darkConfigViewModelProvider).isDark,
             onChanged: (value) {
-              context.read<DarkConfigViewModel>().setDark(value);
+              ref.read(darkConfigViewModelProvider.notifier).setDark(value);
             },
             title: const Text('Dark mode'),
             subtitle: const Text('Switch to dark mode'),
@@ -56,7 +56,7 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.userPlus,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Follow and invite friends'),
           ),
@@ -64,14 +64,14 @@ class SettingsScreen extends StatelessWidget {
             leading: FaIcon(
               FontAwesomeIcons.bell,
               size: 27,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Notifications'),
           ),
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.lock,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Privacy'),
             onTap: () {
@@ -81,21 +81,21 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleUser,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Account'),
           ),
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleQuestion,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('Help'),
           ),
           ListTile(
             leading: FaIcon(
               FontAwesomeIcons.circleInfo,
-              color: isDarkMode(context) ? Colors.white : Colors.black,
+              color: isDarkMode(context, ref) ? Colors.white : Colors.black,
             ),
             title: const Text('About'),
           ),

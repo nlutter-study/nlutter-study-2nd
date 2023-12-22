@@ -1,10 +1,11 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/utils.dart';
 
-class UserPostWithImage extends StatelessWidget {
+class UserPostWithImage extends ConsumerWidget {
   const UserPostWithImage({
     super.key,
     required this.faker,
@@ -17,7 +18,7 @@ class UserPostWithImage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: 400,
       child: Padding(
@@ -158,7 +159,7 @@ class UserPostWithImage extends StatelessWidget {
                             width: 30,
                             child: Icon(
                               FontAwesomeIcons.heart,
-                              color: isDarkMode(context)
+                              color: isDarkMode(context, ref)
                                   ? Colors.white
                                   : Colors.black,
                               size: 25,
@@ -172,7 +173,7 @@ class UserPostWithImage extends StatelessWidget {
                             width: 30,
                             child: Icon(
                               FontAwesomeIcons.comment,
-                              color: isDarkMode(context)
+                              color: isDarkMode(context, ref)
                                   ? Colors.white
                                   : Colors.black,
                               size: 25,
@@ -186,7 +187,7 @@ class UserPostWithImage extends StatelessWidget {
                             width: 30,
                             child: Icon(
                               FontAwesomeIcons.recycle,
-                              color: isDarkMode(context)
+                              color: isDarkMode(context, ref)
                                   ? Colors.white
                                   : Colors.black,
                               size: 25,
@@ -200,7 +201,7 @@ class UserPostWithImage extends StatelessWidget {
                             width: 30,
                             child: Icon(
                               FontAwesomeIcons.paperPlane,
-                              color: isDarkMode(context)
+                              color: isDarkMode(context, ref)
                                   ? Colors.white
                                   : Colors.black,
                               size: 25,
