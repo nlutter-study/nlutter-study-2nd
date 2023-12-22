@@ -19,4 +19,5 @@ class AppConfigViewModel extends Notifier<AppConfigModel> {
 }
 
 final appConfigProvider = NotifierProvider<AppConfigViewModel, AppConfigModel>(
-    () => throw UnimplementedError());
+  () => throw UnimplementedError(),
+);
