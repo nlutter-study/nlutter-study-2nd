@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 bool isDarkMode(BuildContext context) =>
@@ -12,4 +13,12 @@ Color getBackgroundColorByMode(bool isDarkMode) =>
 
 String getLocaleText(BuildContext context) {
   return "${Localizations.localeOf(context).countryCode}(${Localizations.localeOf(context).languageCode})";
+}
+
+void showFirebaseErrorSnack(BuildContext context, FirebaseException error) {
+  final snackBar = SnackBar(
+    showCloseIcon: true,
+    content: Text(error.message ?? "Something went wrong."),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

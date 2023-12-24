@@ -1,20 +1,24 @@
 import 'package:challenge/authentications/view/widgets/auth_button.dart';
 import 'package:challenge/authentications/view/widgets/auth_bottm_app_bar_button.dart';
 import 'package:challenge/authentications/view/widgets/main_logo.dart';
+import 'package:challenge/authentications/view_models/login_vm.dart';
+import 'package:challenge/authentications/view_models/sign_up_vm.dart';
 import 'package:challenge/constants/gaps.dart';
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/utils/utils.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUPScreenState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class _SignUPScreenState extends State<SignUpScreen> {
+class SignUpScreenState extends ConsumerState<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
   final int passwordMinLength = 5;
@@ -62,6 +66,16 @@ class _SignUPScreenState extends State<SignUpScreen> {
   }
 
   Future<void> _signUp() async {
+    await ref
+        .read(signUpProvider.notifier)
+        .signUp(_formData["email"]!, _formData["password"]!);
+
+    if (!context.mounted) return;
+    if (ref.read(loginProvider).hasError) {
+      final error = ref.read(loginProvider).error as FirebaseException;
+      showFirebaseErrorSnack(context, error);
+      return;
+    }
     context.go("/home");
   }
 
@@ -125,7 +139,11 @@ class _SignUPScreenState extends State<SignUpScreen> {
                 ],
               ),
             ),
-            AuthButton(text: "Sign up", onTap: _onSubmit),
+            AuthButton(
+              text: "Sign up",
+              onTap: _onSubmit,
+              enabled: !ref.watch(signUpProvider).isLoading,
+            ),
           ],
         ),
       ],

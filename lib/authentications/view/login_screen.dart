@@ -1,21 +1,24 @@
 import 'package:challenge/authentications/view/widgets/auth_button.dart';
 import 'package:challenge/authentications/view/widgets/auth_bottm_app_bar_button.dart';
 import 'package:challenge/authentications/view/widgets/main_logo.dart';
+import 'package:challenge/authentications/view_models/login_vm.dart';
 import 'package:challenge/constants/gaps.dart';
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/router.dart';
 import 'package:challenge/utils/utils.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends ConsumerState<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
   final int passwordMinLength = 5;
@@ -63,6 +66,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _login() async {
+    await ref
+        .read(loginProvider.notifier)
+        .login(_formData["email"]!, _formData["password"]!);
+
+    if (!context.mounted) return;
+    if (ref.read(loginProvider).hasError) {
+      final error = ref.read(loginProvider).error as FirebaseException;
+      showFirebaseErrorSnack(context, error);
+      return;
+    }
     context.go("/home");
   }
 
@@ -126,7 +139,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            AuthButton(text: "Log in", onTap: _onSubmit),
+            AuthButton(
+              text: "Log in",
+              onTap: _onSubmit,
+              enabled: !ref.watch(loginProvider).isLoading,
+            ),
             TextButton(
               onPressed: () {},
               child: Text(
