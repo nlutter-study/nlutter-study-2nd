@@ -9,3 +9,7 @@ Color getTextColorByMode(bool isDarkMode) =>
 
 Color getBackgroundColorByMode(bool isDarkMode) =>
     isDarkMode ? Colors.black : Colors.white;
+
+String getLocaleText(BuildContext context) {
+  return "${Localizations.localeOf(context).countryCode}(${Localizations.localeOf(context).languageCode})";
+}
