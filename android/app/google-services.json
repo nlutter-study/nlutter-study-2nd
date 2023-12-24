@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "317429734420",
+    "project_id": "thickthock",
+    "storage_bucket": "thickthock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317429734420:android:ef5896b3e4a4c01aa11b01",
+        "android_client_info": {
+          "package_name": "com.example.challenge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6vw30uzAxppUQSnntWzvjkcUPrHPMfRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317429734420:android:004106c06c5fec92a11b01",
+        "android_client_info": {
+          "package_name": "com.example.thickthock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6vw30uzAxppUQSnntWzvjkcUPrHPMfRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
