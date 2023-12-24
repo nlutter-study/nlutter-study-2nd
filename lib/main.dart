@@ -37,7 +37,7 @@ class FlutterApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = ref.watch(appConfigProvider).isDarkMode;
     return MaterialApp.router(
-      routerConfig: router,
+      routerConfig: ref.read(routerProvider),
       themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData(
         textTheme: Typography.whiteCupertino,

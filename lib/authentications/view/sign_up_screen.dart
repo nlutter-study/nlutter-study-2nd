@@ -3,7 +3,6 @@ import 'package:challenge/authentications/view/widgets/auth_bottm_app_bar_button
 import 'package:challenge/authentications/view/widgets/main_logo.dart';
 import 'package:challenge/constants/gaps.dart';
 import 'package:challenge/constants/sizes.dart';
-import 'package:challenge/router.dart';
 import 'package:challenge/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -62,7 +61,9 @@ class _SignUPScreenState extends State<SignUpScreen> {
     _formData[key] = value;
   }
 
-  Future<void> _signUp() async {}
+  Future<void> _signUp() async {
+    context.go("/home");
+  }
 
   @override
   Widget build(BuildContext context) {

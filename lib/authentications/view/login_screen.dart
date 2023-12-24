@@ -62,7 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
     _formData[key] = value;
   }
 
-  Future<void> _login() async {}
+  Future<void> _login() async {
+    context.go("/home");
+  }
 
   @override
   Widget build(BuildContext context) {
