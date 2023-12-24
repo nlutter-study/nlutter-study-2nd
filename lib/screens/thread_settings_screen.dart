@@ -1,7 +1,10 @@
+import 'package:challenge/authentications/view_models/log_out_vm.dart';
 import 'package:challenge/commons/view_models/app_config_vm.dart';
 import 'package:challenge/constants/gaps.dart';
 import 'package:challenge/constants/sizes.dart';
 import 'package:challenge/router.dart';
+import 'package:challenge/utils/utils.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,16 +18,15 @@ class ThreadSettingsScreen extends ConsumerStatefulWidget {
 }
 
 class ThreadSettingsScreenState extends ConsumerState<ThreadSettingsScreen> {
-  bool isProgressing = false;
-  void _onLogOut() {
-    setState(() {
-      isProgressing = true;
-    });
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        isProgressing = false;
-      });
-    });
+  void _onLogOut() async {
+    await ref.read(logOutProvider.notifier).logOut();
+    if (!context.mounted) return;
+    if (ref.read(logOutProvider).hasError) {
+      final error = ref.read(logOutProvider).error as FirebaseException;
+      showFirebaseErrorSnack(context, error);
+      return;
+    }
+    context.go(Routes.login);
   }
 
   void _onPrivacyTap() {
@@ -37,6 +39,7 @@ class ThreadSettingsScreenState extends ConsumerState<ThreadSettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.read(logOutProvider).isLoading;
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -128,7 +131,7 @@ class ThreadSettingsScreenState extends ConsumerState<ThreadSettingsScreen> {
                     ),
                   ),
                 ),
-                if (isProgressing) const CircularProgressIndicator.adaptive(),
+                if (isLoading) const CircularProgressIndicator.adaptive(),
               ],
             ),
           ),

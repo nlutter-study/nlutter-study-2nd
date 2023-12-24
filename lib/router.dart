@@ -32,7 +32,7 @@ final routerProvider = Provider(
       if (!isLoggedIn) {
         if (state.matchedLocation != Routes.signUp &&
             state.matchedLocation != Routes.login) {
-          return Routes.signUp;
+          return Routes.login;
         }
       }
       return null;
