@@ -35,11 +35,10 @@ class FlutterApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = ref.watch(appConfigProvider).isDarkMode;
     return MaterialApp.router(
       routerConfig: router,
-      themeMode: ref.watch(appConfigProvider).isDarkMode
-          ? ThemeMode.dark
-          : ThemeMode.light,
+      themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData(
         textTheme: Typography.whiteCupertino,
         useMaterial3: true,
@@ -51,16 +50,16 @@ class FlutterApp extends ConsumerWidget {
         ),
         inputDecorationTheme: InputDecorationTheme(
           hintStyle: TextStyle(
-            color: Colors.grey.shade900,
+            color: isDark ? Colors.grey : Colors.grey.shade900,
           ),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.grey.shade900,
+              color: isDark ? Colors.grey : Colors.grey.shade900,
             ),
           ),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.grey.shade900,
+              color: isDark ? Colors.grey : Colors.grey.shade900,
             ),
           ),
         ),
