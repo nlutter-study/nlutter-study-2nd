@@ -1,3 +1,4 @@
+import 'package:deviflix/core/movie_order.dart';
 import 'package:deviflix/features/home/functions/get_coming_soon.dart';
 import 'package:deviflix/features/home/functions/get_now_on_cinema.dart';
 import 'package:flutter/material.dart';
@@ -12,10 +13,11 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final Future<List<MovieModel>> popularMovies =
-      ApiService.getMovies("popular");
+      ApiService.getMovies(MovieOrder.popular);
   final Future<List<MovieModel>> nowPlaying =
-      ApiService.getMovies("nowPlaying");
-  final Future<List<MovieModel>> upcoming = ApiService.getMovies("upcoming");
+      ApiService.getMovies(MovieOrder.nowPlaying);
+  final Future<List<MovieModel>> upcoming =
+      ApiService.getMovies(MovieOrder.upcoming);
 
   @override
   Widget build(BuildContext context) {
@@ -35,129 +37,9 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              Container(
-                alignment: Alignment.topCenter,
-                height: 371,
-                child: FutureBuilder(
-                  future: popularMovies,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return PopularMoviesView(snapshot: snapshot);
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                ),
-              ),
-              Column(
-                children: [
-                  Container(
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF262626),
-                    ),
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF1D1D1D),
-                    ),
-                    height: 210,
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 15,
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                'assets/images/flame.png',
-                                width: 16,
-                              ),
-                              const Gap(6),
-                              GradientText(
-                                'Now On Cinema',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: -0.5,
-                                ),
-                                colors: const [
-                                  Color(0xFFBC0404),
-                                  Color(0xFFFAFF00),
-                                ],
-                                gradientDirection: GradientDirection.btt,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 140,
-                          child: FutureBuilder(
-                            future: nowPlaying,
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return getNowOnCinema(snapshot, 136, 96);
-                              }
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF262626),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/ddoza.png',
-                      width: 22,
-                    ),
-                    const Gap(6),
-                    const Text(
-                      'Coming Soon',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: -0.5,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 170,
-                child: FutureBuilder(
-                  future: upcoming,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return getComingSoon(snapshot, 86, 131);
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                ),
-              ),
+              ...MovieOrder.values
+                  .map((movieOrder) => movieOrder.build())
+                  .toList(),
               const SizedBox(height: 40),
             ],
           ),
