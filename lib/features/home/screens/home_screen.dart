@@ -1,4 +1,3 @@
-import 'package:deviflix/core/core.dart';
 import 'package:deviflix/features/home/functions/get_coming_soon.dart';
 import 'package:deviflix/features/home/functions/get_now_on_cinema.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 import '../../../core/api/api_service.dart';
 import '../../../model/movie_model.dart';
 import '../functions/get_popular_movies.dart';
+import 'widgets/main_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -26,55 +26,9 @@ class HomeScreen extends StatelessWidget {
       right: false,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
-          child: AppBar(
-            leading: Align(
-              alignment: Alignment.bottomCenter,
-              child: IconButton(
-                icon: DFIcons.bars,
-                onPressed: () {},
-              ),
-            ),
-            title: Align(
-              alignment: Alignment.topCenter,
-              child: Image.asset(
-                'assets/images/deviflix.png',
-                width: 118,
-              ),
-            ),
-            actions: [
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: IconButton(
-                  icon: DFIcons.search,
-                  onPressed: () {},
-                ),
-              ),
-            ],
-            flexibleSpace: Column(
-              children: [
-                Container(
-                  height: kToolbarHeight,
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: const Alignment(0.0, 0.6),
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Theme.of(context).scaffoldBackgroundColor,
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(80),
+          child: MainAppBar(),
         ),
         body: SingleChildScrollView(
           child: Column(
