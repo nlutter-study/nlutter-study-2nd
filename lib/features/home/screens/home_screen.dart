@@ -1,12 +1,7 @@
 import 'package:deviflix/core/movie_order.dart';
-import 'package:deviflix/features/home/functions/get_coming_soon.dart';
-import 'package:deviflix/features/home/functions/get_now_on_cinema.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 import '../../../core/api/api_service.dart';
 import '../../../model/movie_model.dart';
-import '../functions/get_popular_movies.dart';
 import 'widgets/main_appbar.dart';
 
 class HomeScreen extends StatelessWidget {
