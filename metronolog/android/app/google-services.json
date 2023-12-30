@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "351736731056",
+    "project_id": "ordi-metronolog",
+    "storage_bucket": "ordi-metronolog.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351736731056:android:a8a496bc28615bfa64f275",
+        "android_client_info": {
+          "package_name": "io.ordi.metronolog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351736731056-07vro0g733entpb8b4kebojnv7drckja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEwJ9G9VdMLYfJs-MWI-od7gFG00Ip1bY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351736731056-07vro0g733entpb8b4kebojnv7drckja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
