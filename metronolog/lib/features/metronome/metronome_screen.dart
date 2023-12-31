@@ -5,6 +5,9 @@ import 'package:metronolog/features/metronome/view_models/test_view_model.dart';
 class MetronomeScreen extends ConsumerWidget {
   const MetronomeScreen({super.key});
 
+  static const routeUrl = "/metronome";
+  static const routeName = "metronome";
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(

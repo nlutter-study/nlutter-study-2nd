@@ -14,7 +14,6 @@ class TestViewModel extends AsyncNotifier<List<TestModel>> {
   @override
   FutureOr<List<TestModel>> build() async {
     _repository = ref.read(testRepository);
-    await _repository.createTestModel(const TestModel(test: 'dummy'));
     return await _repository.getTestModels();
   }
 }
