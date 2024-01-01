@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:metronolog/features/main/main_screen.dart';
 import 'package:metronolog/features/metronome/metronome_screen.dart';
 import 'package:metronolog/features/note/note_screen.dart';
+import 'package:metronolog/features/settings/settings_screen.dart';
 import 'package:metronolog/features/timeline/timeline_screen.dart';
 
 final router = GoRouter(
@@ -47,5 +48,11 @@ final router = GoRouter(
         ),
       ],
     ),
+    GoRoute(
+        path: SettingsScreen.routeUrl,
+        name: SettingsScreen.routeName,
+        builder: (context, state) {
+          return const SettingsScreen();
+        }),
   ],
 );
