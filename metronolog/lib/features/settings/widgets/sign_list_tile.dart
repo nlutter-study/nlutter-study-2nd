@@ -15,6 +15,16 @@ class SignListTile extends ConsumerWidget {
     await showSignInBottomSheet(context);
   }
 
+  String _getMaskedEmail(WidgetRef ref) {
+    final splitEmails = ref.read(authViewModel).value!.email!.split("@");
+    final maskedFirstEmail = splitEmails[0].replaceRange(
+      (splitEmails[0].length) > 3 ? splitEmails[0].length - 3 : 0,
+      splitEmails[0].length,
+      '***',
+    );
+    return "$maskedFirstEmail\@${splitEmails[1]}";
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(authViewModel.notifier).isLoggedIn()
@@ -26,7 +36,9 @@ class SignListTile extends ConsumerWidget {
                 size: Sizes.size28,
                 color: Theme.of(context).colorScheme.error,
               ),
-              title: const Text("Sign out"),
+              title: Text(
+                "Sign out (email: ${_getMaskedEmail(ref)})",
+              ),
               titleTextStyle: TextStyle(
                 color: Theme.of(context).colorScheme.error,
                 fontSize: Sizes.size16,
