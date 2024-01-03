@@ -7,7 +7,7 @@ import 'package:metronolog/features/constants/sizes.dart';
 
 Future<void> showSignInBottomSheet(BuildContext context) {
   return showModalBottomSheet(
-    context: context,
+    context: context.findRootAncestorStateOfType<NavigatorState>()!.context,
     clipBehavior: Clip.hardEdge,
     isScrollControlled: true,
     builder: (context) => const _SignInScreen(),
@@ -19,7 +19,7 @@ Future<void> popAndShowSignInBottomSheet(BuildContext context) {
     Navigator.pop(context);
   }
   return showModalBottomSheet(
-    context: context,
+    context: context.findRootAncestorStateOfType<NavigatorState>()!.context,
     clipBehavior: Clip.hardEdge,
     isScrollControlled: true,
     builder: (context) => const _SignInScreen(),

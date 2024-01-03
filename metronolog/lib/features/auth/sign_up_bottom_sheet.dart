@@ -11,7 +11,7 @@ Future<void> popAndShowSignUpBottomSheet(BuildContext context) {
     Navigator.pop(context);
   }
   return showModalBottomSheet(
-    context: context,
+    context: context.findRootAncestorStateOfType<NavigatorState>()!.context,
     clipBehavior: Clip.hardEdge,
     isScrollControlled: true,
     builder: (context) => const _SignUpScreen(),
