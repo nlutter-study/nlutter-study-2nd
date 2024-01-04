@@ -43,8 +43,8 @@ class _SignFormState extends ConsumerState<SignForm> {
 
     if (ref.read(authViewModel).hasError && context.mounted) {
       showFirebaseExceptionSnackBar(
-        context,
-        ref.read(authViewModel).error!,
+        context: context,
+        error: ref.read(authViewModel).error!,
       );
       return;
     }
