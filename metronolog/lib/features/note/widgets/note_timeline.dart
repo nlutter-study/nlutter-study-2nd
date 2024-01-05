@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:metronolog/features/constants/sizes.dart';
-import 'package:metronolog/features/note/widgets/note_timeline_items.dart';
+import 'package:metronolog/features/note/widgets/note_timeline_notes.dart';
 import 'package:metronolog/features/note/widgets/note_write.dart';
 
 class NoteTimeline extends StatelessWidget {
@@ -10,7 +10,7 @@ class NoteTimeline extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const NoteTimelineItems(),
+        const NoteTimelineNotes(),
         Positioned(
           right: Sizes.size16,
           bottom: Sizes.size20,

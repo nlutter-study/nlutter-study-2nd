@@ -14,8 +14,14 @@ class NoteRepository {
   }
 
   Future<List<NoteModel>> readNotes(String uid) async {
-    final querySnapshot =
-        await _db.collection('notes').where('uid', isEqualTo: uid).get();
+    final querySnapshot = await _db
+        .collection('notes')
+        .where('uid', isEqualTo: uid)
+        .orderBy(
+          'createdMilliSecondsSinceEpoch',
+          descending: true,
+        )
+        .get();
     return querySnapshot.docs.map((e) => NoteModel.fromJson(e.data())).toList();
   }
 }
