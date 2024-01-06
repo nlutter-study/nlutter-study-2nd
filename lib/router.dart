@@ -38,18 +38,14 @@ enum MainNavTab {
 
 class Routes {
   // route 관리 이렇게 하는게 일반적인지, subRoute는 / 관리 어떻게 하는지 궁금합니다
-  static const home = "/";
   static const mainNav = "/:tab";
   static const settings = "/settings";
   static const privacy = "privacy";
 }
 
 final router = GoRouter(
+  initialLocation: "/${MainNavTab.home.name}",
   routes: [
-    GoRoute(
-      path: Routes.home,
-      builder: (context, state) => const ThreadMainNav(),
-    ),
     GoRoute(
       path: Routes.settings,
       builder: (context, state) => const ThreadSettingsScreen(),
