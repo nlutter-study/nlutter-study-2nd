@@ -7,15 +7,17 @@ final noteRepository = Provider(
 );
 
 class NoteRepository {
+  static const _noteCollectionPath = 'notes';
+
   final _db = FirebaseFirestore.instance;
 
   Future<void> createNote(NoteModel note) async {
-    await _db.collection('notes').add(note.toJson());
+    await _db.collection(_noteCollectionPath).add(note.toJson());
   }
 
   Future<List<NoteModel>> readNotes(String uid) async {
     final querySnapshot = await _db
-        .collection('notes')
+        .collection(_noteCollectionPath)
         .where('uid', isEqualTo: uid)
         .orderBy(
           'createdMilliSecondsSinceEpoch',
@@ -23,5 +25,17 @@ class NoteRepository {
         )
         .get();
     return querySnapshot.docs.map((e) => NoteModel.fromJson(e.data())).toList();
+  }
+
+  Future<void> deleteNote(NoteModel note) async {
+    final querySnapshot = await _db
+        .collection(_noteCollectionPath)
+        .where('uid', isEqualTo: note.uid)
+        .where('createdMilliSecondsSinceEpoch',
+            isEqualTo: note.createdMilliSecondsSinceEpoch)
+        .get();
+
+    final docId = querySnapshot.docs.first.id;
+    await _db.collection(_noteCollectionPath).doc(docId).delete();
   }
 }

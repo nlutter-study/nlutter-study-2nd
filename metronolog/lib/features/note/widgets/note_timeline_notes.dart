@@ -23,8 +23,11 @@ class NoteTimelineNotes extends ConsumerWidget {
         actions: [
           CupertinoActionSheetAction(
             isDestructiveAction: true,
-            onPressed: () {
-              Navigator.pop(context);
+            onPressed: () async {
+              await ref.read(noteViewModel.notifier).deleteNote(note);
+              if (context.mounted && Navigator.of(context).canPop()) {
+                Navigator.pop(context);
+              }
             },
             child: const Text('Delete'),
           ),

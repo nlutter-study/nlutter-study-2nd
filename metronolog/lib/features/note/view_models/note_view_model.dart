@@ -41,4 +41,13 @@ class NoteViewModel extends AsyncNotifier<List<NoteModel>> {
       return await _noteRepository.readNotes(user.uid);
     });
   }
+
+  Future<void> deleteNote(NoteModel note) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      final user = _authRepository.user!;
+      await _noteRepository.deleteNote(note);
+      return await _noteRepository.readNotes(user.uid);
+    });
+  }
 }
