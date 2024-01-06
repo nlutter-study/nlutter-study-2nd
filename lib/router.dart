@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:challenge/navs/thread_main_nav.dart';
 import 'package:challenge/screens/thread_activity_screen.dart';
 import 'package:challenge/screens/thread_home_screen.dart';
