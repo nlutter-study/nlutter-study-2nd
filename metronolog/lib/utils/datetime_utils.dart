@@ -21,3 +21,12 @@ String formattedElapsedTime({
   }
   return "now";
 }
+
+String formattedTimer(
+  int seconds, {
+  int minutesPadSize = 2,
+}) {
+  final minutes = (seconds ~/ 60).toString().padLeft(minutesPadSize, '0');
+  final restSeconds = (seconds % 60).toString().padLeft(2, '0');
+  return "$minutes:$restSeconds";
+}

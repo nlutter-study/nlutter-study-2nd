@@ -16,7 +16,7 @@ Future<void> showNoteWriteBottomSheet(BuildContext context) {
 }
 
 class _NoteWrite extends ConsumerStatefulWidget {
-  const _NoteWrite({super.key});
+  const _NoteWrite();
 
   @override
   ConsumerState<_NoteWrite> createState() => _NoteWriteState();
@@ -125,81 +125,83 @@ class _NoteWriteState extends ConsumerState<_NoteWrite> {
   }
 
   Widget _buildContentArea() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: Sizes.size12,
-        horizontal: Sizes.size32,
-      ),
-      child: Column(
-        children: [
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: const Text(
-              "Note :",
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: Sizes.size16,
-              ),
-            ),
-            subtitle: GestureDetector(
-              onTap: _noteTextFocusNode.requestFocus,
-              child: TextField(
-                controller: _noteEditingController,
-                focusNode: _noteTextFocusNode,
-                maxLines: 50,
-                minLines: 1,
-                decoration: const InputDecoration(
-                  hintText: 'Write down your log.',
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: Sizes.size12,
+          horizontal: Sizes.size32,
+        ),
+        child: Column(
+          children: [
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text(
+                "Note :",
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: Sizes.size16,
                 ),
               ),
-            ),
-          ),
-          Gaps.h12,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: Sizes.size12),
-                child: Text(
-                  "Mood : ",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: Sizes.size16,
+              subtitle: GestureDetector(
+                onTap: _noteTextFocusNode.requestFocus,
+                child: TextField(
+                  controller: _noteEditingController,
+                  focusNode: _noteTextFocusNode,
+                  maxLines: 50,
+                  minLines: 1,
+                  decoration: const InputDecoration(
+                    hintText: 'Write down your log.',
                   ),
                 ),
               ),
-              IconButton.outlined(
-                onPressed: _toggleMoodTap,
-                iconSize: Sizes.size32,
-                style: IconButton.styleFrom(
-                  highlightColor:
-                      Theme.of(context).colorScheme.tertiaryContainer,
-                  side: BorderSide(
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
+            ),
+            Gaps.h12,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: Sizes.size12),
+                  child: Text(
+                    "Mood : ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: Sizes.size16,
+                    ),
                   ),
                 ),
-                icon: Text(
-                  moods.elementAt(_moodIndex),
-                  style: const TextStyle(fontSize: Sizes.size20),
+                IconButton.outlined(
+                  onPressed: _toggleMoodTap,
+                  iconSize: Sizes.size32,
+                  style: IconButton.styleFrom(
+                    highlightColor:
+                        Theme.of(context).colorScheme.tertiaryContainer,
+                    side: BorderSide(
+                      color: Theme.of(context).colorScheme.tertiaryContainer,
+                    ),
+                  ),
+                  icon: Text(
+                    moods.elementAt(_moodIndex),
+                    style: const TextStyle(fontSize: Sizes.size20),
+                  ),
                 ),
-              ),
-              if (_isOpenMoodTap)
-                Column(
-                  children: [
-                    Gaps.h2,
-                    _buildMoodPickUp(),
-                  ],
-                ),
-            ],
-          ),
-        ],
+                if (_isOpenMoodTap)
+                  Column(
+                    children: [
+                      Gaps.h2,
+                      _buildMoodPickUp(),
+                    ],
+                  ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildMoodPickUp() {
     return Container(
-      width: 230,
+      width: 200,
       alignment: Alignment.center,
       constraints: const BoxConstraints(
         minHeight: Sizes.size36,
@@ -248,18 +250,39 @@ class _NoteWriteState extends ConsumerState<_NoteWrite> {
   }
 
   Widget _buildFloatingAddButton() {
-    return Positioned(
-      right: Sizes.size16,
-      bottom: Sizes.size16,
-      child: IconButton.filledTonal(
-        onPressed: _addNote,
-        iconSize: Sizes.size32,
-        icon: ref.watch(noteViewModel).isLoading
-            ? const CircularProgressIndicator.adaptive(
-                strokeWidth: Sizes.size32,
-              )
-            : const Icon(Icons.add),
-      ),
+    // return Positioned(
+    //   right: Sizes.size16,
+    //   bottom: Sizes.size16,
+    //   child: IconButton.filledTonal(
+    //     onPressed: _addNote,
+    //     iconSize: Sizes.size32,
+    //     icon: ref.watch(noteViewModel).isLoading
+    //         ? const CircularProgressIndicator.adaptive(
+    //             strokeWidth: Sizes.size32,
+    //           )
+    //         : const Icon(Icons.add),
+    //   ),
+    // );
+    return Column(
+      children: [
+        const Spacer(),
+        Row(
+          children: [
+            const Spacer(),
+            IconButton.filledTonal(
+              onPressed: _addNote,
+              iconSize: Sizes.size32,
+              icon: ref.watch(noteViewModel).isLoading
+                  ? const CircularProgressIndicator.adaptive(
+                      strokeWidth: Sizes.size32,
+                    )
+                  : const Icon(Icons.add),
+            ),
+            Gaps.w16,
+          ],
+        ),
+        Gaps.h16,
+      ],
     );
   }
 }
