@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:metronolog/features/constants/gaps.dart';
 import 'package:metronolog/features/constants/sizes.dart';
+import 'package:metronolog/features/metronome/view_models/timers_view_model.dart';
 import 'package:metronolog/features/note/models/note_model.dart';
 import 'package:metronolog/features/note/view_models/note_view_model.dart';
 import 'package:metronolog/utils/datetime_utils.dart';
 
-class NoteTimelineNotes extends ConsumerWidget {
+class NoteTimelineNotes extends ConsumerStatefulWidget {
   const NoteTimelineNotes({super.key});
 
+  @override
+  ConsumerState<NoteTimelineNotes> createState() => _NoteTimelineNotesState();
+}
+
+class _NoteTimelineNotesState extends ConsumerState<NoteTimelineNotes> {
   Future<void> _showDeleteModalPopup(
     BuildContext context,
     WidgetRef ref,
@@ -43,10 +49,12 @@ class NoteTimelineNotes extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final noteModels =
         ref.watch(noteViewModel).value ?? List<NoteModel>.empty();
-    return noteModels.isEmpty
+    final dateToTimerMap = ref.watch(timersViewModel).value ?? {};
+
+    final widget = noteModels.isEmpty
         ? const Center(
             child: Text("Nothing note, yet..."),
           )
@@ -54,8 +62,14 @@ class NoteTimelineNotes extends ConsumerWidget {
             itemCount: noteModels.length,
             itemBuilder: (context, index) {
               final note = noteModels.elementAt(index);
+              final timer = dateToTimerMap[formattedToday(
+                DateTime.fromMillisecondsSinceEpoch(
+                  note.createdMilliSecondsSinceEpoch,
+                ),
+              )];
               final now = DateTime.now();
-              return ListTile(
+
+              final listTile = ListTile(
                 onLongPress: () => _showDeleteModalPopup(context, ref, note),
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,13 +96,38 @@ class NoteTimelineNotes extends ConsumerWidget {
                   child: Text(
                     note.mood,
                     style: const TextStyle(
-                      fontSize: Sizes.size36,
+                      fontSize: Sizes.size28,
                     ),
                   ),
                 ),
+                trailing: (timer == null)
+                    ? null
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            formattedTimer(timer.practiceSeconds),
+                            style: const TextStyle(
+                              fontSize: Sizes.size20,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            timer.createdDate,
+                            style: TextStyle(
+                              fontSize: Sizes.size8,
+                              color: Colors.grey.withOpacity(0.8),
+                            ),
+                          ),
+                        ],
+                      ),
               );
+
+              return listTile;
             },
             separatorBuilder: (context, index) => const Divider(),
           );
+    return widget;
   }
 }

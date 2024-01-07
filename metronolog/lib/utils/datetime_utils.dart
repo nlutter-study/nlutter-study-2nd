@@ -1,3 +1,7 @@
+import 'package:intl/intl.dart';
+
+final _dateFormatter = DateFormat("yyyy-MM-dd");
+
 String formattedElapsedTime({
   DateTime? nowDateTime,
   required int targetMillisecondsSinceEpoch,
@@ -29,4 +33,8 @@ String formattedTimer(
   final minutes = (seconds ~/ 60).toString().padLeft(minutesPadSize, '0');
   final restSeconds = (seconds % 60).toString().padLeft(2, '0');
   return "$minutes:$restSeconds";
+}
+
+String formattedToday(DateTime dateTime) {
+  return _dateFormatter.format(dateTime);
 }

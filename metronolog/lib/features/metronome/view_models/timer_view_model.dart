@@ -2,18 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:metronolog/features/auth/repositories/firebase_auth_repository.dart';
 import 'package:metronolog/features/metronome/models/timer_model.dart';
 import 'package:metronolog/features/metronome/repositories/timer_repository.dart';
+import 'package:metronolog/features/metronome/view_models/timers_view_model.dart';
+import 'package:metronolog/utils/datetime_utils.dart';
 
 final timerViewModel = AsyncNotifierProvider<TimerViewModel, TimerModel>(
   () => TimerViewModel(),
 );
 
 class TimerViewModel extends AsyncNotifier<TimerModel> {
-  static final _dateFormatter = DateFormat("yyyy-MM-dd");
-
   late final FirebaseAuthRepository _authRepository;
   late final TimerRepository _timerRepository;
 
@@ -26,18 +25,18 @@ class TimerViewModel extends AsyncNotifier<TimerModel> {
     _timerRepository = ref.read(timerRepository);
 
     final user = _authRepository.user;
-    final formattedToday = _dateFormatter.format(DateTime.now());
+    final today = formattedToday(DateTime.now());
 
     final remoteTodayModel = (user == null)
         ? null
-        : await _timerRepository.getTimer(user.uid, formattedToday);
+        : await _timerRepository.getTimer(user.uid, today);
 
     _savedPracticeSeconds = remoteTodayModel?.practiceSeconds ?? 0;
 
     return remoteTodayModel ??
         TimerModel(
           uid: user?.uid ?? '',
-          createdDate: formattedToday,
+          createdDate: today,
           practiceSeconds: 0,
         );
   }
@@ -46,8 +45,8 @@ class TimerViewModel extends AsyncNotifier<TimerModel> {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
-        final formattedToday = _dateFormatter.format(DateTime.now());
-        if (formattedToday != state.value!.createdDate) {
+        final today = formattedToday(DateTime.now());
+        if (today != state.value!.createdDate) {
           _createNewTimer();
         }
         state = AsyncValue.data(
@@ -60,7 +59,9 @@ class TimerViewModel extends AsyncNotifier<TimerModel> {
     );
   }
 
-  void _createNewTimer() {}
+  void _createNewTimer() {
+    // TODO: 하루 지난 시점에는 어떻게 처리할 것인지 고민 필요
+  }
 
   void stop() {
     _timer?.cancel();
@@ -79,6 +80,7 @@ class TimerViewModel extends AsyncNotifier<TimerModel> {
       ),
     );
     await _timerRepository.upsertTimer(state.value!);
+    await ref.read(timersViewModel.notifier).reload();
     _savedPracticeSeconds = state.value!.practiceSeconds;
   }
 

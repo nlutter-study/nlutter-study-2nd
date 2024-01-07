@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:metronolog/features/auth/view_models/auth_view_model.dart';
 import 'package:metronolog/features/constants/gaps.dart';
 import 'package:metronolog/features/constants/sizes.dart';
+import 'package:metronolog/features/metronome/view_models/timer_view_model.dart';
 import 'package:metronolog/features/note/view_models/note_view_model.dart';
+import 'package:metronolog/utils/datetime_utils.dart';
 import 'package:metronolog/utils/firebase_exception_handler.dart';
 
 Future<void> showNoteWriteBottomSheet(BuildContext context) {
@@ -133,6 +135,29 @@ class _NoteWriteState extends ConsumerState<_NoteWrite> {
         ),
         child: Column(
           children: [
+            Gaps.h12,
+            Row(
+              children: [
+                const Text(
+                  "Practice Time: ",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: Sizes.size16,
+                  ),
+                ),
+                Text(
+                  formattedTimer(
+                    ref.read(timerViewModel.notifier).getSavedPracticeTime(),
+                  ),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w700,
+                    fontSize: Sizes.size16,
+                  ),
+                ),
+              ],
+            ),
+            Gaps.h8,
             ListTile(
               contentPadding: EdgeInsets.zero,
               title: const Text(
