@@ -1,6 +1,8 @@
+import 'package:feat_spotify/api/spotify_api_client.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  await spotifyApiClient.refreshAccessToken();
   runApp(const FeatSpotifyApp());
 }
 
@@ -16,7 +18,13 @@ class FeatSpotifyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Scaffold(),
+      home: Scaffold(
+        body: Center(
+          child: Text(
+            spotifyApiClient.auth.toString(),
+          ),
+        ),
+      ),
     );
   }
 }
