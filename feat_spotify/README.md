@@ -1,6 +1,6 @@
-# feat_spotify
+# feat. spotify
 
-Nomadcoders Flutter Challnge 3. Animation
+Nomadcoders Flutter Challenge 3. Animation
 
 ## Getting Started
 
@@ -14,3 +14,17 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## My Commands
+
+### freezed
+https://pub.dev/packages/freezed
+```sh
+dart run build_runner build
+```
+
+### format codes
+https://dart.dev/tools/linter-rules/require_trailing_commas
+```sh
+dart fix --apply
+```
