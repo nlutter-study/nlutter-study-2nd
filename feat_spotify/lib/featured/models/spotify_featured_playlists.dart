@@ -98,32 +98,32 @@ class Owner with _$Owner {
 
 enum DisplayName {
   @JsonValue("Spotify")
-  SPOTIFY
+  spotify
 }
 
-final displayNameValues = EnumValues({"Spotify": DisplayName.SPOTIFY});
+final displayNameValues = EnumValues({"Spotify": DisplayName.spotify});
 
 enum Id {
   @JsonValue("spotify")
-  SPOTIFY
+  spotify
 }
 
-final idValues = EnumValues({"spotify": Id.SPOTIFY});
+final idValues = EnumValues({"spotify": Id.spotify});
 
 enum OwnerType {
   @JsonValue("user")
-  USER
+  user
 }
 
-final ownerTypeValues = EnumValues({"user": OwnerType.USER});
+final ownerTypeValues = EnumValues({"user": OwnerType.user});
 
 enum SpotifyUri {
   @JsonValue("spotify:user:spotify")
-  SPOTIFY_USER_SPOTIFY
+  spotifyUserSpotify
 }
 
 final uriValues =
-    EnumValues({"spotify:user:spotify": SpotifyUri.SPOTIFY_USER_SPOTIFY});
+    EnumValues({"spotify:user:spotify": SpotifyUri.spotifyUserSpotify});
 
 @freezed
 class Tracks with _$Tracks {
@@ -137,10 +137,10 @@ class Tracks with _$Tracks {
 
 enum ItemType {
   @JsonValue("playlist")
-  PLAYLIST
+  playlist
 }
 
-final itemTypeValues = EnumValues({"playlist": ItemType.PLAYLIST});
+final itemTypeValues = EnumValues({"playlist": ItemType.playlist});
 
 class EnumValues<T> {
   Map<String, T> map;

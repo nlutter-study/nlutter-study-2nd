@@ -7,7 +7,8 @@ part of 'spotify_playlist.dart';
 // **************************************************************************
 
 _$SpotifyPlaylistImpl _$$SpotifyPlaylistImplFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$SpotifyPlaylistImpl(
       collaborative: json['collaborative'] as bool,
       description: json['description'] as String,
@@ -30,7 +31,8 @@ _$SpotifyPlaylistImpl _$$SpotifyPlaylistImplFromJson(
     );
 
 Map<String, dynamic> _$$SpotifyPlaylistImplToJson(
-        _$SpotifyPlaylistImpl instance) =>
+  _$SpotifyPlaylistImpl instance,
+) =>
     <String, dynamic>{
       'collaborative': instance.collaborative,
       'description': instance.description,
@@ -107,9 +109,9 @@ Map<String, dynamic> _$$OwnerImplToJson(_$OwnerImpl instance) =>
     };
 
 const _$OwnerTypeEnumMap = {
-  OwnerType.ARTIST: 'artist',
-  OwnerType.TRACK: 'track',
-  OwnerType.USER: 'user',
+  OwnerType.artist: 'artist',
+  OwnerType.track: 'track',
+  OwnerType.user: 'user',
 };
 
 _$TracksImpl _$$TracksImplFromJson(Map<String, dynamic> json) => _$TracksImpl(
@@ -142,7 +144,8 @@ _$ItemImpl _$$ItemImplFromJson(Map<String, dynamic> json) => _$ItemImpl(
       primaryColor: json['primary_color'],
       track: Track.fromJson(json['track'] as Map<String, dynamic>),
       videoThumbnail: VideoThumbnail.fromJson(
-          json['video_thumbnail'] as Map<String, dynamic>),
+        json['video_thumbnail'] as Map<String, dynamic>,
+      ),
     );
 
 Map<String, dynamic> _$$ItemImplToJson(_$ItemImpl instance) =>
@@ -247,9 +250,9 @@ Map<String, dynamic> _$$AlbumImplToJson(_$AlbumImpl instance) =>
     };
 
 const _$AlbumTypeEnumEnumMap = {
-  AlbumTypeEnum.ALBUM: 'album',
-  AlbumTypeEnum.COMPILATION: 'compilation',
-  AlbumTypeEnum.SINGLE: 'single',
+  AlbumTypeEnum.album: 'album',
+  AlbumTypeEnum.compilation: 'compilation',
+  AlbumTypeEnum.single: 'single',
 };
 
 _$ExternalIdsImpl _$$ExternalIdsImplFromJson(Map<String, dynamic> json) =>
@@ -268,7 +271,8 @@ _$VideoThumbnailImpl _$$VideoThumbnailImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$VideoThumbnailImplToJson(
-        _$VideoThumbnailImpl instance) =>
+  _$VideoThumbnailImpl instance,
+) =>
     <String, dynamic>{
       'url': instance.url,
     };

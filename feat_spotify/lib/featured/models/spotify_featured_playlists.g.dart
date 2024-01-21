@@ -7,14 +7,18 @@ part of 'spotify_featured_playlists.dart';
 // **************************************************************************
 
 _$SpotifyFeaturedPlaylistsImpl _$$SpotifyFeaturedPlaylistsImplFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$SpotifyFeaturedPlaylistsImpl(
       message: json['message'] as String,
-      playlists: Playlists.fromJson(json['playlists'] as Map<String, dynamic>),
+      playlists: Playlists.fromJson(
+        json['playlists'] as Map<String, dynamic>,
+      ),
     );
 
 Map<String, dynamic> _$$SpotifyFeaturedPlaylistsImplToJson(
-        _$SpotifyFeaturedPlaylistsImpl instance) =>
+  _$SpotifyFeaturedPlaylistsImpl instance,
+) =>
     <String, dynamic>{
       'message': instance.message,
       'playlists': instance.playlists,
@@ -24,8 +28,10 @@ _$PlaylistsImpl _$$PlaylistsImplFromJson(Map<String, dynamic> json) =>
     _$PlaylistsImpl(
       href: json['href'] as String,
       items: (json['items'] as List<dynamic>)
-          .map((e) =>
-              SpotifySimplifiedPlaylist.fromJson(e as Map<String, dynamic>))
+          .map(
+            (e) =>
+                SpotifySimplifiedPlaylist.fromJson(e as Map<String, dynamic>),
+          )
           .toList(),
       limit: json['limit'] as int,
       next: json['next'],
@@ -46,7 +52,8 @@ Map<String, dynamic> _$$PlaylistsImplToJson(_$PlaylistsImpl instance) =>
     };
 
 _$SpotifySimplifiedPlaylistImpl _$$SpotifySimplifiedPlaylistImplFromJson(
-        Map<String, dynamic> json) =>
+  Map<String, dynamic> json,
+) =>
     _$SpotifySimplifiedPlaylistImpl(
       collaborative: json['collaborative'] as bool,
       description: json['description'] as String,
@@ -68,7 +75,8 @@ _$SpotifySimplifiedPlaylistImpl _$$SpotifySimplifiedPlaylistImplFromJson(
     );
 
 Map<String, dynamic> _$$SpotifySimplifiedPlaylistImplToJson(
-        _$SpotifySimplifiedPlaylistImpl instance) =>
+  _$SpotifySimplifiedPlaylistImpl instance,
+) =>
     <String, dynamic>{
       'collaborative': instance.collaborative,
       'description': instance.description,
@@ -87,7 +95,7 @@ Map<String, dynamic> _$$SpotifySimplifiedPlaylistImplToJson(
     };
 
 const _$ItemTypeEnumMap = {
-  ItemType.PLAYLIST: 'playlist',
+  ItemType.playlist: 'playlist',
 };
 
 _$ExternalUrlsImpl _$$ExternalUrlsImplFromJson(Map<String, dynamic> json) =>
@@ -134,19 +142,19 @@ Map<String, dynamic> _$$OwnerImplToJson(_$OwnerImpl instance) =>
     };
 
 const _$DisplayNameEnumMap = {
-  DisplayName.SPOTIFY: 'Spotify',
+  DisplayName.spotify: 'Spotify',
 };
 
 const _$IdEnumMap = {
-  Id.SPOTIFY: 'spotify',
+  Id.spotify: 'spotify',
 };
 
 const _$OwnerTypeEnumMap = {
-  OwnerType.USER: 'user',
+  OwnerType.user: 'user',
 };
 
 const _$SpotifyUriEnumMap = {
-  SpotifyUri.SPOTIFY_USER_SPOTIFY: 'spotify:user:spotify',
+  SpotifyUri.spotifyUserSpotify: 'spotify:user:spotify',
 };
 
 _$TracksImpl _$$TracksImplFromJson(Map<String, dynamic> json) => _$TracksImpl(

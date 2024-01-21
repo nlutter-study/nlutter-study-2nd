@@ -88,17 +88,17 @@ class Owner with _$Owner {
 
 enum OwnerType {
   @JsonValue("artist")
-  ARTIST,
+  artist,
   @JsonValue("track")
-  TRACK,
+  track,
   @JsonValue("user")
-  USER
+  user
 }
 
 final ownerTypeValues = EnumValues({
-  "artist": OwnerType.ARTIST,
-  "track": OwnerType.TRACK,
-  "user": OwnerType.USER
+  "artist": OwnerType.artist,
+  "track": OwnerType.track,
+  "user": OwnerType.user,
 });
 
 @freezed
@@ -182,26 +182,26 @@ class Album with _$Album {
 
 enum AlbumTypeEnum {
   @JsonValue("album")
-  ALBUM,
+  album,
   @JsonValue("compilation")
-  COMPILATION,
+  compilation,
   @JsonValue("single")
-  SINGLE
+  single
 }
 
 final albumTypeEnumValues = EnumValues({
-  "album": AlbumTypeEnum.ALBUM,
-  "compilation": AlbumTypeEnum.COMPILATION,
-  "single": AlbumTypeEnum.SINGLE,
+  "album": AlbumTypeEnum.album,
+  "compilation": AlbumTypeEnum.compilation,
+  "single": AlbumTypeEnum.single,
 });
 
 enum ReleaseDatePrecision {
   @JsonValue("day")
-  DAY
+  day
 }
 
 final releaseDatePrecisionValues =
-    EnumValues({"day": ReleaseDatePrecision.DAY});
+    EnumValues({"day": ReleaseDatePrecision.day});
 
 @freezed
 class ExternalIds with _$ExternalIds {
