@@ -223,6 +223,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   Widget _buildPlaylistView(List<SpotifySimplifiedPlaylist> playlists) {
     return SpotifyPlaylistWidget(
       key: ValueKey(playlists[_currentPage].id),
+      isDetail: _isDetail,
       playlistId: playlists[_currentPage].id,
     )
         .animate(
@@ -230,7 +231,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         )
         .slideY(
           duration: 700.ms,
-          begin: -0.75,
+          begin: -1.0,
           end: 0.15,
           curve: Curves.easeInOutCubic,
         );
