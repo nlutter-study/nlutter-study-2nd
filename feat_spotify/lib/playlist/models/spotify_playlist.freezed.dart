@@ -39,7 +39,7 @@ mixin _$SpotifyPlaylist {
   @JsonKey(name: "owner")
   Owner get owner => throw _privateConstructorUsedError;
   @JsonKey(name: "primary_color")
-  String get primaryColor => throw _privateConstructorUsedError;
+  String? get primaryColor => throw _privateConstructorUsedError;
   @JsonKey(name: "public")
   bool get public => throw _privateConstructorUsedError;
   @JsonKey(name: "snapshot_id")
@@ -73,7 +73,7 @@ abstract class $SpotifyPlaylistCopyWith<$Res> {
       @JsonKey(name: "images") List<Image> images,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "owner") Owner owner,
-      @JsonKey(name: "primary_color") String primaryColor,
+      @JsonKey(name: "primary_color") String? primaryColor,
       @JsonKey(name: "public") bool public,
       @JsonKey(name: "snapshot_id") String snapshotId,
       @JsonKey(name: "tracks") Tracks tracks,
@@ -108,7 +108,7 @@ class _$SpotifyPlaylistCopyWithImpl<$Res, $Val extends SpotifyPlaylist>
     Object? images = null,
     Object? name = null,
     Object? owner = null,
-    Object? primaryColor = null,
+    Object? primaryColor = freezed,
     Object? public = null,
     Object? snapshotId = null,
     Object? tracks = null,
@@ -152,10 +152,10 @@ class _$SpotifyPlaylistCopyWithImpl<$Res, $Val extends SpotifyPlaylist>
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
               as Owner,
-      primaryColor: null == primaryColor
+      primaryColor: freezed == primaryColor
           ? _value.primaryColor
           : primaryColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       public: null == public
           ? _value.public
           : public // ignore: cast_nullable_to_non_nullable
@@ -230,7 +230,7 @@ abstract class _$$SpotifyPlaylistImplCopyWith<$Res>
       @JsonKey(name: "images") List<Image> images,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "owner") Owner owner,
-      @JsonKey(name: "primary_color") String primaryColor,
+      @JsonKey(name: "primary_color") String? primaryColor,
       @JsonKey(name: "public") bool public,
       @JsonKey(name: "snapshot_id") String snapshotId,
       @JsonKey(name: "tracks") Tracks tracks,
@@ -267,7 +267,7 @@ class __$$SpotifyPlaylistImplCopyWithImpl<$Res>
     Object? images = null,
     Object? name = null,
     Object? owner = null,
-    Object? primaryColor = null,
+    Object? primaryColor = freezed,
     Object? public = null,
     Object? snapshotId = null,
     Object? tracks = null,
@@ -311,10 +311,10 @@ class __$$SpotifyPlaylistImplCopyWithImpl<$Res>
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
               as Owner,
-      primaryColor: null == primaryColor
+      primaryColor: freezed == primaryColor
           ? _value.primaryColor
           : primaryColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       public: null == public
           ? _value.public
           : public // ignore: cast_nullable_to_non_nullable
@@ -352,7 +352,7 @@ class _$SpotifyPlaylistImpl implements _SpotifyPlaylist {
       @JsonKey(name: "images") required final List<Image> images,
       @JsonKey(name: "name") required this.name,
       @JsonKey(name: "owner") required this.owner,
-      @JsonKey(name: "primary_color") required this.primaryColor,
+      @JsonKey(name: "primary_color") this.primaryColor,
       @JsonKey(name: "public") required this.public,
       @JsonKey(name: "snapshot_id") required this.snapshotId,
       @JsonKey(name: "tracks") required this.tracks,
@@ -398,7 +398,7 @@ class _$SpotifyPlaylistImpl implements _SpotifyPlaylist {
   final Owner owner;
   @override
   @JsonKey(name: "primary_color")
-  final String primaryColor;
+  final String? primaryColor;
   @override
   @JsonKey(name: "public")
   final bool public;
@@ -494,7 +494,7 @@ abstract class _SpotifyPlaylist implements SpotifyPlaylist {
       @JsonKey(name: "images") required final List<Image> images,
       @JsonKey(name: "name") required final String name,
       @JsonKey(name: "owner") required final Owner owner,
-      @JsonKey(name: "primary_color") required final String primaryColor,
+      @JsonKey(name: "primary_color") final String? primaryColor,
       @JsonKey(name: "public") required final bool public,
       @JsonKey(name: "snapshot_id") required final String snapshotId,
       @JsonKey(name: "tracks") required final Tracks tracks,
@@ -533,7 +533,7 @@ abstract class _SpotifyPlaylist implements SpotifyPlaylist {
   Owner get owner;
   @override
   @JsonKey(name: "primary_color")
-  String get primaryColor;
+  String? get primaryColor;
   @override
   @JsonKey(name: "public")
   bool get public;
@@ -2610,10 +2610,9 @@ mixin _$Album {
   @JsonKey(name: "name")
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: "release_date")
-  DateTime get releaseDate => throw _privateConstructorUsedError;
+  String get releaseDate => throw _privateConstructorUsedError;
   @JsonKey(name: "release_date_precision")
-  ReleaseDatePrecision get releaseDatePrecision =>
-      throw _privateConstructorUsedError;
+  String get releaseDatePrecision => throw _privateConstructorUsedError;
   @JsonKey(name: "total_tracks")
   int get totalTracks => throw _privateConstructorUsedError;
   @JsonKey(name: "type")
@@ -2640,9 +2639,8 @@ abstract class $AlbumCopyWith<$Res> {
       @JsonKey(name: "images") List<Image> images,
       @JsonKey(name: "is_playable") bool isPlayable,
       @JsonKey(name: "name") String name,
-      @JsonKey(name: "release_date") DateTime releaseDate,
-      @JsonKey(name: "release_date_precision")
-      ReleaseDatePrecision releaseDatePrecision,
+      @JsonKey(name: "release_date") String releaseDate,
+      @JsonKey(name: "release_date_precision") String releaseDatePrecision,
       @JsonKey(name: "total_tracks") int totalTracks,
       @JsonKey(name: "type") AlbumTypeEnum type,
       @JsonKey(name: "uri") String uri});
@@ -2713,11 +2711,11 @@ class _$AlbumCopyWithImpl<$Res, $Val extends Album>
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       releaseDatePrecision: null == releaseDatePrecision
           ? _value.releaseDatePrecision
           : releaseDatePrecision // ignore: cast_nullable_to_non_nullable
-              as ReleaseDatePrecision,
+              as String,
       totalTracks: null == totalTracks
           ? _value.totalTracks
           : totalTracks // ignore: cast_nullable_to_non_nullable
@@ -2758,9 +2756,8 @@ abstract class _$$AlbumImplCopyWith<$Res> implements $AlbumCopyWith<$Res> {
       @JsonKey(name: "images") List<Image> images,
       @JsonKey(name: "is_playable") bool isPlayable,
       @JsonKey(name: "name") String name,
-      @JsonKey(name: "release_date") DateTime releaseDate,
-      @JsonKey(name: "release_date_precision")
-      ReleaseDatePrecision releaseDatePrecision,
+      @JsonKey(name: "release_date") String releaseDate,
+      @JsonKey(name: "release_date_precision") String releaseDatePrecision,
       @JsonKey(name: "total_tracks") int totalTracks,
       @JsonKey(name: "type") AlbumTypeEnum type,
       @JsonKey(name: "uri") String uri});
@@ -2830,11 +2827,11 @@ class __$$AlbumImplCopyWithImpl<$Res>
       releaseDate: null == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       releaseDatePrecision: null == releaseDatePrecision
           ? _value.releaseDatePrecision
           : releaseDatePrecision // ignore: cast_nullable_to_non_nullable
-              as ReleaseDatePrecision,
+              as String,
       totalTracks: null == totalTracks
           ? _value.totalTracks
           : totalTracks // ignore: cast_nullable_to_non_nullable
@@ -2913,10 +2910,10 @@ class _$AlbumImpl implements _Album {
   final String name;
   @override
   @JsonKey(name: "release_date")
-  final DateTime releaseDate;
+  final String releaseDate;
   @override
   @JsonKey(name: "release_date_precision")
-  final ReleaseDatePrecision releaseDatePrecision;
+  final String releaseDatePrecision;
   @override
   @JsonKey(name: "total_tracks")
   final int totalTracks;
@@ -3000,9 +2997,9 @@ abstract class _Album implements Album {
       @JsonKey(name: "images") required final List<Image> images,
       @JsonKey(name: "is_playable") required final bool isPlayable,
       @JsonKey(name: "name") required final String name,
-      @JsonKey(name: "release_date") required final DateTime releaseDate,
+      @JsonKey(name: "release_date") required final String releaseDate,
       @JsonKey(name: "release_date_precision")
-      required final ReleaseDatePrecision releaseDatePrecision,
+      required final String releaseDatePrecision,
       @JsonKey(name: "total_tracks") required final int totalTracks,
       @JsonKey(name: "type") required final AlbumTypeEnum type,
       @JsonKey(name: "uri") required final String uri}) = _$AlbumImpl;
@@ -3035,10 +3032,10 @@ abstract class _Album implements Album {
   String get name;
   @override
   @JsonKey(name: "release_date")
-  DateTime get releaseDate;
+  String get releaseDate;
   @override
   @JsonKey(name: "release_date_precision")
-  ReleaseDatePrecision get releaseDatePrecision;
+  String get releaseDatePrecision;
   @override
   @JsonKey(name: "total_tracks")
   int get totalTracks;
@@ -3061,7 +3058,7 @@ ExternalIds _$ExternalIdsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ExternalIds {
   @JsonKey(name: "isrc")
-  String get isrc => throw _privateConstructorUsedError;
+  String? get isrc => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3075,7 +3072,7 @@ abstract class $ExternalIdsCopyWith<$Res> {
           ExternalIds value, $Res Function(ExternalIds) then) =
       _$ExternalIdsCopyWithImpl<$Res, ExternalIds>;
   @useResult
-  $Res call({@JsonKey(name: "isrc") String isrc});
+  $Res call({@JsonKey(name: "isrc") String? isrc});
 }
 
 /// @nodoc
@@ -3091,13 +3088,13 @@ class _$ExternalIdsCopyWithImpl<$Res, $Val extends ExternalIds>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isrc = null,
+    Object? isrc = freezed,
   }) {
     return _then(_value.copyWith(
-      isrc: null == isrc
+      isrc: freezed == isrc
           ? _value.isrc
           : isrc // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -3110,7 +3107,7 @@ abstract class _$$ExternalIdsImplCopyWith<$Res>
       __$$ExternalIdsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "isrc") String isrc});
+  $Res call({@JsonKey(name: "isrc") String? isrc});
 }
 
 /// @nodoc
@@ -3124,13 +3121,13 @@ class __$$ExternalIdsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isrc = null,
+    Object? isrc = freezed,
   }) {
     return _then(_$ExternalIdsImpl(
-      isrc: null == isrc
+      isrc: freezed == isrc
           ? _value.isrc
           : isrc // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -3138,14 +3135,14 @@ class __$$ExternalIdsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ExternalIdsImpl implements _ExternalIds {
-  const _$ExternalIdsImpl({@JsonKey(name: "isrc") required this.isrc});
+  const _$ExternalIdsImpl({@JsonKey(name: "isrc") this.isrc});
 
   factory _$ExternalIdsImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExternalIdsImplFromJson(json);
 
   @override
   @JsonKey(name: "isrc")
-  final String isrc;
+  final String? isrc;
 
   @override
   String toString() {
@@ -3179,15 +3176,15 @@ class _$ExternalIdsImpl implements _ExternalIds {
 }
 
 abstract class _ExternalIds implements ExternalIds {
-  const factory _ExternalIds(
-      {@JsonKey(name: "isrc") required final String isrc}) = _$ExternalIdsImpl;
+  const factory _ExternalIds({@JsonKey(name: "isrc") final String? isrc}) =
+      _$ExternalIdsImpl;
 
   factory _ExternalIds.fromJson(Map<String, dynamic> json) =
       _$ExternalIdsImpl.fromJson;
 
   @override
   @JsonKey(name: "isrc")
-  String get isrc;
+  String? get isrc;
   @override
   @JsonKey(ignore: true)
   _$$ExternalIdsImplCopyWith<_$ExternalIdsImpl> get copyWith =>

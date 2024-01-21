@@ -21,7 +21,7 @@ _$SpotifyPlaylistImpl _$$SpotifyPlaylistImplFromJson(
           .toList(),
       name: json['name'] as String,
       owner: Owner.fromJson(json['owner'] as Map<String, dynamic>),
-      primaryColor: json['primary_color'] as String,
+      primaryColor: json['primary_color'] as String?,
       public: json['public'] as bool,
       snapshotId: json['snapshot_id'] as String,
       tracks: Tracks.fromJson(json['tracks'] as Map<String, dynamic>),
@@ -222,9 +222,8 @@ _$AlbumImpl _$$AlbumImplFromJson(Map<String, dynamic> json) => _$AlbumImpl(
           .toList(),
       isPlayable: json['is_playable'] as bool,
       name: json['name'] as String,
-      releaseDate: DateTime.parse(json['release_date'] as String),
-      releaseDatePrecision: $enumDecode(
-          _$ReleaseDatePrecisionEnumMap, json['release_date_precision']),
+      releaseDate: json['release_date'] as String,
+      releaseDatePrecision: json['release_date_precision'] as String,
       totalTracks: json['total_tracks'] as int,
       type: $enumDecode(_$AlbumTypeEnumEnumMap, json['type']),
       uri: json['uri'] as String,
@@ -240,9 +239,8 @@ Map<String, dynamic> _$$AlbumImplToJson(_$AlbumImpl instance) =>
       'images': instance.images,
       'is_playable': instance.isPlayable,
       'name': instance.name,
-      'release_date': instance.releaseDate.toIso8601String(),
-      'release_date_precision':
-          _$ReleaseDatePrecisionEnumMap[instance.releaseDatePrecision]!,
+      'release_date': instance.releaseDate,
+      'release_date_precision': instance.releaseDatePrecision,
       'total_tracks': instance.totalTracks,
       'type': _$AlbumTypeEnumEnumMap[instance.type]!,
       'uri': instance.uri,
@@ -254,13 +252,9 @@ const _$AlbumTypeEnumEnumMap = {
   AlbumTypeEnum.SINGLE: 'single',
 };
 
-const _$ReleaseDatePrecisionEnumMap = {
-  ReleaseDatePrecision.DAY: 'day',
-};
-
 _$ExternalIdsImpl _$$ExternalIdsImplFromJson(Map<String, dynamic> json) =>
     _$ExternalIdsImpl(
-      isrc: json['isrc'] as String,
+      isrc: json['isrc'] as String?,
     );
 
 Map<String, dynamic> _$$ExternalIdsImplToJson(_$ExternalIdsImpl instance) =>

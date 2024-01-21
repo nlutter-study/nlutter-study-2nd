@@ -27,7 +27,7 @@ class SpotifyPlaylist with _$SpotifyPlaylist {
     @JsonKey(name: "images") required List<Image> images,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "owner") required Owner owner,
-    @JsonKey(name: "primary_color") required String primaryColor,
+    @JsonKey(name: "primary_color") String? primaryColor,
     @JsonKey(name: "public") required bool public,
     @JsonKey(name: "snapshot_id") required String snapshotId,
     @JsonKey(name: "tracks") required Tracks tracks,
@@ -169,9 +169,9 @@ class Album with _$Album {
     @JsonKey(name: "images") required List<Image> images,
     @JsonKey(name: "is_playable") required bool isPlayable,
     @JsonKey(name: "name") required String name,
-    @JsonKey(name: "release_date") required DateTime releaseDate,
+    @JsonKey(name: "release_date") required String releaseDate,
     @JsonKey(name: "release_date_precision")
-    required ReleaseDatePrecision releaseDatePrecision,
+    required String releaseDatePrecision,
     @JsonKey(name: "total_tracks") required int totalTracks,
     @JsonKey(name: "type") required AlbumTypeEnum type,
     @JsonKey(name: "uri") required String uri,
@@ -192,7 +192,7 @@ enum AlbumTypeEnum {
 final albumTypeEnumValues = EnumValues({
   "album": AlbumTypeEnum.ALBUM,
   "compilation": AlbumTypeEnum.COMPILATION,
-  "single": AlbumTypeEnum.SINGLE
+  "single": AlbumTypeEnum.SINGLE,
 });
 
 enum ReleaseDatePrecision {
@@ -206,7 +206,7 @@ final releaseDatePrecisionValues =
 @freezed
 class ExternalIds with _$ExternalIds {
   const factory ExternalIds({
-    @JsonKey(name: "isrc") required String isrc,
+    @JsonKey(name: "isrc") String? isrc,
   }) = _ExternalIds;
 
   factory ExternalIds.fromJson(Map<String, dynamic> json) =>
