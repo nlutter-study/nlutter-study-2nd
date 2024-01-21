@@ -4,7 +4,9 @@ part 'spotify_auth.freezed.dart';
 part 'spotify_auth.g.dart';
 
 @freezed
-class SpotifyAuth with _$SpotifyAuth {
+abstract class SpotifyAuth implements _$SpotifyAuth {
+  const SpotifyAuth._();
+
   @JsonSerializable(
     fieldRename: FieldRename.snake,
     createToJson: true,
@@ -17,4 +19,6 @@ class SpotifyAuth with _$SpotifyAuth {
 
   factory SpotifyAuth.fromJson(Map<String, dynamic> json) =>
       _$SpotifyAuthFromJson(json);
+
+  String get authorizationHeader => '$tokenType $accessToken';
 }

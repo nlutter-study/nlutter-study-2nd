@@ -2,39 +2,70 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-const _accountsBaseUrl = 'https://accounts.spotify.com';
-// const _apiBaseUrl = 'https://api.spotify.com';
+const _accountsHost = 'accounts.spotify.com';
+const _apiHost = 'api.spotify.com';
 
 const spotifyClientId = '6650330c1f304546a18186f41866601e';
 const spotifyClientSecret = '4610593326b045b597dc53d587a665df';
 
+Future<dynamic> fetchData(
+  SpotifyApiType apiType, {
+  Map<String, dynamic>? query,
+  Map<String, String>? headers,
+}) async {
+  final response = await http.get(
+    Uri.https(
+      apiType.host,
+      apiType.apiPath,
+      query,
+    ),
+    headers: headers,
+  );
+  return jsonDecode(
+    utf8.decode(
+      (response.bodyBytes),
+    ),
+  );
+}
+
 Future<dynamic> postData(
-  SpotifyApiType requestType, {
+  SpotifyApiType apiType, {
   Map<String, dynamic>? body,
   Map<String, String>? headers,
 }) async {
   final response = await http.post(
-    Uri.parse(requestType.url),
+    Uri.https(
+      apiType.host,
+      apiType.apiPath,
+    ),
     encoding: Encoding.getByName('utf-8'),
     headers: headers,
     body: body,
   );
-  return jsonDecode(utf8.decode((response.bodyBytes)));
+  return jsonDecode(
+    utf8.decode(
+      (response.bodyBytes),
+    ),
+  );
 }
 
 enum SpotifyApiType {
   accessToken(
-    baseUrl: _accountsBaseUrl,
+    host: _accountsHost,
     apiPath: '/api/token',
+  ),
+  featuredPlaylists(
+    host: _apiHost,
+    apiPath: '/v1/browse/featured-playlists',
   );
 
   const SpotifyApiType({
-    required this.baseUrl,
+    required this.host,
     required this.apiPath,
   });
 
-  final String baseUrl;
+  final String host;
   final String apiPath;
 
-  String get url => '$baseUrl$apiPath';
+  String get url => '$host$apiPath';
 }

@@ -119,11 +119,12 @@ class __$$SpotifyAuthImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, createToJson: true)
-class _$SpotifyAuthImpl implements _SpotifyAuth {
+class _$SpotifyAuthImpl extends _SpotifyAuth {
   const _$SpotifyAuthImpl(
       {required this.accessToken,
       required this.tokenType,
-      required this.expiresIn});
+      required this.expiresIn})
+      : super._();
 
   factory _$SpotifyAuthImpl.fromJson(Map<String, dynamic> json) =>
       _$$SpotifyAuthImplFromJson(json);
@@ -172,11 +173,12 @@ class _$SpotifyAuthImpl implements _SpotifyAuth {
   }
 }
 
-abstract class _SpotifyAuth implements SpotifyAuth {
+abstract class _SpotifyAuth extends SpotifyAuth {
   const factory _SpotifyAuth(
       {required final String accessToken,
       required final String tokenType,
       required final int expiresIn}) = _$SpotifyAuthImpl;
+  const _SpotifyAuth._() : super._();
 
   factory _SpotifyAuth.fromJson(Map<String, dynamic> json) =
       _$SpotifyAuthImpl.fromJson;

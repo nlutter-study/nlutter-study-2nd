@@ -1,4 +1,4 @@
-import 'package:feat_spotify/auth/view_models/spotify_auth_view_model.dart';
+import 'package:feat_spotify/featured/view_models/spotify_featured_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,14 +12,14 @@ class MainScreen extends ConsumerStatefulWidget {
 class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    final authViewModel = ref.watch(spotifyAuthViewModelProvider);
+    final featuredViewModel = ref.watch(spotifyFeaturedViewModelProvider);
 
     return Scaffold(
       body: Center(
-        child: authViewModel.isLoading
+        child: (featuredViewModel.isLoading || featuredViewModel.value == null)
             ? const CircularProgressIndicator.adaptive()
             : Text(
-                authViewModel.value.toString(),
+                featuredViewModel.value.toString(),
               ),
       ),
     );
