@@ -210,7 +210,8 @@ mixin _$Playlists {
   @JsonKey(name: "href")
   String get href => throw _privateConstructorUsedError;
   @JsonKey(name: "items")
-  List<Item> get items => throw _privateConstructorUsedError;
+  List<SpotifySimplifiedPlaylist> get items =>
+      throw _privateConstructorUsedError;
   @JsonKey(name: "limit")
   int get limit => throw _privateConstructorUsedError;
   @JsonKey(name: "next")
@@ -235,7 +236,7 @@ abstract class $PlaylistsCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "href") String href,
-      @JsonKey(name: "items") List<Item> items,
+      @JsonKey(name: "items") List<SpotifySimplifiedPlaylist> items,
       @JsonKey(name: "limit") int limit,
       @JsonKey(name: "next") dynamic next,
       @JsonKey(name: "offset") int offset,
@@ -272,7 +273,7 @@ class _$PlaylistsCopyWithImpl<$Res, $Val extends Playlists>
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<SpotifySimplifiedPlaylist>,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -307,7 +308,7 @@ abstract class _$$PlaylistsImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "href") String href,
-      @JsonKey(name: "items") List<Item> items,
+      @JsonKey(name: "items") List<SpotifySimplifiedPlaylist> items,
       @JsonKey(name: "limit") int limit,
       @JsonKey(name: "next") dynamic next,
       @JsonKey(name: "offset") int offset,
@@ -342,7 +343,7 @@ class __$$PlaylistsImplCopyWithImpl<$Res>
       items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item>,
+              as List<SpotifySimplifiedPlaylist>,
       limit: null == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
@@ -372,7 +373,8 @@ class __$$PlaylistsImplCopyWithImpl<$Res>
 class _$PlaylistsImpl implements _Playlists {
   const _$PlaylistsImpl(
       {@JsonKey(name: "href") required this.href,
-      @JsonKey(name: "items") required final List<Item> items,
+      @JsonKey(name: "items")
+      required final List<SpotifySimplifiedPlaylist> items,
       @JsonKey(name: "limit") required this.limit,
       @JsonKey(name: "next") required this.next,
       @JsonKey(name: "offset") required this.offset,
@@ -386,10 +388,10 @@ class _$PlaylistsImpl implements _Playlists {
   @override
   @JsonKey(name: "href")
   final String href;
-  final List<Item> _items;
+  final List<SpotifySimplifiedPlaylist> _items;
   @override
   @JsonKey(name: "items")
-  List<Item> get items {
+  List<SpotifySimplifiedPlaylist> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -459,7 +461,8 @@ class _$PlaylistsImpl implements _Playlists {
 abstract class _Playlists implements Playlists {
   const factory _Playlists(
       {@JsonKey(name: "href") required final String href,
-      @JsonKey(name: "items") required final List<Item> items,
+      @JsonKey(name: "items")
+      required final List<SpotifySimplifiedPlaylist> items,
       @JsonKey(name: "limit") required final int limit,
       @JsonKey(name: "next") required final dynamic next,
       @JsonKey(name: "offset") required final int offset,
@@ -474,7 +477,7 @@ abstract class _Playlists implements Playlists {
   String get href;
   @override
   @JsonKey(name: "items")
-  List<Item> get items;
+  List<SpotifySimplifiedPlaylist> get items;
   @override
   @JsonKey(name: "limit")
   int get limit;
@@ -496,12 +499,13 @@ abstract class _Playlists implements Playlists {
       throw _privateConstructorUsedError;
 }
 
-Item _$ItemFromJson(Map<String, dynamic> json) {
-  return _Item.fromJson(json);
+SpotifySimplifiedPlaylist _$SpotifySimplifiedPlaylistFromJson(
+    Map<String, dynamic> json) {
+  return _SpotifySimplifiedPlaylist.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Item {
+mixin _$SpotifySimplifiedPlaylist {
   @JsonKey(name: "collaborative")
   bool get collaborative => throw _privateConstructorUsedError;
   @JsonKey(name: "description")
@@ -533,13 +537,15 @@ mixin _$Item {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ItemCopyWith<Item> get copyWith => throw _privateConstructorUsedError;
+  $SpotifySimplifiedPlaylistCopyWith<SpotifySimplifiedPlaylist> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemCopyWith<$Res> {
-  factory $ItemCopyWith(Item value, $Res Function(Item) then) =
-      _$ItemCopyWithImpl<$Res, Item>;
+abstract class $SpotifySimplifiedPlaylistCopyWith<$Res> {
+  factory $SpotifySimplifiedPlaylistCopyWith(SpotifySimplifiedPlaylist value,
+          $Res Function(SpotifySimplifiedPlaylist) then) =
+      _$SpotifySimplifiedPlaylistCopyWithImpl<$Res, SpotifySimplifiedPlaylist>;
   @useResult
   $Res call(
       {@JsonKey(name: "collaborative") bool collaborative,
@@ -563,9 +569,10 @@ abstract class $ItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ItemCopyWithImpl<$Res, $Val extends Item>
-    implements $ItemCopyWith<$Res> {
-  _$ItemCopyWithImpl(this._value, this._then);
+class _$SpotifySimplifiedPlaylistCopyWithImpl<$Res,
+        $Val extends SpotifySimplifiedPlaylist>
+    implements $SpotifySimplifiedPlaylistCopyWith<$Res> {
+  _$SpotifySimplifiedPlaylistCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -676,10 +683,12 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
 }
 
 /// @nodoc
-abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
-  factory _$$ItemImplCopyWith(
-          _$ItemImpl value, $Res Function(_$ItemImpl) then) =
-      __$$ItemImplCopyWithImpl<$Res>;
+abstract class _$$SpotifySimplifiedPlaylistImplCopyWith<$Res>
+    implements $SpotifySimplifiedPlaylistCopyWith<$Res> {
+  factory _$$SpotifySimplifiedPlaylistImplCopyWith(
+          _$SpotifySimplifiedPlaylistImpl value,
+          $Res Function(_$SpotifySimplifiedPlaylistImpl) then) =
+      __$$SpotifySimplifiedPlaylistImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -707,10 +716,13 @@ abstract class _$$ItemImplCopyWith<$Res> implements $ItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ItemImplCopyWithImpl<$Res>
-    extends _$ItemCopyWithImpl<$Res, _$ItemImpl>
-    implements _$$ItemImplCopyWith<$Res> {
-  __$$ItemImplCopyWithImpl(_$ItemImpl _value, $Res Function(_$ItemImpl) _then)
+class __$$SpotifySimplifiedPlaylistImplCopyWithImpl<$Res>
+    extends _$SpotifySimplifiedPlaylistCopyWithImpl<$Res,
+        _$SpotifySimplifiedPlaylistImpl>
+    implements _$$SpotifySimplifiedPlaylistImplCopyWith<$Res> {
+  __$$SpotifySimplifiedPlaylistImplCopyWithImpl(
+      _$SpotifySimplifiedPlaylistImpl _value,
+      $Res Function(_$SpotifySimplifiedPlaylistImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -731,7 +743,7 @@ class __$$ItemImplCopyWithImpl<$Res>
     Object? type = null,
     Object? uri = null,
   }) {
-    return _then(_$ItemImpl(
+    return _then(_$SpotifySimplifiedPlaylistImpl(
       collaborative: null == collaborative
           ? _value.collaborative
           : collaborative // ignore: cast_nullable_to_non_nullable
@@ -794,8 +806,8 @@ class __$$ItemImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ItemImpl implements _Item {
-  const _$ItemImpl(
+class _$SpotifySimplifiedPlaylistImpl implements _SpotifySimplifiedPlaylist {
+  const _$SpotifySimplifiedPlaylistImpl(
       {@JsonKey(name: "collaborative") required this.collaborative,
       @JsonKey(name: "description") required this.description,
       @JsonKey(name: "external_urls") required this.externalUrls,
@@ -812,8 +824,8 @@ class _$ItemImpl implements _Item {
       @JsonKey(name: "uri") required this.uri})
       : _images = images;
 
-  factory _$ItemImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ItemImplFromJson(json);
+  factory _$SpotifySimplifiedPlaylistImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SpotifySimplifiedPlaylistImplFromJson(json);
 
   @override
   @JsonKey(name: "collaborative")
@@ -866,14 +878,14 @@ class _$ItemImpl implements _Item {
 
   @override
   String toString() {
-    return 'Item(collaborative: $collaborative, description: $description, externalUrls: $externalUrls, href: $href, id: $id, images: $images, name: $name, owner: $owner, primaryColor: $primaryColor, public: $public, snapshotId: $snapshotId, tracks: $tracks, type: $type, uri: $uri)';
+    return 'SpotifySimplifiedPlaylist(collaborative: $collaborative, description: $description, externalUrls: $externalUrls, href: $href, id: $id, images: $images, name: $name, owner: $owner, primaryColor: $primaryColor, public: $public, snapshotId: $snapshotId, tracks: $tracks, type: $type, uri: $uri)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ItemImpl &&
+            other is _$SpotifySimplifiedPlaylistImpl &&
             (identical(other.collaborative, collaborative) ||
                 other.collaborative == collaborative) &&
             (identical(other.description, description) ||
@@ -917,19 +929,20 @@ class _$ItemImpl implements _Item {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>
-      __$$ItemImplCopyWithImpl<_$ItemImpl>(this, _$identity);
+  _$$SpotifySimplifiedPlaylistImplCopyWith<_$SpotifySimplifiedPlaylistImpl>
+      get copyWith => __$$SpotifySimplifiedPlaylistImplCopyWithImpl<
+          _$SpotifySimplifiedPlaylistImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ItemImplToJson(
+    return _$$SpotifySimplifiedPlaylistImplToJson(
       this,
     );
   }
 }
 
-abstract class _Item implements Item {
-  const factory _Item(
+abstract class _SpotifySimplifiedPlaylist implements SpotifySimplifiedPlaylist {
+  const factory _SpotifySimplifiedPlaylist(
       {@JsonKey(name: "collaborative") required final bool collaborative,
       @JsonKey(name: "description") required final String description,
       @JsonKey(name: "external_urls") required final ExternalUrls externalUrls,
@@ -943,9 +956,11 @@ abstract class _Item implements Item {
       @JsonKey(name: "snapshot_id") required final String snapshotId,
       @JsonKey(name: "tracks") required final Tracks tracks,
       @JsonKey(name: "type") required final ItemType type,
-      @JsonKey(name: "uri") required final String uri}) = _$ItemImpl;
+      @JsonKey(name: "uri")
+      required final String uri}) = _$SpotifySimplifiedPlaylistImpl;
 
-  factory _Item.fromJson(Map<String, dynamic> json) = _$ItemImpl.fromJson;
+  factory _SpotifySimplifiedPlaylist.fromJson(Map<String, dynamic> json) =
+      _$SpotifySimplifiedPlaylistImpl.fromJson;
 
   @override
   @JsonKey(name: "collaborative")
@@ -991,8 +1006,8 @@ abstract class _Item implements Item {
   String get uri;
   @override
   @JsonKey(ignore: true)
-  _$$ItemImplCopyWith<_$ItemImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SpotifySimplifiedPlaylistImplCopyWith<_$SpotifySimplifiedPlaylistImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 ExternalUrls _$ExternalUrlsFromJson(Map<String, dynamic> json) {
@@ -1342,7 +1357,7 @@ mixin _$Owner {
   @JsonKey(name: "type")
   OwnerType get type => throw _privateConstructorUsedError;
   @JsonKey(name: "uri")
-  Uri get uri => throw _privateConstructorUsedError;
+  SpotifyUri get uri => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1360,7 +1375,7 @@ abstract class $OwnerCopyWith<$Res> {
       @JsonKey(name: "href") String href,
       @JsonKey(name: "id") Id id,
       @JsonKey(name: "type") OwnerType type,
-      @JsonKey(name: "uri") Uri uri});
+      @JsonKey(name: "uri") SpotifyUri uri});
 
   $ExternalUrlsCopyWith<$Res> get externalUrls;
 }
@@ -1409,7 +1424,7 @@ class _$OwnerCopyWithImpl<$Res, $Val extends Owner>
       uri: null == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
-              as Uri,
+              as SpotifyUri,
     ) as $Val);
   }
 
@@ -1435,7 +1450,7 @@ abstract class _$$OwnerImplCopyWith<$Res> implements $OwnerCopyWith<$Res> {
       @JsonKey(name: "href") String href,
       @JsonKey(name: "id") Id id,
       @JsonKey(name: "type") OwnerType type,
-      @JsonKey(name: "uri") Uri uri});
+      @JsonKey(name: "uri") SpotifyUri uri});
 
   @override
   $ExternalUrlsCopyWith<$Res> get externalUrls;
@@ -1483,7 +1498,7 @@ class __$$OwnerImplCopyWithImpl<$Res>
       uri: null == uri
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
-              as Uri,
+              as SpotifyUri,
     ));
   }
 }
@@ -1519,7 +1534,7 @@ class _$OwnerImpl implements _Owner {
   final OwnerType type;
   @override
   @JsonKey(name: "uri")
-  final Uri uri;
+  final SpotifyUri uri;
 
   @override
   String toString() {
@@ -1567,7 +1582,7 @@ abstract class _Owner implements Owner {
       @JsonKey(name: "href") required final String href,
       @JsonKey(name: "id") required final Id id,
       @JsonKey(name: "type") required final OwnerType type,
-      @JsonKey(name: "uri") required final Uri uri}) = _$OwnerImpl;
+      @JsonKey(name: "uri") required final SpotifyUri uri}) = _$OwnerImpl;
 
   factory _Owner.fromJson(Map<String, dynamic> json) = _$OwnerImpl.fromJson;
 
@@ -1588,7 +1603,7 @@ abstract class _Owner implements Owner {
   OwnerType get type;
   @override
   @JsonKey(name: "uri")
-  Uri get uri;
+  SpotifyUri get uri;
   @override
   @JsonKey(ignore: true)
   _$$OwnerImplCopyWith<_$OwnerImpl> get copyWith =>

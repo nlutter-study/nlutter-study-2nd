@@ -26,7 +26,7 @@ class SpotifyFeaturedPlaylists with _$SpotifyFeaturedPlaylists {
 class Playlists with _$Playlists {
   const factory Playlists({
     @JsonKey(name: "href") required String href,
-    @JsonKey(name: "items") required List<Item> items,
+    @JsonKey(name: "items") required List<SpotifySimplifiedPlaylist> items,
     @JsonKey(name: "limit") required int limit,
     @JsonKey(name: "next") required dynamic next,
     @JsonKey(name: "offset") required int offset,
@@ -39,8 +39,8 @@ class Playlists with _$Playlists {
 }
 
 @freezed
-class Item with _$Item {
-  const factory Item({
+class SpotifySimplifiedPlaylist with _$SpotifySimplifiedPlaylist {
+  const factory SpotifySimplifiedPlaylist({
     @JsonKey(name: "collaborative") required bool collaborative,
     @JsonKey(name: "description") required String description,
     @JsonKey(name: "external_urls") required ExternalUrls externalUrls,
@@ -55,9 +55,10 @@ class Item with _$Item {
     @JsonKey(name: "tracks") required Tracks tracks,
     @JsonKey(name: "type") required ItemType type,
     @JsonKey(name: "uri") required String uri,
-  }) = _Item;
+  }) = _SpotifySimplifiedPlaylist;
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory SpotifySimplifiedPlaylist.fromJson(Map<String, dynamic> json) =>
+      _$SpotifySimplifiedPlaylistFromJson(json);
 }
 
 @freezed
@@ -89,7 +90,7 @@ class Owner with _$Owner {
     @JsonKey(name: "href") required String href,
     @JsonKey(name: "id") required Id id,
     @JsonKey(name: "type") required OwnerType type,
-    @JsonKey(name: "uri") required Uri uri,
+    @JsonKey(name: "uri") required SpotifyUri uri,
   }) = _Owner;
 
   factory Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);
@@ -116,13 +117,13 @@ enum OwnerType {
 
 final ownerTypeValues = EnumValues({"user": OwnerType.USER});
 
-enum Uri {
+enum SpotifyUri {
   @JsonValue("spotify:user:spotify")
   SPOTIFY_USER_SPOTIFY
 }
 
 final uriValues =
-    EnumValues({"spotify:user:spotify": Uri.SPOTIFY_USER_SPOTIFY});
+    EnumValues({"spotify:user:spotify": SpotifyUri.SPOTIFY_USER_SPOTIFY});
 
 @freezed
 class Tracks with _$Tracks {

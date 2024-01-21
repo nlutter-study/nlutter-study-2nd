@@ -21,6 +21,8 @@ class SpotifyFeaturedRepository {
       },
       headers: {
         HttpHeaders.authorizationHeader: authorization,
+        HttpHeaders.acceptCharsetHeader: "UTF-8",
+        HttpHeaders.acceptHeader: "application/json",
       },
     );
     return SpotifyFeaturedPlaylists.fromJson(json);

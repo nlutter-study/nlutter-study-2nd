@@ -19,7 +19,11 @@ class FeatSpotifyApp extends StatelessWidget {
     return MaterialApp(
       title: 'feat. spotify',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+          brightness: Brightness.dark,
+        ),
         useMaterial3: true,
       ),
       home: const MainScreen(),

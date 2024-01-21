@@ -1,5 +1,10 @@
+import 'dart:ui';
+
+import 'package:feat_spotify/featured/models/spotify_featured_playlists.dart';
 import 'package:feat_spotify/featured/view_models/spotify_featured_view_model.dart';
+import 'package:feat_spotify/featured/views/spotify_featured_playlist_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
@@ -10,18 +15,101 @@ class MainScreen extends ConsumerStatefulWidget {
 }
 
 class _MainScreenState extends ConsumerState<MainScreen> {
+  final PageController _pageController = PageController(
+    viewportFraction: 0.8,
+  );
+
+  final ValueNotifier<double> _scroll = ValueNotifier(0.0);
+
+  int _currentPage = 0;
+
+  void _onPageChanged(int newPage) {
+    setState(() {
+      _currentPage = newPage;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      if (_pageController.page == null) {
+        return;
+      }
+      _scroll.value = _pageController.page!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final featuredViewModel = ref.watch(spotifyFeaturedViewModelProvider);
+    final playlists = featuredViewModel.value?.playlists.items;
 
     return Scaffold(
-      body: Center(
-        child: (featuredViewModel.isLoading || featuredViewModel.value == null)
-            ? const CircularProgressIndicator.adaptive()
-            : Text(
-                featuredViewModel.value.toString(),
+      body: (featuredViewModel.isLoading || featuredViewModel.value == null)
+          ? Center(
+              child: Transform.scale(
+                scale: 2,
+                child: const CircularProgressIndicator.adaptive(),
               ),
+            )
+          : Stack(
+              children: [
+                _buildBackgroundImage(playlists!),
+                _buildPageView(playlists),
+              ],
+            ),
+    );
+  }
+
+  Widget _buildBackgroundImage(List<SpotifySimplifiedPlaylist> playlists) {
+    return AnimatedSwitcher(
+      duration: 500.ms,
+      child: Container(
+        key: ValueKey(playlists[_currentPage].id),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              playlists[_currentPage].images.first.url,
+            ),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 10,
+            sigmaY: 10,
+          ),
+          child: Container(
+            color: Colors.black.withOpacity(0.2),
+          ),
+        ),
       ),
+    );
+  }
+
+  Widget _buildPageView(List<SpotifySimplifiedPlaylist> playlists) {
+    return PageView.builder(
+      controller: _pageController,
+      onPageChanged: _onPageChanged,
+      itemCount: playlists.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        return ValueListenableBuilder(
+          valueListenable: _scroll,
+          builder: (context, value, child) {
+            final difference = (value - index).abs();
+            final scale = 1 - difference * 0.15;
+
+            return Transform.scale(
+              scale: scale,
+              child: SpotifyFeaturedPlaylistPage(
+                playlist: playlists[index],
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
