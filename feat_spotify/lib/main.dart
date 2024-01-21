@@ -1,9 +1,13 @@
-import 'package:feat_spotify/api/spotify_api_client.dart';
+import 'package:feat_spotify/main/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-Future<void> main() async {
-  await spotifyApiClient.refreshAccessToken();
-  runApp(const FeatSpotifyApp());
+void main() {
+  runApp(
+    const ProviderScope(
+      child: FeatSpotifyApp(),
+    ),
+  );
 }
 
 class FeatSpotifyApp extends StatelessWidget {
@@ -18,13 +22,7 @@ class FeatSpotifyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        body: Center(
-          child: Text(
-            spotifyApiClient.auth.toString(),
-          ),
-        ),
-      ),
+      home: const MainScreen(),
     );
   }
 }
