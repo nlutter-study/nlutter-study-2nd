@@ -22,6 +22,19 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   final ValueNotifier<double> _scroll = ValueNotifier(0.0);
 
   int _currentPage = 0;
+  bool _isDetail = false;
+
+  void _openDetail() {
+    setState(() {
+      _isDetail = true;
+    });
+  }
+
+  void _openPlaylists() {
+    setState(() {
+      _isDetail = false;
+    });
+  }
 
   void _onPageChanged(int newPage) {
     setState(() {
@@ -57,35 +70,53 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               children: [
                 _buildBackgroundImage(playlists!),
                 _buildPageView(playlists),
+                _buildSlideButton(),
               ],
             ),
     );
   }
 
   Widget _buildBackgroundImage(List<SpotifySimplifiedPlaylist> playlists) {
-    return AnimatedSwitcher(
-      duration: 500.ms,
-      child: Container(
-        key: ValueKey(playlists[_currentPage].id),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-              playlists[_currentPage].images.first.url,
+    return Transform.scale(
+      scale: 1.2,
+      child: AnimatedSwitcher(
+        duration: 500.ms,
+        child: Container(
+          key: ValueKey(playlists[_currentPage].id),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                playlists[_currentPage].images.first.url,
+              ),
+              fit: BoxFit.cover,
             ),
-            fit: BoxFit.cover,
           ),
-        ),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: 10,
-            sigmaY: 10,
-          ),
-          child: Container(
-            color: Colors.black.withOpacity(0.2),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 10,
+              sigmaY: 10,
+            ),
+            child: Container(
+              color: Colors.black.withOpacity(0.4),
+            ),
           ),
         ),
       ),
-    );
+    )
+        .animate(
+          target: _isDetail ? 1 : 0,
+        )
+        .slideY(
+          duration: 600.ms,
+          begin: -0.1,
+          end: 0.1,
+          curve: Curves.easeInOutCubic,
+        )
+        .color(
+          blendMode: BlendMode.darken,
+          begin: Colors.transparent,
+          end: Colors.black.withOpacity(0.3),
+        );
   }
 
   Widget _buildPageView(List<SpotifySimplifiedPlaylist> playlists) {
@@ -101,15 +132,90 @@ class _MainScreenState extends ConsumerState<MainScreen> {
             final difference = (value - index).abs();
             final scale = 1 - difference * 0.15;
 
-            return Transform.scale(
-              scale: scale,
-              child: SpotifyFeaturedPlaylistPage(
-                playlist: playlists[index],
-              ),
+            return Stack(
+              children: [
+                Transform.scale(
+                  scale: scale,
+                  child: SpotifyFeaturedPlaylistPage(
+                    playlist: playlists[index],
+                  ),
+                ),
+              ],
             );
           },
         );
       },
+    )
+        .animate(
+          target: _isDetail ? 1 : 0,
+        )
+        .slideY(
+          duration: 700.ms,
+          begin: 0,
+          end: 0.75,
+          curve: Curves.easeInOutCubic,
+        );
+  }
+
+  Widget _buildSlideButton() {
+    return SafeArea(
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: _openDetail,
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.keyboard_arrow_up_rounded,
+                    size: 32,
+                  ),
+                  Text(
+                    'More',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              )
+                  .animate(
+                    target: _isDetail ? 1 : 0,
+                  )
+                  .fadeOut(),
+            ),
+            const Spacer(),
+            GestureDetector(
+              onTap: _openPlaylists,
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Playlists',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    size: 32,
+                  ),
+                ],
+              )
+                  .animate(
+                    target: _isDetail ? 1 : 0,
+                  )
+                  .fadeIn(
+                    delay: 500.ms,
+                  ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

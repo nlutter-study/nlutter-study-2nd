@@ -26,7 +26,7 @@ class SpotifyFeaturedPlaylistPage extends StatelessWidget {
   Widget _buildPlaylistImage() {
     return Center(
       child: Transform.translate(
-        offset: const Offset(0, -150),
+        offset: const Offset(0, -140),
         child: Material(
           color: Colors.transparent,
           elevation: 10,
@@ -54,7 +54,7 @@ class SpotifyFeaturedPlaylistPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Transform.translate(
-          offset: const Offset(0, 80),
+          offset: const Offset(0, 90),
           child: Material(
             color: Colors.transparent,
             elevation: 10,
@@ -76,6 +76,8 @@ class SpotifyFeaturedPlaylistPage extends StatelessWidget {
                   Text(
                     playlist.name,
                     textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 24,
@@ -98,6 +100,8 @@ class SpotifyFeaturedPlaylistPage extends StatelessWidget {
                   Text(
                     playlist.description,
                     textAlign: TextAlign.center,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey.shade800,
