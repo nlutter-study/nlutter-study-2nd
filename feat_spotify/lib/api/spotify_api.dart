@@ -10,13 +10,14 @@ const spotifyClientSecret = '4610593326b045b597dc53d587a665df';
 
 Future<dynamic> fetchData(
   SpotifyApiType apiType, {
+  String? id,
   Map<String, dynamic>? query,
   Map<String, String>? headers,
 }) async {
   final response = await http.get(
     Uri.https(
       apiType.host,
-      apiType.apiPath,
+      apiType.apiPath + ((id == null) ? '' : '/$id'),
       query,
     ),
     headers: headers,
@@ -57,6 +58,10 @@ enum SpotifyApiType {
   featuredPlaylists(
     host: _apiHost,
     apiPath: '/v1/browse/featured-playlists',
+  ),
+  playlist(
+    host: _apiHost,
+    apiPath: '/v1/playlists',
   );
 
   const SpotifyApiType({
@@ -66,6 +71,4 @@ enum SpotifyApiType {
 
   final String host;
   final String apiPath;
-
-  String get url => '$host$apiPath';
 }

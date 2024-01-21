@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:feat_spotify/featured/models/spotify_featured_playlists.dart';
 import 'package:feat_spotify/featured/view_models/spotify_featured_view_model.dart';
 import 'package:feat_spotify/featured/views/spotify_featured_playlist_page.dart';
+import 'package:feat_spotify/playlist/views/spotify_playlist_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -71,6 +72,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 _buildBackgroundImage(playlists!),
                 _buildPageView(playlists),
                 _buildSlideButton(),
+                _buildPlaylistView(playlists),
               ],
             ),
     );
@@ -120,41 +122,40 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   }
 
   Widget _buildPageView(List<SpotifySimplifiedPlaylist> playlists) {
-    return PageView.builder(
-      controller: _pageController,
-      onPageChanged: _onPageChanged,
-      itemCount: playlists.length,
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (context, index) {
-        return ValueListenableBuilder(
-          valueListenable: _scroll,
-          builder: (context, value, child) {
-            final difference = (value - index).abs();
-            final scale = 1 - difference * 0.15;
+    return AbsorbPointer(
+      absorbing: _isDetail,
+      child: PageView.builder(
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        itemCount: playlists.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return ValueListenableBuilder(
+            valueListenable: _scroll,
+            builder: (context, value, child) {
+              final difference = (value - index).abs();
+              final scale = 1 - difference * 0.15;
 
-            return Stack(
-              children: [
-                Transform.scale(
-                  scale: scale,
-                  child: SpotifyFeaturedPlaylistPage(
-                    playlist: playlists[index],
-                  ),
+              return Transform.scale(
+                scale: scale,
+                child: SpotifyFeaturedPlaylistPage(
+                  playlist: playlists[index],
                 ),
-              ],
-            );
-          },
-        );
-      },
-    )
-        .animate(
-          target: _isDetail ? 1 : 0,
-        )
-        .slideY(
-          duration: 700.ms,
-          begin: 0,
-          end: 0.75,
-          curve: Curves.easeInOutCubic,
-        );
+              )
+                  .animate(
+                    target: _isDetail ? 1 : 0,
+                  )
+                  .slideY(
+                    duration: 700.ms,
+                    begin: 0,
+                    end: 0.75,
+                    curve: Curves.easeInOutCubic,
+                  );
+            },
+          );
+        },
+      ),
+    );
   }
 
   Widget _buildSlideButton() {
@@ -217,5 +218,21 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildPlaylistView(List<SpotifySimplifiedPlaylist> playlists) {
+    return SpotifyPlaylistWidget(
+      key: ValueKey(playlists[_currentPage].id),
+      playlistId: playlists[_currentPage].id,
+    )
+        .animate(
+          target: _isDetail ? 1 : 0,
+        )
+        .slideY(
+          duration: 700.ms,
+          begin: -0.75,
+          end: 0.15,
+          curve: Curves.easeInOutCubic,
+        );
   }
 }
